@@ -1,23 +1,125 @@
-*{
-    margin:0;
-    padding:0;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-.navbar-container{
 
-    color:white;
-    height:10vh;
+li {
+    list-style: none;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.navbar-container {
+    padding: 0 5%;
+    width: 100%;
+    color: white;
+    height: 10vh;
     background-color: #04C59D;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+
 }
-.navbar-container ul{
-    list-style: none;
-}
-.navbar-container-left{
+
+.navbar-container .logo {
     display: flex;
-    justify-content: space-evenly;
-    
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.navbar-container .logo .brand {
+    font-size: 2.4em;
+    letter-spacing: 2px;
+}
+
+.navbar-container .logo .tagline {
+    font-size: 13px;
+}
+
+.navbar-container-left {
+    font-weight: 300;
+    display: flex;
+    gap: 10%;
+    flex-grow: 1;
+
+}
+
+.navbar-container-right {
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 1;
+    gap: 10%;
+}
+
+#home {
+    position: relative;
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-container {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.brand-tagline-container {
+    max-width: 40%;
+}
+
+.brand-tagline-container .brand {
+    font-size: 6em;
+    letter-spacing: 2px;
+}
+
+.brand-tagline-container .tagline {
+    margin: 10px 0;
+    width: 0;
+    max-width: max-content;
+    text-wrap: nowrap;
+    text-overflow: hidden;
+    overflow: hidden;
+    font-weight: 500;
+    font-size: 28px;
+    animation: animate 8s infinite ,cursor .6s infinite alternate step-end;
+    border-right: 1px solid;
+}
+@keyframes cursor {
+    50%{
+        border-color:transparent;
     }
-.navbar-container-right{
-display:flex;
+    
+}
+
+@keyframes animate {
+
+    0%,100%
+    {
+        width: 0;
+    }
+
+    
+    90% {
+        width: 100%;
+    }
+
+}
+
+.description {
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 100;
 }

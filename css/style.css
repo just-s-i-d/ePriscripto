@@ -1,0 +1,23 @@
+*{
+    margin:0;
+    padding:0;
+}
+.navbar-container{
+
+    color:white;
+    height:10vh;
+    background-color: #04C59D;
+    display: flex;
+    justify-content: space-between;
+}
+.navbar-container ul{
+    list-style: none;
+}
+.navbar-container-left{
+    display: flex;
+    justify-content: space-evenly;
+    
+    }
+.navbar-container-right{
+display:flex;
+}

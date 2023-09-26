@@ -1,0 +1,22 @@
+.about-section{
+    width:60%;
+    margin:5vh auto;
+}
+hr{
+    margin-top: 10px;
+}
+.about-container h1{
+font-size: 2em;
+margin:40px 0 20px;
+letter-spacing: 2px;
+}
+h3{
+    font-size: 1.3em;
+    margin:40px 0 20px;
+}
+.about-container{
+    font-size: 18px;
+    line-height: 24px;
+    width: 90%;
+}
+

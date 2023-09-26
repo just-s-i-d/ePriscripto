@@ -74,7 +74,9 @@ input:focus {
     font-size: 20px;
     z-index: 10;
 }
-
+header{
+    position: relative;
+}
 .navbar-container .logo {
     flex-grow: 1;
 }
@@ -134,7 +136,7 @@ input:focus {
 
 #home {
     /* background-color: #a7d1d3; */
-    position: relative;
+    
     width: 100%;
     height: 85vh;
     display: flex;
@@ -150,7 +152,6 @@ input:focus {
 #home .controller-container {
     position: relative;
     bottom: 10%;
-    left: 30%;
     display: flex;
     gap: 20px;
 }
@@ -177,7 +178,7 @@ input:focus {
 }
 
 .brand-tagline-container .brand {
-    font-size: 6em;
+    font-size: 5em;
     letter-spacing: 2px;
 }
 
@@ -189,7 +190,7 @@ input:focus {
     text-overflow: hidden;
     overflow: hidden;
     font-weight: 500;
-    font-size: 28px;
+    font-size: 1.4em;
     animation: animate 8s infinite, cursor .6s infinite alternate;
     border-right: 1px solid;
 }
@@ -242,6 +243,7 @@ button {
 }
 
 .feature-section {
+    position: relative;
     background-color: var(--green);
     padding: 2% 0 5%;
     color: var(--text);
@@ -287,6 +289,7 @@ button {
 }
 
 .doctors-section {
+    position: relative;
     padding: 1%;
     width: 100%;
     height: max-content;
@@ -305,7 +308,7 @@ button {
 
 .doctors-section .doctor-main-container {
     display: flex;
-    overflow: hidden;
+    
     justify-content: center;
     align-items: center;
     gap: 1%;
@@ -366,6 +369,7 @@ button {
 }
 
 .contact-section {
+    position: relative;
     margin: 5vh 0;
     display: flex;
     flex-direction: column;
@@ -386,8 +390,8 @@ textarea {
     border: var(--green) 1px solid;
 }
 
-footer {
-    position: relative;
+footer {position:relative;
+  
     color: var(--text);
     height: 20vh;
     width: 100%;
@@ -401,12 +405,16 @@ footer {
  footer li{
     margin-left: 15px;
 list-style:disc;
-padding:5px;
+padding:2px 5px;
 }
 .footer-container {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    font-size: 18px;
+}
+.footer-container .brand{
+font-size: 48px;
 }
 
 .footer-container .details-container {
@@ -421,4 +429,27 @@ padding:5px;
     text-align: center;
     position: absolute;
     bottom: 0;
+}
+
+
+@media  (max-width:1300px) {
+    .brand-tagline-container{
+        max-width: 50%;
+    }
+    /* .brand-tagline-container .brand{
+        font-size: 4em;
+    }
+     .brand-tagline-container .tagline{ 
+font-size: 1.2em;
+    }
+    .description {
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: 100;
+    }
+    
+    .brand-tagline-container .btn-container {
+        margin-top: 15px;
+        gap: 2%;
+    } */
 }

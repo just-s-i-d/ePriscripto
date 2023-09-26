@@ -6,10 +6,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>ePriscripto</title>
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
 
     <body>
         <header>
+            <div class="top-bar">
+                <span><i class="fa fa-phone"></i> Call:+01 1234567890</span>
+                <span><i class="fa fa-envelope"></i> Email:Email@email.com</span>
+                <span><i class="fa fa-map-marker"></i> Location</span>
+            </div>
             <nav class="navbar-container">
                 <div class="logo">
                     <span class="brand">ePriscripto</span>
@@ -17,12 +23,12 @@
                 </div>
                 <ul class="navbar-container-left">
                     <li><a href="#home">Home</a></li>
-                    <li><a href="about">About</a></li>
+                    <li><a href="about.html">About</a></li>
                     <li><a href="contact">Contact</a></li>
                 </ul>
                 <ul class="navbar-container-right">
                     <li>Sign in/up</li>
-                    <li>Search</li>
+                    <li class="search-box"><input type="text" placeholder="Search"></li>
                 </ul>
             </nav>
             <section id="home">
@@ -37,34 +43,103 @@
                             <button class="learn-more">Learn More</button>
                             <button>Get Started</button>
                         </div>
-                            
+
                     </div>
                     <img src="images/priscription.png" alt="Priscription illustrations" class="illustration">
                 </div>
             </section>
-            <section class="feature-section">
-                <h1 class="heading">Features</h1>
-                <div class="features-container">
-                    <div class="feature">
-                        <h2>Medication Reminders</h2>
-                        <span>Never miss a dose again! ePrescripto's intuitive medication reminders
-                            keep you on track with your prescriptions.</span>
-                    </div>
-                    <div class="feature">
-                        <h2>Priscription History</h2>
-                        <span>Access your complete prescription history at your fingertips.
-                            ePrescripto securely records and organizes your medications
-                        </span>
-                    </div>
-                    <div class="feature">
-                        <h2>Family Profiles</h2>
-                        <span>You can manage prescriptions for multiple family members all in one account.
-                            Streamline your loved ones' health journeys effortlessly</span>
-                    </div>
-
-                </div>
-            </section>
         </header>
+        <section class="feature-section">
+            <h1 class="heading">Features</h1>
+            <div class="features-container">
+                <div class="feature">
+                    <h2>Medication Reminders</h2>
+                    <span>Never miss a dose again! ePrescripto's intuitive medication reminders
+                        keep you on track with your prescriptions.</span>
+                </div>
+                <div class="feature">
+                    <h2>Priscription History</h2>
+                    <span>Access your complete prescription history at your fingertips.
+                        ePrescripto securely records and organizes your medications
+                    </span>
+                </div>
+                <div class="feature">
+                    <h2>Family Profiles</h2>
+                    <span>You can manage prescriptions for multiple family members all in one account.
+                        Streamline your loved ones' health journeys effortlessly</span>
+                </div>
+
+            </div>
+        </section>
+        <section class="how-to-use-section">
+            <div class="steps-container">
+                <h3 class="heading">Getting Started with ePrescripto</h3>
+
+                Welcome to ePrescripto! We're here to make managing your prescriptions and healthcare a breeze. Follow
+                these simple steps to get started:
+
+                <h4 class="step-heading">1. Sign Up or Log In:</h4>
+                <p class="step-des">If you're new here, click 'Sign Up' to create your ePrescripto account. If you're returning, log in
+                    with your existing credentials.
+                    Don't worry; your information is safe and secure with us.</p>
+
+                <h4 class="step-heading">2. Create Your Profile:</h4>
+                <p class="step-des"> class="step-des"After signing in, take a moment to complete your user profile. This helps us personalize your
+                    experience and provide you with the best care.</p>
+
+                <h4 class="step-heading">3. Add Your Prescriptions:</h4>
+                <p class="step-des">To manage your medications, click 'Add Prescription' or 'Upload Prescription.'
+                    Enter the details of your prescriptions, including medication names, dosages, and prescribing
+                    doctors.</p>
+
+                <h4 class="step-heading">4. Set Medication Reminders:</h4>
+                <p class="step-des">Never miss a dose again! Set up medication reminders in your dashboard. Choose your preferred
+                    schedule and notification method (email, SMS, or in-app).</p>
+
+                <h4 class="step-heading">5. Explore Your Dashboard:</h4>
+                <p class="step-des">Your user dashboard is your control center. Here, you can view and manage your prescriptions, track
+                    your medication history, and access helpful resources.</p>
+
+                <h4 class="step-heading">6. Add Family Members (Optional):</h4>
+                <p class="step-des">For family healthcare management, add family members to your account and manage their prescriptions
+                    effortlessly.</p>
+
+                <h4 class="step-heading">7. Stay Informed:</h4>
+                <p class="step-des">Explore our health tips, articles, and resources to stay informed about your medications and overall
+                    well-being.</p>
+
+
+                <h4 class="step-heading">8. Need Help? Contact Us:</h4>
+                <p class="step-des">If you have any questions or encounter any issues, our support team is here to assist you. Feel free
+                    to reach out at [email@email.com]
+                    or through our live chat.That's it! You're all set to take charge of your health with ePrescripto.
+                    We're here to support you every step of the way.</p>
+            </div>
+        </section>
+
+        <section class="doctors-section">
+            <h1 class="heading">Doctors</h1>
+            <div class="doctor-info-container">
+                <div class="doctor">
+                    <img src="images/profilepic.png" alt="Profile">
+                    <h2>Name</h2>
+                    <h3>Speciality</h3>
+                    <h4>Contact</h4>
+                </div>
+                <div class="doctor">
+                    <img src="images/profilepic.png" alt="Profile">
+                    <h2>Name</h2>
+                    <h3>Speciality</h3>
+                    <h4>Contact</h4>
+                </div>
+                <div class="doctor">
+                    <img src="images/profilepic.png" alt="Profile">
+                    <h2>Name</h2>
+                    <h3>Speciality</h3>
+                    <h4>Contact</h4>
+                </div>
+            </div>
+        </section>
         <footer>
             <div>
 

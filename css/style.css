@@ -3,8 +3,8 @@
 :root {
     --green: #04C59D;
     --text: white;
-    --shadow:rgba(6, 197, 157, 0.9);
-    --secondaryText:#252525;
+    --shadow: rgba(6, 197, 157, 0.9);
+    --secondaryText: #252525;
 }
 
 * {
@@ -31,6 +31,17 @@ a:hover {
 
 input:focus {
     outline: none;
+}
+
+button {
+    width: max-content;
+    color: var(--text);
+    border-color: transparent;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: var(--green);
 }
 
 .heading {
@@ -62,7 +73,6 @@ input:focus {
     align-items: center;
     font-size: 20px;
     z-index: 10;
-    overflow: hidden;
 }
 
 header {
@@ -123,7 +133,21 @@ header {
 
     transform: scale(1.1);
 }
-
+.navbar-container .menu-icon{
+    width: 40px;
+    cursor: pointer;
+    display: none;
+}
+.drop-down-menu{
+    position: absolute;
+    width: 100%;
+    top:10vh;
+    background-color: black;
+    display: none;
+}
+.navbar-container .menu-icon:hover+.drop-down-menu{
+    display: block;
+}
 /* styles for navigation bar ends here */
 
 #home {
@@ -136,12 +160,12 @@ header {
 }
 
 #home .illustration {
-    width: 100%;
+    width: 40%;
 }
 
 #home .controller-container {
     position: relative;
-    bottom: 10%;
+    bottom: 7%;
     display: flex;
     gap: 20px;
 }
@@ -217,38 +241,29 @@ header {
     gap: 5%;
 }
 
-.styled.learn-more{
+.styled.learn-more {
     background-color: #494242;
     transition: all 0.2s;
 }
-.styled.learn-more:hover{
+
+.styled.learn-more:hover {
     transform: scale(1.1);
     box-shadow: 0 0 20px 0 var(--secondaryText);
 }
 
-.get-started{
+.get-started {
     transition: all 0.2s;
 }
-.get-started:hover{
-transform: scale(1.1);
-box-shadow: 0 0 20px 0 var(--shadow);
-}
 
-button {
-    width: max-content;
-    color: var(--text);
-    border-color: transparent;
-    border-radius: 10px;
-    padding: 10px 20px;
-    font-size: 18px;
-    cursor: pointer;
-    background-color: var(--green);
+.get-started:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px 0 var(--shadow);
 }
 
 .feature-section {
     position: relative;
     background-color: var(--green);
-    padding: 2% 0 5%;
+    padding:4% 0;
     color: var(--text);
 }
 
@@ -294,7 +309,7 @@ button {
 
 .doctors-section {
     position: relative;
-    padding: 2%;
+    padding:4% 2%;
     width: 100%;
     height: max-content;
     display: flex;
@@ -305,14 +320,10 @@ button {
     color: var(--text);
 }
 
-.doctors-section img {
-    width: 20%;
-    height: 100%;
-}
 
 .doctors-section .doctor-main-container {
+    flex-grow: 2;
     display: flex;
-
     justify-content: center;
     align-items: center;
     gap: 1%;
@@ -320,13 +331,16 @@ button {
 
 .doctor-info-container {
     padding: 0 20px;
+    height: max-content;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5%;
+    gap: 3%;
 }
 
 .doctor {
+    width: 100%;
+    height: max-content;
     background-color: rgba(37, 37, 37, 0.5);
     padding: 10px;
     border-radius: 20px;
@@ -341,18 +355,27 @@ button {
     transform: scale(1.1);
 }
 
-.doctor img {
-    width: 100%;
+.doctor-illustration {
+    width: 15%;
+}
+
+
+.doctor .profile-pic {
+    margin-bottom: 10px;
+    width: 50%;
+    aspect-ratio: 1;
+    border-radius: 50%;
 }
 
 .how-to-use-section {
     position: relative;
+    
     width: 85%;
     margin: 10vh auto;
 }
 
 .steps-container {
-    padding: 2% 10% 5%;
+    padding:5%;
     box-shadow: 0 0 10px 0 rgba(6, 197, 157, 0.9);
 }
 
@@ -432,6 +455,7 @@ button {
 }
 
 .contact-main-container {
+    max-width: 50%;
     box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.7);
     padding: 3%;
     background-color: var(--text);
@@ -445,14 +469,13 @@ button {
 .contact-form-container form input,
 textarea {
     font-size: 18px;
-    margin: 10px 0;
+    margin:5px 0 10px 0;
     padding: 10px;
     border: var(--green) 1px solid;
 }
 
 footer {
     position: relative;
-
     color: var(--text);
     height: 30vh;
     width: 100%;
@@ -483,17 +506,19 @@ footer {
     flex-direction: column;
     gap: 10px;
 }
-.footer-container .details-container .social-icons-container{
+
+.footer-container .details-container .social-icons-container {
     display: flex;
-    gap:10px;
+    gap: 10px;
 }
 
 .footer-container .important-links-container h3 {
     margin-bottom: 20px;
 }
-.footer-container .important-links-container li{
+
+.footer-container .important-links-container li {
     list-style: disc;
-    margin:5px;
+    margin: 5px;
 }
 
 .bottom-bar {
@@ -505,49 +530,119 @@ footer {
 }
 
 @media (max-width:1350px) {
-    .brand-tagline-container {
-        max-width: 50%;
+
+    .brand-tagline-container .brand {
+        font-size: 5em;
+        letter-spacing: 5px;
+    }
+
+    .brand-tagline-container .tagline {
+        font-size: 1.6em;
     }
 
     .feature {
-        padding: 15px 5px;
         width: 25%;
-        /* min-height: 20vh; */
         height: 20vh;
+    }
 
+    .doctor h2 {
+        font-size: 20px;
+    }
+
+    .doctor h3 {
+        font-size: 18px;
     }
 }
 
-@media (max-width:1050px) {
-    .brand-tagline-container {
-        max-width: 60%;
+@media (max-width:1150px) {
+    #home{
+        height: 80vh;
+    }
+    .brand-tagline-container .brand {
+        font-size: 4.5em;
+        letter-spacing: 5px;
     }
 
-    .feature {
-        padding: 15px 5px;
-        width: 25%;
-        height: 20vh;
+    .brand-tagline-container .tagline {
+        font-size: 1.4em;
+    }
 
+    .description {
+        font-size: 22px;
     }
 
     .features-container {
         gap: 3%;
     }
+    .doctor-info-container {
+        flex-direction: column;
+        gap:20px;
+    }
+    .doctor-illustration {
+        width: 30%;
+    }
 }
 
-@media (max-width:975px) {
+@media(max-width:1024px) {
+    .brand-tagline-container .brand {
+        font-size: 4em;
+        letter-spacing: 5px;
+    }
+
+    .brand-tagline-container .tagline {
+        font-size: 1.3em;
+    }
+
+    .description {
+        font-size: 20px;
+    }
+
+    .heading {
+        font-size: 36px;
+    }
+
     .how-to-use-section {
         width: 90%;
-        margin: 5vh auto;
     }
 
-    .steps-container {
-        padding: 2% 10% 5%;
-        box-shadow: 0 0 10px 0 rgba(6, 197, 157, 0.9);
+    .steps-container span {
+        font-size: 18px;
+    }
+}
+
+@media (max-width:920px) {
+    .home-container{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .brand-tagline-container {
+        max-width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .brand-tagline-container .brand {
+        font-size: 4.5em;
     }
 
+    .brand-tagline-container .tagline {
+        font-size: 1.5em;
+    }
+    .brand-tagline-container .description{
+        text-align: center;
+    }
+    #home .illustration {
+        width: 35%;
+    }
+    .feature-section .features-container {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+    .feature{
+        width: 40%;
+    }
     .how-to-use-section h4 {
-        color: var(--green);
         font-size: 22px;
         margin: 20px 0 10px;
     }
@@ -557,20 +652,61 @@ footer {
     }
 }
 
-@media (max-width:910px) {
-    .steps-container {
-        padding: 2% 10% 5%;
-        box-shadow: 0 0 10px 0 rgba(6, 197, 157, 0.9);
+@media (max-width:820px) {
+    .brand-tagline-container .brand {
+        font-size: 4em;
+        letter-spacing: 5px;
     }
 
+    .brand-tagline-container .tagline {
+        font-size: 1.4em;
+    }
+
+    .description {
+        font-size: 20px;
+    }
+    #home .illustration {
+        width: 40%;
+    }
+    .feature{
+        width: 50%;
+    }
     .how-to-use-section h4 {
-        color: var(--green);
-        font-size: 18px;
-        margin: 10px 0 5px;
+        font-size: 22px;
+        margin: 20px 0 10px;
     }
 
     .how-to-use-section .step-des {
-        width: 80%;
-        font-size: 14px;
+        width: 70%;
+    }
+    
+}
+@media (max-width:767px) {
+    .navbar-container-left,.navbar-container-right{
+        display: none;
+    }
+    .navbar-container .menu-icon{
+        display: block;
+    }
+    .brand-tagline-container .brand {
+        font-size: 3.8em;
+        letter-spacing: 5px;
+    }
+
+    .brand-tagline-container .tagline {
+        font-size: 1.4em;
+    }
+
+    .description {
+        font-size: 20px;
+    }
+
+    .how-to-use-section h4 {
+        font-size: 22px;
+        margin: 20px 0 10px;
+    }
+
+    .how-to-use-section .step-des {
+        width: 70%;
     }
 }

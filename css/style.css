@@ -73,10 +73,14 @@ input:focus {
     align-items: center;
     font-size: 20px;
     z-index: 10;
+    overflow: hidden;
 }
-header{
+
+
+header {
     position: relative;
 }
+
 .navbar-container .logo {
     flex-grow: 1;
 }
@@ -102,6 +106,7 @@ header{
     display: flex;
     gap: 10%;
     flex-grow: 1;
+    flex-shrink: 2;
 
 }
 
@@ -136,7 +141,7 @@ header{
 
 #home {
     /* background-color: #a7d1d3; */
-    
+
     width: 100%;
     height: 85vh;
     display: flex;
@@ -174,24 +179,24 @@ header{
 }
 
 .brand-tagline-container {
-    max-width: 40%;
+    max-width: 60%;
 }
 
 .brand-tagline-container .brand {
-    font-size: 5em;
-    letter-spacing: 2px;
+    font-size: 7em;
+    letter-spacing: 5px;
 }
 
 .brand-tagline-container .tagline {
     margin: 10px 0;
-    width: 0;
+    width: 20%;
     max-width: max-content;
     text-wrap: nowrap;
     text-overflow: hidden;
     overflow: hidden;
     font-weight: 500;
-    font-size: 1.4em;
-    animation: animate 8s infinite, cursor .6s infinite alternate;
+    font-size: 2em;
+    animation: animate 12s infinite, cursor .6s infinite alternate;
     border-right: 1px solid;
 }
 
@@ -206,7 +211,7 @@ header{
 
     0%,
     100% {
-        width: 0;
+        width: 30%;
     }
 
 
@@ -217,7 +222,7 @@ header{
 }
 
 .description {
-    font-size: 20px;
+    font-size: 28px;
     line-height: 30px;
     font-weight: 100;
 }
@@ -267,9 +272,14 @@ button {
     padding: 20px 10px;
     box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.1);
     width: 20%;
+    /* min-height: 20vh; */
     height: 20vh;
     background-color: #192e36;
     transition: 0.4s all;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .feature:hover {
@@ -277,8 +287,6 @@ button {
 }
 
 .feature h2 {
-
-    margin-bottom: 20px;
     font-weight: 500;
 }
 
@@ -308,7 +316,7 @@ button {
 
 .doctors-section .doctor-main-container {
     display: flex;
-    
+
     justify-content: center;
     align-items: center;
     gap: 1%;
@@ -343,7 +351,7 @@ button {
 
 .how-to-use-section {
     position: relative;
-    width: 80%;
+    width: 85%;
     margin: 10vh auto;
 }
 
@@ -368,6 +376,43 @@ button {
     float: right;
 }
 
+.testimonial-section {
+    padding: 1%;
+    width: 80%;
+    margin: 5vh auto;
+}
+
+.testimonial-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.testimonial cite {
+    float: right;
+    font-size: 24px;
+}
+
+.testimonial blockquote {
+    margin: 20px 0;
+    font-size: 22px;
+    line-height: 22px;
+}
+
+.testimonial-container .controller {
+    background-color: var(--green);
+    padding: 15px 5px 30px;
+    color: var(--text);
+    font-size: 42px;
+}
+
+.testimonial {
+    max-width: 70%;
+    padding: 2% 4% 4%;
+    box-shadow: 0 0 5px 2px rgba(6, 197, 157, 0.9);
+}
+
 .contact-section {
     position: relative;
     margin: 5vh 0;
@@ -390,8 +435,9 @@ textarea {
     border: var(--green) 1px solid;
 }
 
-footer {position:relative;
-  
+footer {
+    position: relative;
+
     color: var(--text);
     height: 20vh;
     width: 100%;
@@ -402,19 +448,21 @@ footer {position:relative;
 
 }
 
- footer li{
+footer li {
     margin-left: 15px;
-list-style:disc;
-padding:2px 5px;
+    list-style: disc;
+    padding: 2px 5px;
 }
+
 .footer-container {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     font-size: 18px;
 }
-.footer-container .brand{
-font-size: 48px;
+
+.footer-container .brand {
+    font-size: 48px;
 }
 
 .footer-container .details-container {
@@ -432,9 +480,16 @@ font-size: 48px;
 }
 
 
-@media  (max-width:1300px) {
-    .brand-tagline-container{
+@media (max-width:1350px) {
+    .brand-tagline-container {
         max-width: 50%;
+    }
+    .feature {
+        padding: 15px 5px;
+        width: 25%;
+        /* min-height: 20vh; */
+        height: 20vh;
+        
     }
     /* .brand-tagline-container .brand{
         font-size: 4em;
@@ -452,4 +507,56 @@ font-size: 1.2em;
         margin-top: 15px;
         gap: 2%;
     } */
+}
+@media (max-width:1050px){
+    .brand-tagline-container {
+        max-width: 60%;
+    }
+    .feature {
+        padding: 15px 5px;
+        width: 25%;
+        /* min-height: 20vh; */
+        height: 20vh;
+        
+    }
+    .features-container{
+        gap:3%;
+    }
+}
+@media (max-width:975px){
+    .how-to-use-section {
+        width: 90%;
+        margin: 5vh auto;
+    }
+    .steps-container {
+        padding: 2% 10% 5%;
+        box-shadow: 0 0 10px 0 rgba(6, 197, 157, 0.9);
+    }
+    
+    .how-to-use-section h4 {
+        color: var(--green);
+        font-size: 22px;
+        margin: 20px 0 10px;
+    }
+    
+    .how-to-use-section .step-des {
+        width: 70%;
+    }
+}
+@media (max-width:910px){
+    .steps-container {
+        padding: 2% 10% 5%;
+        box-shadow: 0 0 10px 0 rgba(6, 197, 157, 0.9);
+    }
+    
+    .how-to-use-section h4 {
+        color: var(--green);
+        font-size: 18px;
+        margin: 10px 0 5px;
+    }
+    
+    .how-to-use-section .step-des {
+        width: 80%;
+        font-size: 14px;
+    }
 }

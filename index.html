@@ -12,11 +12,6 @@
 
     <body>
         <header>
-            <div class="top-bar">
-                <span><i class="fa fa-phone"></i> Call:+01 1234567890</span>
-                <span><i class="fa fa-envelope"></i> Email:Email@email.com</span>
-                <span><i class="fa fa-map-marker"></i> Location</span>
-            </div>
             <nav class="navbar-container">
                 <div class="logo">
                     <span class="brand">ePriscripto</span>
@@ -30,8 +25,7 @@
 
                 </ul>
                 <ul class="navbar-container-right">
-                    <li><a href="signin-up.html">Sign in/up</a></li>
-                    <li class="search-box"><input type="text" placeholder="Search"></li>
+                    <li><a href="signin-up.html">Login</a></li>
                 </ul>
                 <!-- <div class="dropdown-menu">
                     <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -50,7 +44,7 @@
                         <li><a href="about.html">About</a></li>
                         <li><a href="#contact-us">Contact</a></li>
      -->
-                    </ul>
+                </ul>
                 </div>
             </nav>
             <section id="home">
@@ -63,9 +57,11 @@
                             Join us today and experience a healthier, stress-free tomorrow.</p>
                         <div class="btn-container">
                             <a href="#learn-more">
-                                <button class="styled">Learn More</button>
+                                <button class="styled learn-more">Learn More</button>
                             </a>
-                            <button>Get Started</button>
+                            <a href="signin-up.html">
+                                <button class="styled get-started">Get Started</button>
+                            </a>
                         </div>
 
                     </div>
@@ -104,41 +100,59 @@
         <section class="how-to-use-section" id="learn-more">
             <div class="steps-container">
                 <h3 class="heading">Getting Started with ePrescripto</h3>
-                Welcome to ePrescripto! We're here to make managing your prescriptions and healthcare a breeze. Follow
-                these simple steps to get started:
-                <h4 class="step-heading">1.Sign Up:</h4>
-                <p class="step-des">
-                    Click "Get Started" to create your ePrescripto account. It's quick, easy, and free.
-                </p>
-                <img src="images/priscription.png" alt="Priscription illustrations" class="illustration">
-                <h4 class="step-heading">
-                    2.Upload Prescriptions:
-                </h4>
-                <p class="step-des">
-                    Upload images or PDFs of your prescriptions. Our platform securely stores your
-                    prescription history.
-                </p>
+                <span>
+                    Welcome to ePrescripto! We're here to make managing your prescriptions and healthcare a breeze.
+                    Follow
+                    these simple steps to get started:
+                </span>
 
-                <h4 class="step-heading">3.Set Medication Reminders:</h4>
-                <p class="step-des">
-                    Create personalized medication schedules. Receive timely reminders via email or SMS.
-                </p>
+                <ol>
+                    <li class="step-heading">Sign Up:
+                        <p class="step-des">
+                            Click "Get Started" to create your ePrescripto account. It's quick, easy, and free.
+                        </p>
+                        <img src="images/priscription.png" alt="Priscription illustrations" class="illustration">
+                    </li>
+
+                    <li class="step-heading">
+                        Upload Prescriptions:
+                        <p class="step-des">
+                            Upload images or PDFs of your prescriptions. Our platform securely stores your
+                            prescription history.
+                        </p>
+                    </li>
 
 
-                <h4 class="step-heading">4.Stay Organized:</h4>
-                <p class="step-des">
-                    Access your complete prescription history and track your health journey effortlessly.
-                </p>
+                    <li class="step-heading">Set Medication Reminders:
+                        <p class="step-des">
+                            Create personalized medication schedules. Receive timely reminders via email or SMS.
+                        </p>
+                    </li>
 
-                <h4 class="step-heading">5.Family-Friendly:</h4>
-                <p class="step-des">
-                    Add and manage prescriptions for multiple family members within one account.
-                </p>
 
-                <h4 class="step-heading">6.Experience Convenience:</h4>
-                <p class="step-des">
-                    Simplify your healthcare management with ePrescripto and enjoy peace of mind.
-                </p>
+
+                    <li class="step-heading">Stay Organized:
+                        <p class="step-des">
+                            Access your complete prescription history and track your health journey effortlessly.
+                        </p>
+                    </li>
+
+
+                    <li class="step-heading">Family-Friendly:
+                        <p class="step-des">
+                            Add and manage prescriptions for multiple family members within one account.
+                        </p>
+                    </li>
+
+
+                    <li class="step-heading">Experience Convenience:
+                        <p class="step-des">
+                            Simplify your healthcare management with ePrescripto and enjoy peace of mind.
+                        </p>
+                    </li>
+                </ol>
+
+
 
             </div>
         </section>
@@ -195,17 +209,20 @@
 
         </section>
         <section class="contact-section" id="contact-us">
-            <h2 class="heading">Get in touch with us</h2>
-            <!-- <img src="images/dots.png" alt="dots" id="dot-background-img"> -->
-            <div class="contact-form-container">
-                <form>
-                    <input type="text" placeholder="Full Name">
-                    <input type="email" placeholder="Email">
-                    <input type="tel" placeholder="Phone Number">
-                    <textarea name="" id="" cols="60" rows="5" placeholder="Message"></textarea>
-                    <button>Send</button>
-                </form>
+            <div class="contact-main-container">
+                <h2 class="heading">Get in touch with us</h2>
+                <!-- <img src="images/dots.png" alt="dots" id="dot-background-img"> -->
+                <div class="contact-form-container">
+                    <form>
+                        <input type="text" placeholder="Full Name">
+                        <input type="email" placeholder="Email">
+                        <input type="tel" placeholder="Phone Number">
+                        <textarea name="" id="" cols="60" rows="5" placeholder="Message"></textarea>
+                        <button>Send</button>
+                    </form>
+                </div>
             </div>
+
         </section>
         <footer>
             <div class="footer-container">
@@ -214,9 +231,11 @@
                     <span class="tagline">Simplify,Organise,Thrieve with ePriscripto</span>
                 </div>
                 <div class="details-container">
+                    <span><i class="fa fa-map-marker"></i> Location</span>
                     <span><i class="fa fa-phone"></i> Call:+01 1234567890</span>
                     <span><i class="fa fa-envelope"></i> Email:Email@email.com</span>
-                    <span><i class="fa fa-map-marker"></i> Location</span>
+                    <span class="social-icons-container"><i class="fa fa-facebook"></i><i class="fa fa-instagram"></i><i
+                            class="fa fa-linkedin"></i><i class="fa fa-twitter"></i></span>
                 </div>
                 <div class="important-links-container">
                     <h3>Usefull Links</h3>

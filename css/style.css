@@ -3,6 +3,8 @@
 :root {
     --green: #04C59D;
     --text: white;
+    --shadow:rgba(6, 197, 157, 0.9);
+    --secondaryText:#252525;
 }
 
 * {
@@ -38,26 +40,13 @@ input:focus {
 }
 
 .controller {
-    font-size: 3em;
+    font-size: 2em;
     cursor: pointer;
-}
-
-
-/* styles for the top bar starts here */
-.top-bar {
-    height: 5vh;
-    width: 60%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10%;
 }
 
 .fa {
     color: var(--green);
 }
-
-/* top bar style ends here */
 
 /* styles for navigation bar starts here */
 .navbar-container {
@@ -65,7 +54,7 @@ input:focus {
     top: 0;
     padding: 0 5%;
     width: 100%;
-    color: white;
+    color: var(--text);
     height: 10vh;
     background-color: var(--green);
     display: flex;
@@ -75,7 +64,6 @@ input:focus {
     z-index: 10;
     overflow: hidden;
 }
-
 
 header {
     position: relative;
@@ -89,16 +77,15 @@ header {
     color: var(--text);
     display: flex;
     flex-direction: column;
-
 }
 
 .logo .brand {
-    font-size: 2.4em;
-    letter-spacing: 2px;
+    font-size: 2em;
+    letter-spacing: 1px;
 }
 
 .logo .tagline {
-    font-size: 13px;
+    font-size: 11px;
 }
 
 .navbar-container-left {
@@ -140,10 +127,8 @@ header {
 /* styles for navigation bar ends here */
 
 #home {
-    /* background-color: #a7d1d3; */
-
     width: 100%;
-    height: 85vh;
+    height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -151,7 +136,7 @@ header {
 }
 
 #home .illustration {
-    width: 30%;
+    width: 100%;
 }
 
 #home .controller-container {
@@ -173,29 +158,31 @@ header {
     height: 80%;
     padding: 10px;
     display: flex;
-    box-shadow: 0 0 10px 0px rgba(6, 197, 157, 0.9);
+    box-shadow: 0 0 10px 0px var(--shadow);
     justify-content: center;
     align-items: center;
+    gap: 5%;
 }
 
 .brand-tagline-container {
-    max-width: 60%;
+    max-width: 50%;
+    height: 50%;
 }
 
 .brand-tagline-container .brand {
-    font-size: 7em;
+    font-size: 6em;
     letter-spacing: 5px;
 }
 
 .brand-tagline-container .tagline {
-    margin: 10px 0;
-    width: 20%;
+    margin: 5px 0 20px;
+    width: 33%;
     max-width: max-content;
     text-wrap: nowrap;
     text-overflow: hidden;
     overflow: hidden;
     font-weight: 500;
-    font-size: 2em;
+    font-size: 1.8em;
     animation: animate 12s infinite, cursor .6s infinite alternate;
     border-right: 1px solid;
 }
@@ -204,37 +191,47 @@ header {
     50% {
         border-color: transparent;
     }
-
 }
 
 @keyframes animate {
 
     0%,
     100% {
-        width: 30%;
+        width: 33%;
     }
-
 
     90% {
         width: 100%;
     }
-
 }
 
 .description {
-    font-size: 28px;
+    font-size: 24px;
     line-height: 30px;
     font-weight: 100;
 }
 
 .brand-tagline-container .btn-container {
-    margin-top: 15px;
+    margin-top: 25px;
     display: flex;
     gap: 5%;
 }
 
-.styled {
+.styled.learn-more{
     background-color: #494242;
+    transition: all 0.2s;
+}
+.styled.learn-more:hover{
+    transform: scale(1.1);
+    box-shadow: 0 0 20px 0 var(--secondaryText);
+}
+
+.get-started{
+    transition: all 0.2s;
+}
+.get-started:hover{
+transform: scale(1.1);
+box-shadow: 0 0 20px 0 var(--shadow);
 }
 
 button {
@@ -242,8 +239,9 @@ button {
     color: var(--text);
     border-color: transparent;
     border-radius: 10px;
-    padding: 5px 20px;
+    padding: 10px 20px;
     font-size: 18px;
+    cursor: pointer;
     background-color: var(--green);
 }
 
@@ -263,7 +261,6 @@ button {
     justify-content: center;
     align-items: center;
     gap: 5%;
-
 }
 
 .feature {
@@ -272,7 +269,6 @@ button {
     padding: 20px 10px;
     box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.1);
     width: 20%;
-    /* min-height: 20vh; */
     height: 20vh;
     background-color: #192e36;
     transition: 0.4s all;
@@ -298,7 +294,7 @@ button {
 
 .doctors-section {
     position: relative;
-    padding: 1%;
+    padding: 2%;
     width: 100%;
     height: max-content;
     display: flex;
@@ -327,7 +323,7 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10%;
+    gap: 5%;
 }
 
 .doctor {
@@ -360,17 +356,28 @@ button {
     box-shadow: 0 0 10px 0 rgba(6, 197, 157, 0.9);
 }
 
-.how-to-use-section h4 {
-    color: var(--green);
+.steps-container span {
     font-size: 22px;
-    margin: 20px 0 10px;
 }
 
-.how-to-use-section .step-des {
+.steps-container ol>li {
+    list-style: decimal;
+
+}
+
+.step-heading {
+    color: var(--green);
+    font-size: 22px;
+    margin: 20px 0 10px 20px;
+}
+
+.step-heading .step-des {
+    color: #252525;
+    font-size: 18px;
     width: 70%;
 }
 
-.how-to-use-section img {
+.step-heading img {
     width: 40%;
     height: 90%;
     float: right;
@@ -414,12 +421,20 @@ button {
 }
 
 .contact-section {
+    padding: 3%;
     position: relative;
-    margin: 5vh 0;
+    background-color: var(--green);
+    margin: 5vh 0 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.contact-main-container {
+    box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.7);
+    padding: 3%;
+    background-color: var(--text);
 }
 
 .contact-form-container form {
@@ -439,7 +454,7 @@ footer {
     position: relative;
 
     color: var(--text);
-    height: 20vh;
+    height: 30vh;
     width: 100%;
     background-color: #252525;
     display: flex;
@@ -448,27 +463,37 @@ footer {
 
 }
 
-footer li {
-    margin-left: 15px;
-    list-style: disc;
-    padding: 2px 5px;
-}
-
 .footer-container {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
     font-size: 18px;
 }
 
 .footer-container .brand {
-    font-size: 48px;
+    font-size: 3em;
+}
+
+.footer-container .tagline {
+    font-size: .8em;
 }
 
 .footer-container .details-container {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+.footer-container .details-container .social-icons-container{
+    display: flex;
+    gap:10px;
+}
+
+.footer-container .important-links-container h3 {
+    margin-bottom: 20px;
+}
+.footer-container .important-links-container li{
+    list-style: disc;
+    margin:5px;
 }
 
 .bottom-bar {
@@ -479,82 +504,71 @@ footer li {
     bottom: 0;
 }
 
-
 @media (max-width:1350px) {
     .brand-tagline-container {
         max-width: 50%;
     }
+
     .feature {
         padding: 15px 5px;
         width: 25%;
         /* min-height: 20vh; */
         height: 20vh;
-        
+
     }
-    /* .brand-tagline-container .brand{
-        font-size: 4em;
-    }
-     .brand-tagline-container .tagline{ 
-font-size: 1.2em;
-    }
-    .description {
-        font-size: 16px;
-        line-height: 20px;
-        font-weight: 100;
-    }
-    
-    .brand-tagline-container .btn-container {
-        margin-top: 15px;
-        gap: 2%;
-    } */
 }
-@media (max-width:1050px){
+
+@media (max-width:1050px) {
     .brand-tagline-container {
         max-width: 60%;
     }
+
     .feature {
         padding: 15px 5px;
         width: 25%;
-        /* min-height: 20vh; */
         height: 20vh;
-        
+
     }
-    .features-container{
-        gap:3%;
+
+    .features-container {
+        gap: 3%;
     }
 }
-@media (max-width:975px){
+
+@media (max-width:975px) {
     .how-to-use-section {
         width: 90%;
         margin: 5vh auto;
     }
+
     .steps-container {
         padding: 2% 10% 5%;
         box-shadow: 0 0 10px 0 rgba(6, 197, 157, 0.9);
     }
-    
+
     .how-to-use-section h4 {
         color: var(--green);
         font-size: 22px;
         margin: 20px 0 10px;
     }
-    
+
     .how-to-use-section .step-des {
         width: 70%;
     }
 }
-@media (max-width:910px){
+
+@media (max-width:910px) {
     .steps-container {
         padding: 2% 10% 5%;
         box-shadow: 0 0 10px 0 rgba(6, 197, 157, 0.9);
     }
-    
+
     .how-to-use-section h4 {
         color: var(--green);
         font-size: 18px;
         margin: 10px 0 5px;
     }
-    
+
     .how-to-use-section .step-des {
         width: 80%;
         font-size: 14px;

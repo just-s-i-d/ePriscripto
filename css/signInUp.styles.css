@@ -3,7 +3,7 @@
     --text: white;
 }
 .account-section{
-    height: 55vh;
+    height: 50vh;
     width: 70%;
     margin:5vh auto;
     flex-direction: column;

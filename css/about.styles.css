@@ -1,26 +1,31 @@
-.about-section{
-    width:60%;
-    margin:5vh auto;
+.about-section {
+    width: 60%;
+    margin: 5vh auto;
 }
-hr{
+
+hr {
     margin-top: 10px;
 }
-.about-container h1{
-font-size: 2em;
-margin:40px 0 20px;
-letter-spacing: 2px;
+
+.about-container h1 {
+    font-size: 2em;
+    margin: 40px 0 20px;
+    letter-spacing: 2px;
 }
-.about-container h3{
+
+.about-container h3 {
     font-size: 1.3em;
-    margin:40px 0 20px;
+    margin: 40px 0 20px;
 }
-h1,h3{
-    color:#04C59D;
+
+h1,
+h3 {
+    color: #04C59D;
 }
-.about-container{
+
+.about-container {
     position: relative;
     font-size: 18px;
     line-height: 30px;
     width: 90%;
 }
-

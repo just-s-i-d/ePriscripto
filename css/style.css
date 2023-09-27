@@ -512,9 +512,7 @@ footer {
     .feature {
         padding: 15px 5px;
         width: 25%;
-        /* min-height: 20vh; */
         height: 20vh;
-
     }
 }
 
@@ -527,50 +525,9 @@ footer {
         padding: 15px 5px;
         width: 25%;
         height: 20vh;
-
     }
 
     .features-container {
         gap: 3%;
-    }
-}
-
-@media (max-width:975px) {
-    .how-to-use-section {
-        width: 90%;
-        margin: 5vh auto;
-    }
-
-    .steps-container {
-        padding: 2% 10% 5%;
-        box-shadow: 0 0 10px 0 rgba(6, 197, 157, 0.9);
-    }
-
-    .how-to-use-section h4 {
-        color: var(--green);
-        font-size: 22px;
-        margin: 20px 0 10px;
-    }
-
-    .how-to-use-section .step-des {
-        width: 70%;
-    }
-}
-
-@media (max-width:910px) {
-    .steps-container {
-        padding: 2% 10% 5%;
-        box-shadow: 0 0 10px 0 rgba(6, 197, 157, 0.9);
-    }
-
-    .how-to-use-section h4 {
-        color: var(--green);
-        font-size: 18px;
-        margin: 10px 0 5px;
-    }
-
-    .how-to-use-section .step-des {
-        width: 80%;
-        font-size: 14px;
     }
 }

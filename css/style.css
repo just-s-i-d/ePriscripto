@@ -5,6 +5,7 @@
     --text: white;
     --shadow: rgba(6, 197, 157, 0.9);
     --secondaryText: #252525;
+    --navBackground:#57cc99;
 }
 
 * {
@@ -19,14 +20,15 @@ li {
     list-style: none;
 }
 
-a {
+a {padding:5px;
+    border-radius: 5px;
     color: white;
     text-decoration: none;
-
+    transition: all 0.4s;
 }
 
-a:hover {
-    text-decoration: underline;
+.navbar-container a:hover {
+    background-color: #494242;
 }
 
 input:focus {
@@ -67,7 +69,7 @@ button {
     width: 100%;
     color: var(--text);
     height: 10vh;
-    background-color: var(--green);
+    background-color: var(--navBackground);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -101,10 +103,8 @@ header {
 .navbar-container-left {
     font-weight: 300;
     display: flex;
-    gap: 10%;
+    gap: 8%;
     flex-grow: 1;
-    flex-shrink: 2;
-
 }
 
 .navbar-container-right {
@@ -115,39 +115,38 @@ header {
     gap: 10%;
 }
 
-.navbar-container-right .search-box input {
-    background-color: transparent;
-    padding: 10px;
-    padding-left: 20px;
-    border: var(--text) 1px solid;
-    border-radius: 50px;
-    transition: all 0.3s;
-}
-
-.navbar-container-right .search-box input::placeholder {
-    font-size: 18px;
-    color: var(--text);
-}
-
-.navbar-container-right .search-box input:focus {
-
-    transform: scale(1.1);
-}
-.navbar-container .menu-icon{
+.navbar-container .menu-icon {
+    position: absolute;
+    top:5px;
+    right:5%;
     width: 40px;
     cursor: pointer;
     display: none;
 }
-.drop-down-menu{
+
+.drop-down-menu {
     position: absolute;
     width: 100%;
-    top:10vh;
-    background-color: black;
+    top: 10vh;
+    left:0;
+    background-color: var(--navBackground);
+    text-align: center;
     display: none;
 }
-.navbar-container .menu-icon:hover+.drop-down-menu{
+
+.drop-down-menu li{
+    font-size: 22px;
+    padding:5px;
+    transition: all 0.4s;
+}
+.drop-down-menu li:hover{
+    background-color: #494242;
+}
+
+.navbar-container .menu-icon:hover+.drop-down-menu {
     display: block;
 }
+
 /* styles for navigation bar ends here */
 
 #home {
@@ -168,6 +167,7 @@ header {
     bottom: 7%;
     display: flex;
     gap: 20px;
+    display: none;
 }
 
 .controller-container .controller {
@@ -263,7 +263,7 @@ header {
 .feature-section {
     position: relative;
     background-color: var(--green);
-    padding:4% 0;
+    padding: 4% 0;
     color: var(--text);
 }
 
@@ -290,7 +290,7 @@ header {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-around;
 }
 
 .feature:hover {
@@ -309,7 +309,7 @@ header {
 
 .doctors-section {
     position: relative;
-    padding:4% 2%;
+    padding: 4% 2%;
     width: 100%;
     height: max-content;
     display: flex;
@@ -369,13 +369,13 @@ header {
 
 .how-to-use-section {
     position: relative;
-    
+
     width: 85%;
     margin: 10vh auto;
 }
 
 .steps-container {
-    padding:5%;
+    padding: 5%;
     box-shadow: 0 0 10px 0 rgba(6, 197, 157, 0.9);
 }
 
@@ -427,7 +427,7 @@ header {
 .testimonial blockquote {
     margin: 20px 0;
     font-size: 22px;
-    line-height: 22px;
+    line-height: 28px;
 }
 
 .testimonial-container .controller {
@@ -438,7 +438,7 @@ header {
 }
 
 .testimonial {
-    max-width: 70%;
+    max-width: 90%;
     padding: 2% 4% 4%;
     box-shadow: 0 0 5px 2px rgba(6, 197, 157, 0.9);
 }
@@ -469,7 +469,7 @@ header {
 .contact-form-container form input,
 textarea {
     font-size: 18px;
-    margin:5px 0 10px 0;
+    margin: 5px 0 10px 0;
     padding: 10px;
     border: var(--green) 1px solid;
 }
@@ -504,7 +504,11 @@ footer {
 .footer-container .details-container {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
+}
+
+.details-container h3 {
+    margin-bottom: 13px;
 }
 
 .footer-container .details-container .social-icons-container {
@@ -513,7 +517,7 @@ footer {
 }
 
 .footer-container .important-links-container h3 {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .footer-container .important-links-container li {
@@ -529,6 +533,7 @@ footer {
     bottom: 0;
 }
 
+/* media queries starts here */
 @media (max-width:1350px) {
 
     .brand-tagline-container .brand {
@@ -555,9 +560,10 @@ footer {
 }
 
 @media (max-width:1150px) {
-    #home{
+    #home {
         height: 80vh;
     }
+
     .brand-tagline-container .brand {
         font-size: 4.5em;
         letter-spacing: 5px;
@@ -574,10 +580,12 @@ footer {
     .features-container {
         gap: 3%;
     }
+
     .doctor-info-container {
         flex-direction: column;
-        gap:20px;
+        gap: 20px;
     }
+
     .doctor-illustration {
         width: 30%;
     }
@@ -608,19 +616,25 @@ footer {
     .steps-container span {
         font-size: 18px;
     }
+
+    .testimonial {
+        width: 90%;
+    }
 }
 
 @media (max-width:920px) {
-    .home-container{
+    .home-container {
         display: flex;
         flex-direction: column-reverse;
     }
+
     .brand-tagline-container {
         max-width: 90%;
         display: flex;
         flex-direction: column;
         align-items: center;
     }
+
     .brand-tagline-container .brand {
         font-size: 4.5em;
     }
@@ -628,20 +642,25 @@ footer {
     .brand-tagline-container .tagline {
         font-size: 1.5em;
     }
-    .brand-tagline-container .description{
+
+    .brand-tagline-container .description {
         text-align: center;
     }
+
     #home .illustration {
         width: 35%;
     }
+
     .feature-section .features-container {
         display: flex;
         flex-direction: column;
         gap: 30px;
     }
-    .feature{
+
+    .feature {
         width: 40%;
     }
+
     .how-to-use-section h4 {
         font-size: 22px;
         margin: 20px 0 10px;
@@ -665,12 +684,15 @@ footer {
     .description {
         font-size: 20px;
     }
+
     #home .illustration {
         width: 40%;
     }
-    .feature{
+
+    .feature {
         width: 50%;
     }
+
     .how-to-use-section h4 {
         font-size: 22px;
         margin: 20px 0 10px;
@@ -679,15 +701,27 @@ footer {
     .how-to-use-section .step-des {
         width: 70%;
     }
-    
-}
-@media (max-width:767px) {
-    .navbar-container-left,.navbar-container-right{
+
+    .doctor-illustration {
         display: none;
     }
-    .navbar-container .menu-icon{
+
+    .heading {
+        font-size: 32px;
+    }
+}
+
+@media (max-width:767px) {
+
+    .navbar-container-left,
+    .navbar-container-right {
+        display: none;
+    }
+
+    .navbar-container .menu-icon {
         display: block;
     }
+
     .brand-tagline-container .brand {
         font-size: 3.8em;
         letter-spacing: 5px;
@@ -708,5 +742,68 @@ footer {
 
     .how-to-use-section .step-des {
         width: 70%;
+    }
+
+    .contact-main-container {
+        max-width: 60%;
+
+    }
+
+    .contact-form-container form input,
+    textarea {
+        font-size: 16px;
+        margin: 5px 0;
+        padding: 10px;
+    }
+
+    footer {
+        height: 25vh;
+
+    }
+
+    .footer-container {
+        font-size: 15px;
+    }
+
+    .footer-container .brand {
+        font-size: 2.6em;
+    }
+
+    .footer-container .tagline {
+        font-size: .7em;
+    }
+
+}
+
+@media (max-width:575px) {
+    .brand-tagline-container .brand {
+        font-size: 3.5em;
+        letter-spacing: 5px;
+    }
+
+    .brand-tagline-container .tagline {
+        font-size: 1.2em;
+    }
+
+    .description {
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .contact-main-container {
+        max-width: 70%;
+
+    }
+
+    .footer-container {
+        font-size: 14px;
+    }
+
+    .footer-container .brand {
+        font-size: 2.5em;
+    }
+
+    .footer-container .tagline {
+        font-size: .7em;
     }
 }

@@ -121,10 +121,10 @@ header {
 
 .navbar-container .menu-icon {
     position: absolute;
-    height: 60px;
-    top: 1%;
+    height: 50px;
+    top: 2vh;
     right: 5%;
-    width: 1.5em;
+    width: 2em;
     cursor: pointer;
     display: none;
 }
@@ -879,7 +879,7 @@ footer {
 
     .brand-tagline-container {
         width: 50%;
-        height: 60%;
+        height: 40%;
         align-items: start;
     }
 
@@ -946,7 +946,10 @@ footer {
     .home-container {
         font-size: 12px;
     }
-
+    .brand-tagline-container {
+        width: 50%;
+        height: 40%;
+    }
     .feature-section {
         font-size: 14px;
     }
@@ -996,12 +999,6 @@ footer {
 
     .home-container {
         font-size: 14px;
-    }
-
-    .brand-tagline-container {
-        width: 50%;
-        height: 45%;
-
     }
 
     .description {
@@ -1054,7 +1051,7 @@ footer {
     }
 
     .brand-tagline-container {
-        width: 50%;
+        width: 45%;
         height: 50%;
 
     }

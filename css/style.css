@@ -195,7 +195,6 @@ header {
 }
 
 .brand-tagline-container {
-
     max-width: 50%;
     height: 65%;
 }
@@ -267,6 +266,10 @@ header {
 .get-started:hover {
     transform: scale(1.1);
     box-shadow: 0 0 20px 0 var(--shadow);
+}
+
+.section-fonts {
+    font-size: 16px;
 }
 
 .feature-section {
@@ -381,7 +384,6 @@ header {
     width: 25%;
 }
 
-
 .doctor .profile-pic {
     margin-bottom: 10px;
     width: 50%;
@@ -406,7 +408,6 @@ header {
 
 .steps-container ol>li {
     list-style: decimal;
-
 }
 
 .steps-container .illustration {
@@ -446,7 +447,6 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 .testimonial cite {
@@ -517,7 +517,6 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: center;
-
 }
 
 .footer-container {
@@ -561,7 +560,6 @@ footer {
 
 .bottom-bar {
     font-size: .9em;
-    /* padding:5px; */
     width: 100%;
     background-color: black;
     text-align: center;
@@ -631,7 +629,7 @@ footer {
         flex-basis: 55%;
     }
 
-    .how-to-use-section {
+    .section-fonts {
         font-size: 10px;
     }
 
@@ -644,10 +642,6 @@ footer {
 
     .step-heading .step-des {
         width: 95%;
-    }
-
-    .testimonial-container {
-        font-size: 10px;
     }
 
     .testimonial {
@@ -663,10 +657,6 @@ footer {
         font-size: 24px;
     }
 
-    .contact-section {
-        font-size: 10px;
-    }
-
     .contact-main-container {
         max-width: 70%;
     }
@@ -675,7 +665,6 @@ footer {
     textarea {
         margin: 5px 0;
         padding: 3px;
-
     }
 
     .footer-container {
@@ -722,8 +711,8 @@ footer {
         flex-basis: 48%;
     }
 
-    .how-to-use-section {
-        font-size: 12px;
+    .section-fonts {
+        font-size: 11px;
     }
 
     .steps-container .illustration {
@@ -731,23 +720,14 @@ footer {
         top: 20%;
         width: 80%;
         opacity: .2;
-
     }
 
     .step-heading .step-des {
         width: 95%;
     }
 
-    .testimonial-container {
-        font-size: 10px;
-    }
-
     .heading {
         font-size: 32px;
-    }
-
-    .contact-section {
-        font-size: 10px;
     }
 
     .contact-main-container {
@@ -764,7 +744,6 @@ footer {
     textarea {
         margin: 8px 0;
         padding: 3px;
-
     }
 
     .footer-container {
@@ -814,8 +793,8 @@ footer {
         flex-basis: 50%;
     }
 
-    .how-to-use-section {
-        font-size: 12px;
+    .section-fonts {
+        font-size: 11px;
     }
 
     .steps-container .illustration {
@@ -823,23 +802,14 @@ footer {
         top: 20%;
         width: 80%;
         opacity: .2;
-
     }
 
     .step-heading .step-des {
         width: 95%;
     }
 
-    .testimonial-container {
-        font-size: 10px;
-    }
-
     .heading {
         font-size: 32px;
-    }
-
-    .contact-section {
-        font-size: 10px;
     }
 
     .contact-main-container {
@@ -856,7 +826,6 @@ footer {
     textarea {
         margin: 8px 0;
         padding: 3px;
-
     }
 
     .footer-container {
@@ -892,7 +861,7 @@ footer {
         flex-basis: 35%;
     }
 
-    .how-to-use-section {
+    .section-fonts {
         font-size: 15px;
     }
 
@@ -903,10 +872,6 @@ footer {
 
     .step-heading .step-des {
         width: 80%;
-    }
-
-    .testimonial-container {
-        font-size: 15px;
     }
 
     .testimonial {
@@ -920,10 +885,6 @@ footer {
 
     .heading {
         font-size: 38px;
-    }
-
-    .contact-section {
-        font-size: 16px;
     }
 
     .contact-main-container {
@@ -956,11 +917,7 @@ footer {
         flex-basis: 35%;
     }
 
-    .how-to-use-section {
-        font-size: 14px;
-    }
-
-    .testimonial-container {
+    .section-fonts {
         font-size: 14px;
     }
 
@@ -971,10 +928,6 @@ footer {
 
     .heading {
         font-size: 36px;
-    }
-
-    .contact-section {
-        font-size: 16px;
     }
 
     .contact-form-container form input,
@@ -1001,7 +954,6 @@ footer {
     .brand-tagline-container {
         width: 50%;
         height: 45%;
-
     }
 
     .description {
@@ -1017,30 +969,21 @@ footer {
         flex-basis: 30%;
     }
 
-    .how-to-use-section {
+    .section-fonts {
         font-size: 16px;
     }
 
     .steps-container .illustration {
         top: 20%;
         width: 70%;
-
     }
 
     .doctor {
         flex-basis: 30%;
     }
 
-    .testimonial-container {
-        font-size: 15px;
-    }
-
     .heading {
         font-size: 36px;
-    }
-
-    .contact-section {
-        font-size: 16px;
     }
 
     .footer-container {
@@ -1056,7 +999,6 @@ footer {
     .brand-tagline-container {
         width: 50%;
         height: 50%;
-
     }
 
     .feature-section {
@@ -1067,26 +1009,17 @@ footer {
         flex-basis: 30%;
     }
 
-    .how-to-use-section {
-        font-size: 16px;
+    .section-fonts {
+        font-size: 17px;
     }
 
     .steps-container .illustration {
         top: 10%;
         width: 45%;
-
-    }
-
-    .testimonial-container {
-        font-size: 15px;
     }
 
     .heading {
         font-size: 38px;
-    }
-
-    .contact-section {
-        font-size: 17px;
     }
 
     .contact-main-container {

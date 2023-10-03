@@ -37,13 +37,13 @@ input:focus {
     outline: none;
 }
 
-button {
+button.styled {
     width: max-content;
     color: var(--text);
     border-color: transparent;
     border-radius: 10px;
     padding: 10px 20px;
-    font-size: 1.3em;
+    font-size: 1.2em;
     cursor: pointer;
     background-color: var(--green);
 }
@@ -117,6 +117,10 @@ header {
     align-items: center;
     flex-grow: 1;
     gap: 10%;
+}
+
+.login {
+    cursor: pointer;
 }
 
 .navbar-container .menu-icon {
@@ -319,7 +323,7 @@ header {
     font-size: 1em;
     line-height: 1.5em;
     font-weight: 200;
-    color: var(--desText);
+    color: var(--text);
     text-overflow: ellipsis;
 }
 
@@ -404,6 +408,7 @@ header {
 
 .steps-container span {
     font-size: 1.4em;
+    line-height: 1.4em;
 }
 
 .steps-container ol>li {
@@ -414,7 +419,7 @@ header {
     position: absolute;
     z-index: -1;
     right: 10%;
-    top: 25%;
+    top: 30%;
 }
 
 .step-heading {
@@ -462,9 +467,9 @@ header {
 
 .testimonial-container .controller {
     background-color: var(--green);
-    padding: 15px 5px 30px;
+    padding: 10px 5px 15px;
     color: var(--text);
-    font-size: 42px;
+    font-size: 2em;
 }
 
 .testimonial {
@@ -482,12 +487,14 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 70vh;
 }
 
 .contact-main-container {
+    position: relative;
     max-width: 90%;
     box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.7);
-    padding: 4%;
+    padding: 3%;
     background-color: var(--text);
 }
 
@@ -506,6 +513,28 @@ textarea {
 
 .contact-form-container button {
     font-size: 1.2em;
+}
+
+.contact-section .thanks-container {
+    display: none;
+    padding:2% 8%;
+    background-color: var(--text);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 60px;
+}
+
+.thanks h2 {
+    font-size: 3em;
+}
+
+.thanks h4 {
+    font-size: 1.5em;
+}
+
+.contact-main-container .thanks-container img {
+    width: 30%;
 }
 
 footer {
@@ -565,6 +594,7 @@ footer {
     text-align: center;
     position: absolute;
     bottom: 0;
+    padding: 10px 0;
 }
 
 /* media queries starts here */
@@ -603,8 +633,8 @@ footer {
     }
 
     .brand-tagline-container {
-        height: 60%;
-        max-width: 90%;
+        height: 50%;
+        max-width: 80%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -617,7 +647,7 @@ footer {
     }
 
     .feature-section {
-        font-size: 11px;
+        font-size: 13px;
     }
 
     .doctors-section {
@@ -626,11 +656,11 @@ footer {
 
     .feature {
         padding: 20px 10px;
-        flex-basis: 55%;
+        flex-basis: 70%;
     }
 
     .section-fonts {
-        font-size: 10px;
+        font-size: 11px;
     }
 
     .steps-container .illustration {
@@ -658,13 +688,13 @@ footer {
     }
 
     .contact-main-container {
-        max-width: 70%;
+        max-width: 80%;
     }
 
     .contact-form-container form input,
     textarea {
-        margin: 5px 0;
-        padding: 3px;
+        margin: 8px 0;
+        padding: 5px;
     }
 
     .footer-container {
@@ -690,8 +720,7 @@ footer {
     }
 
     .brand-tagline-container {
-        width: 90%;
-        height: 65%;
+        width: 70%;
     }
 
     .doctors-section {
@@ -707,19 +736,18 @@ footer {
     }
 
     .feature {
-        padding: 20px 10px;
-        flex-basis: 48%;
+        flex-basis: 40%;
     }
 
     .section-fonts {
-        font-size: 11px;
+        font-size: 13px;
     }
 
     .steps-container .illustration {
         right: 10%;
         top: 20%;
         width: 80%;
-        opacity: .2;
+        opacity: .1;
     }
 
     .step-heading .step-des {
@@ -735,15 +763,7 @@ footer {
     }
 
     .contact-form-container form {
-        display: flex;
-        flex-direction: column;
         max-width: 100%;
-    }
-
-    .contact-form-container form input,
-    textarea {
-        margin: 8px 0;
-        padding: 3px;
     }
 
     .footer-container {
@@ -790,7 +810,7 @@ footer {
 
     .feature {
         padding: 20px 10px;
-        flex-basis: 50%;
+        flex-basis: 40%;
     }
 
     .section-fonts {
@@ -801,7 +821,6 @@ footer {
         right: 10%;
         top: 20%;
         width: 80%;
-        opacity: .2;
     }
 
     .step-heading .step-des {
@@ -1006,7 +1025,7 @@ footer {
     }
 
     .feature {
-        flex-basis: 30%;
+        flex-basis: 25%;
     }
 
     .section-fonts {
@@ -1014,8 +1033,8 @@ footer {
     }
 
     .steps-container .illustration {
-        top: 10%;
-        width: 45%;
+        top: 20%;
+        width: 40%;
     }
 
     .heading {

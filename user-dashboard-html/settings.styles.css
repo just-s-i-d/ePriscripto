@@ -1,0 +1,124 @@
+:root {
+    --primaryText: #363740;
+    --secondaryText: #a0afbf;
+    --bgColor: #009193;
+    --secondaryBgColor: #88dacc;
+    --bodyBgColor: #f8f9fa;
+    --navBgColor: white;
+}
+
+.flex-col.center {
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-setting-section {
+    position: relative;
+    width: 40%;
+    margin: 20px;
+    height: 80vh;
+    border-radius: 15px;
+}
+
+.profile-setting-section .profile-pic {
+    margin: 0 auto;
+    width: 40%;
+    aspect-ratio: 1;
+}
+
+.profile-card {
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    padding: 10%;
+    background-color: var(--navBgColor);
+}
+
+.profile-card.setting {
+    position: absolute;
+    display: none;
+    transform: translateX(600px);
+}
+
+.profile-card.setting.active {
+    display: flex;
+}
+
+.setting form,
+.details .user-details {
+    margin-top: 30px;
+}
+
+.user-details h3 {
+    font-size: 1.4em;
+    font-weight: 600;
+    margin: 20px 5px;
+    display: inline-block;
+}
+
+.user-details span {
+    font-size: 1.3em;
+}
+
+.profile-card.setting form input,
+.profile-card.setting form select {
+    width: 70%;
+    padding: 15px;
+    margin: 15px 0;
+    margin-left: 10px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--bodyBgColor);
+}
+
+.profile-card.setting form label {
+    font-size: 1.2em;
+}
+
+.profile-card.setting form select:focus {
+    outline: none;
+}
+
+.profile-card .styled {
+    width: 100%;
+    margin-top: 15px;
+    color: var(--bodyBgColor);
+    background-color: var(--bgColor);
+    border: none;
+    font-size: 1.1em;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.pop-up-delete {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 2%;
+    transform: translate(-50%, -50%);
+    font-size: 1.3em;
+    border-radius: 10px;
+    background-color: rgb(168, 189, 211);
+}
+
+.pop-up-delete.active {
+    display: block;
+}
+
+.btn-container{
+    display: flex;
+}
+.pop-up-delete .btn-container button{
+    width: 90%;
+    margin: 20px 10px 0;
+    border-radius: 10px;
+    padding: 10px 0;
+    font-size: .8em;
+    border: none;
+}
+.delete,#delete-btn{
+    color:red;
+    background-color:#efefef;
+}

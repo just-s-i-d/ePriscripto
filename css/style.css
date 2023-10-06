@@ -6,7 +6,7 @@
     --shadow: rgba(6, 197, 157, 0.9);
     --desText: #cfdbd5;
     --secondaryText: #252525;
-    --navBackground: rgb(6, 154, 122);
+    --navBackground: rgb(0, 154, 120);
 }
 
 * {
@@ -71,7 +71,7 @@ button.styled {
     width: 100%;
     color: var(--text);
     height: 10vh;
-    background-color:rgb(0, 154, 120);
+    background-color:var(--navBackground);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -119,9 +119,13 @@ header {
     gap: 10%;
 }
 
-.login {
+.login,.logout,.profile{
     cursor: pointer;
 }
+.logout.not-active,.login.not-active,.profile.not-active{
+    display: none;
+}
+
 
 .navbar-container .menu-icon {
     position: absolute;
@@ -158,6 +162,31 @@ header {
 }
 
 /* styles for navigation bar ends here */
+.pop-message{
+    display: none;
+    border:1px red solid;
+    font-size: 1.3em;
+    background-color: var(--desText);
+    padding:20px;
+    width: 20%;
+    height:7vh;
+    position: absolute;
+    right:0;
+    z-index: 100;
+    top:15%;;
+    animation: popUp 0.6s;
+}
+.pop-message.active{
+    display: block;
+}
+@keyframes popUp {
+    from{
+        transform: translateX(350px);
+    }
+    to{
+        transform: translateX(0);
+    } 
+}
 
 #home {
     width: 100%;
@@ -525,6 +554,11 @@ textarea {
     padding: 10px;
     border: var(--green) 1px solid;
 }
+.contact-form-container .styled{
+    margin-top: 10px;
+    padding:5px 10px;
+    font-size: 1em;
+}
 
 .contact-form-container button {
     font-size: 1.2em;
@@ -596,16 +630,16 @@ footer {
 .footer-container .details-container {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
 }
 
 .details-container h3 {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .footer-container .details-container .social-icons-container {
     display: flex;
-    gap: 10px;
+    gap: 15px;
 }
 
 .footer-container .important-links-container h3 {
@@ -631,7 +665,7 @@ footer {
     position: relative;
     transform: translateY(150px);
     opacity: 0;
-    transition: all 0.4s ease-in;
+    transition: all 0.5s ease-in;
 }
 
 .reveal.active {

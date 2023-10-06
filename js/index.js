@@ -85,49 +85,78 @@ String.prototype.toCapitaliseWord = function () {
 // for sign up
 const popUp = document.querySelector(".pop-message")
 const delay = 2000
+const errorName=document.querySelector(".error-name")
+const errorEmail=document.querySelector(".error-email")
+const errorPassword=document.querySelector(".error-password")
+const errorConfirmPassword=document.querySelector(".error-confirm-password")
+
+function validateName(name){
+return /^[A-Za-z\s]+$/.test(name)
+}
 signUpForm.addEventListener("submit", (e) => {
     e.preventDefault()
     console.log(signUpForm)
     if (!signUpForm.fullName.value) {
-        popUp.innerText = "Enter your name"
-        popUp.classList.add("active")
+        signUpForm.fullName.classList.add("error")
+        errorName.innerText = "Enter your name"
+        errorName.classList.add("active")
         setTimeout(() => {
-            popUp.classList.remove("active")
+            errorName.classList.remove("active")
+            signUpForm.fullName.classList.remove("error")
+        }, delay)
+    }
+    else if(!validateName(signUpForm.fullName.value)){
+        signUpForm.fullName.classList.add("error")
+        errorName.innerText = "Enter a valid name"
+        errorName.classList.add("active")
+        setTimeout(() => {
+            signUpForm.fullName.classList.remove("error")
+            errorName.classList.remove("active")
         }, delay)
     }
     else if (!signUpForm.email.value) {
-        popUp.innerText = "Enter an email"
-        popUp.classList.add("active")
+        signUpForm.email.classList.add("error")
+        errorEmail.innerText = "Enter an email"
+        errorEmail.classList.add("active")
         setTimeout(() => {
-            popUp.classList.remove("active")
+            signUpForm.email.classList.remove("error")
+            errorEmail.classList.remove("active")
         }, delay)
     }
     else if (!signUpForm.password.value) {
-        popUp.innerText = "Enter a password"
-        popUp.classList.add("active")
+        signUpForm.password.classList.add("error")
+        errorPassword.innerText = "Enter a password"
+        errorPassword.classList.add("active")
         setTimeout(() => {
-            popUp.classList.remove("active")
+            signUpForm.password.classList.remove("error")
+            errorPassword.classList.remove("active")
         }, delay)
     }
     else if (signUpForm.password.value.length <= 5) {
-        popUp.innerText = "Passoword is too short"
-        popUp.classList.add("active")
+        signUpForm.password.classList.add("error")
+        errorPassword.innerText = "Passoword is too short"
+        errorPassword.classList.add("active")
         setTimeout(() => {
-            popUp.classList.remove("active")
+            signUpForm.password.classList.remove("error")
+            errorPassword.classList.remove("active")
         }, delay)
     }
     else if (!signUpForm.confirmPassword.value) {
-        popUp.innerText = "Confirm password field empty"
-        popUp.classList.add("active")
+        signUpForm.confirmPassword.classList.add("error")
+        errorConfirmPassword.innerText = "Confirm password field cannot be empty"
+        errorConfirmPassword.classList.add("active")
         setTimeout(() => {
-            popUp.classList.remove("active")
+            signUpForm.confirmPassword.classList.remove("error")
+            errorConfirmPassword.classList.remove("active")
         }, delay)
     }
     else if (signUpForm.password.value !== signUpForm.confirmPassword.value) {
-        popUp.innerText = "Passowords do not match"
-        popUp.classList.add("active")
+        signUpForm.confirmPassword.classList.add("error")
+        errorConfirmPassword.innerText = "Passowords do not match"
+        errorConfirmPassword.classList.add("active")
         setTimeout(() => {
-            popUp.classList.remove("active")
+            signUpForm.confirmPassword.classList.remove("error")
+            errorConfirmPassword.classList.remove("active")
         }, delay)
     }
     else {

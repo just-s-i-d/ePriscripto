@@ -57,8 +57,6 @@ updateBtn.addEventListener("click", () => {
     }
 })
 
-
-
 //for updating details of user
 const saveBtn = document.querySelector("#save-btn")
 settingForm.email.value = currentUser.email

@@ -7,6 +7,9 @@
     --desText: #cfdbd5;
     --secondaryText: #252525;
     --navBackground: rgb(0, 154, 120);
+    --errorText:#af0c0c;
+    --errorBackground:#ffe0e0;
+    --successBackground:#95d5b2;
 }
 
 * {
@@ -164,7 +167,6 @@ header {
 /* styles for navigation bar ends here */
 .pop-message{
     display: none;
-    border:1px red solid;
     font-size: 1.3em;
     background-color: var(--desText);
     padding:20px;
@@ -175,6 +177,16 @@ header {
     z-index: 100;
     top:15%;;
     animation: popUp 0.6s;
+}
+.pop-message.error{
+    color: var(--errorText);
+    border: 1px solid var(--errorText);
+    background-color: var(--errorBackground);
+}
+.pop-message.success{
+    color: var(--green);
+    border: 1px solid var(--green);
+    background-color: #eae6e5;
 }
 .pop-message.active{
     display: block;

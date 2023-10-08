@@ -85,17 +85,16 @@ String.prototype.toCapitaliseWord = function () {
 // for sign up
 const popUp = document.querySelector(".pop-message")
 const delay = 2000
-const errorName=document.querySelector(".error-name")
-const errorEmail=document.querySelector(".error-email")
-const errorPassword=document.querySelector(".error-password")
-const errorConfirmPassword=document.querySelector(".error-confirm-password")
+const errorName = document.querySelector("#sign-up .error-name")
+const errorEmail = document.querySelector("#sign-up .error-email")
+const errorPassword = document.querySelector("#sign-up .error-password")
+const errorConfirmPassword = document.querySelector("#sign-up .error-confirm-password")
 
-function validateName(name){
-return /^[A-Za-z\s]+$/.test(name)
+function validateName(name) {
+    return /^[A-Za-z\s]+$/.test(name)
 }
 signUpForm.addEventListener("submit", (e) => {
     e.preventDefault()
-    console.log(signUpForm)
     if (!signUpForm.fullName.value) {
         signUpForm.fullName.classList.add("error")
         errorName.innerText = "Enter your name"
@@ -105,7 +104,7 @@ signUpForm.addEventListener("submit", (e) => {
             signUpForm.fullName.classList.remove("error")
         }, delay)
     }
-    else if(!validateName(signUpForm.fullName.value)){
+    else if (!validateName(signUpForm.fullName.value)) {
         signUpForm.fullName.classList.add("error")
         errorName.innerText = "Enter a valid name"
         errorName.classList.add("active")
@@ -176,19 +175,28 @@ signUpForm.addEventListener("submit", (e) => {
             let store = tx.objectStore("users")
             let cursor = store.add(userData)
             cursor.onsuccess = () => {
-                let curRes = cursor.result
                 const curUser = { email: userData.email, name: userData.fullName }
                 sessionStorage.setItem("currentUser", JSON.stringify(curUser))
                 signUpForm.reset()
-                location.assign("http://127.0.0.1:5500/user-dashboard-html/settings.html")
+                popUp.innerText = "Logging in"
+                popUp.classList.add("active")
+                popUp.classList.add("success")
+                setTimeout(() => {
+                    popUp.classList.remove("active")
+                    popUp.classList.remove("success")
+                    location.assign("http://127.0.0.1:5500/user-dashboard-html/settings.html")
+                }, 2000)
+
             }
             cursor.onerror = (e) => {
                 let error = e.target.error.message
                 if (error == "Key already exists in the object store.") {
                     popUp.innerText = "Email already Exists"
                     popUp.classList.add("active")
+                    popUp.classList.add("error")
                     setTimeout(() => {
                         popUp.classList.remove("active")
+                        popUp.classList.remove("error")
                     }, 2000)
                     signUpForm.reset()
                 }
@@ -200,42 +208,82 @@ signUpForm.addEventListener("submit", (e) => {
 })
 
 // for sign in 
-
+const errorEmailSignIn = document.querySelector("#sign-in .error-email")
+const errorPasswordSignIn = document.querySelector("#sign-in .error-password")
 signInForm.addEventListener("submit", (e) => {
     e.preventDefault()
-    const userLoginData = {
-        email: signInForm.email.value,
-        password: signInForm.password.value
+    if (!signInForm.email.value) {
+        signInForm.email.classList.add("error")
+        errorEmailSignIn.innerText = "Enter an email"
+        errorEmailSignIn.classList.add("active")
+        setTimeout(() => {
+            signInForm.email.classList.remove("error")
+            errorEmailSignIn.classList.remove("active")
+        }, delay)
     }
-    let idb = indexedDB.open("crude", 1)
-    idb.onsuccess = () => {
-        let res = idb.result
-        let tx = res.transaction("users", "readonly")
-        let store = tx.objectStore("users")
-        let cursor = store.get(userLoginData.email)
-        cursor.onsuccess = () => {
-            let curRes = cursor.result
-            if (curRes) {
-                if (userLoginData.password === curRes.password) {
-                    const curUser = { email: curRes.email, name: curRes.fullName }
-                    sessionStorage.setItem("currentUser", JSON.stringify(curUser))
-                    signInForm.reset()
-                    location.assign("http://127.0.0.1:5500/user-dashboard-html/settings.html")
+    else if (!signInForm.password.value) {
+        signInForm.password.classList.add("error")
+        errorPasswordSignIn.innerText = "Enter a password"
+        errorPasswordSignIn.classList.add("active")
+        setTimeout(() => {
+            signInForm.password.classList.remove("error")
+            errorPasswordSignIn.classList.remove("active")
+        }, delay)
+    }
+    else if (signInForm.password.value.length <= 5) {
+        signInForm.password.classList.add("error")
+        errorPasswordSignIn.innerText = "Passoword is too short"
+        errorPasswordSignIn.classList.add("active")
+        setTimeout(() => {
+            signInForm.password.classList.remove("error")
+            errorPasswordSignIn.classList.remove("active")
+        }, delay)
+    }
+    else {
+        const userLoginData = {
+            email: signInForm.email.value,
+            password: signInForm.password.value
+        }
+        let idb = indexedDB.open("crude", 1)
+        idb.onsuccess = () => {
+            let res = idb.result
+            let tx = res.transaction("users", "readonly")
+            let store = tx.objectStore("users")
+            let cursor = store.get(userLoginData.email)
+            cursor.onsuccess = () => {
+                let curRes = cursor.result
+                if (curRes) {
+                    if (userLoginData.password === curRes.password) {
+                        const curUser = { email: curRes.email, name: curRes.fullName }
+                        sessionStorage.setItem("currentUser", JSON.stringify(curUser))
+                        signInForm.reset()
+                        popUp.innerText = "Logging in"
+                        popUp.classList.add("active")
+                        popUp.classList.add("success")
+                        setTimeout(() => {
+                            popUp.classList.remove("active")
+                            popUp.classList.remove("success")
+                            location.assign("http://127.0.0.1:5500/user-dashboard-html/settings.html")
+                        }, 2000)
+                    }
+                    else {
+                        popUp.innerText = "Wrong password"
+                        popUp.classList.add("active")
+                        popUp.classList.add("error")
+                        setTimeout(() => {
+                            popUp.classList.remove("active")
+                            popUp.classList.remove("error")
+                        }, 2000)
+                    }
                 }
                 else {
+                    popUp.innerText = "No users found"
                     popUp.classList.add("active")
                     setTimeout(() => {
                         popUp.classList.remove("active")
                     }, 2000)
+                    signInForm.reset()
                 }
-            }
-            else {
-                popUp.innerText = "No users found"
-                popUp.classList.add("active")
-                setTimeout(() => {
-                    popUp.classList.remove("active")
-                }, 2000)
-                signInForm.reset()
             }
         }
     }

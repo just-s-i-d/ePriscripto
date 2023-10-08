@@ -11,7 +11,10 @@ String.prototype.toCapitaliseWord = function () {
     })
     return capitalisedWords.join(" ")
 }
-
+// for name pattern matching 
+function validateName(name) {
+    return /^[A-Za-z\s]+$/.test(name)
+}
 // for showing details of user
 const userDetails = document.querySelectorAll(".user-details h3")
 let idb = indexedDB.open("crude", 1)
@@ -35,10 +38,12 @@ idb.onsuccess = () => {
 
 // for update details card animation
 const updateBtn = document.querySelector("#update-btn")
+const userDetailsCard = document.querySelector("div.user-details")
 const settingBox = document.querySelector(".setting")
 const settingForm = document.querySelector(".setting form")
 updateBtn.addEventListener("click", () => {
-    settingBox.classList.toggle("active")
+    userDetailsCard.classList.add("not-active")
+    settingBox.classList.add("active")
     let idb = indexedDB.open("crude", 1)
     idb.onsuccess = () => {
         let res = idb.result
@@ -58,25 +63,53 @@ updateBtn.addEventListener("click", () => {
 })
 
 //for updating details of user
+const delay = 3000
 const saveBtn = document.querySelector("#save-btn")
+const cancelDetailsBtn = document.querySelector("#cancel-details-btn")
+const errorName = document.querySelector(".form-field .error-name")
+cancelDetailsBtn.addEventListener("click", (e) => {
+    e.preventDefault()
+    userDetailsCard.classList.remove("not-active")
+    settingBox.classList.remove("active")
+})
 settingForm.email.value = currentUser.email
-
 settingForm.addEventListener("submit", (event) => {
     event.preventDefault()
-    const userData = {
-        email: settingForm.email.value,
-        fullName: settingForm.name.value.toCapitaliseWord(),
-        age: settingForm.age.value,
-        gender: settingForm.gender.value,
-        password: settingForm.password.value
+    if (!settingForm.name.value) {
+        settingForm.name.classList.add("error")
+        errorName.innerText = "Enter your name"
+        errorName.classList.add("active")
+        setTimeout(() => {
+            errorName.classList.remove("active")
+            settingForm.name.classList.remove("error")
+        }, delay)
     }
-    let idb = indexedDB.open("crude", 1)
-    idb.onsuccess = () => {
-        let tx = idb.result.transaction("users", "readwrite")
-        let store = tx.objectStore("users")
-        let cursor = store.put(userData)
-        cursor.onsuccess = () => {
-            location.reload()
+    else if (!validateName(settingForm.name.value)) {
+        settingForm.name.classList.add("error")
+        errorName.innerText = "Enter a valid name"
+        errorName.classList.add("active")
+        setTimeout(() => {
+            settingForm.name.classList.remove("error")
+            errorName.classList.remove("active")
+        }, delay)
+    }
+    else {
+        event.preventDefault()
+        const userData = {
+            email: settingForm.email.value,
+            fullName: settingForm.name.value.toCapitaliseWord(),
+            age: settingForm.age.value,
+            gender: settingForm.gender.value,
+            password: settingForm.password.value
+        }
+        let idb = indexedDB.open("crude", 1)
+        idb.onsuccess = () => {
+            let tx = idb.result.transaction("users", "readwrite")
+            let store = tx.objectStore("users")
+            let cursor = store.put(userData)
+            cursor.onsuccess = () => {
+                location.reload()
+            }
         }
     }
 }
@@ -86,9 +119,9 @@ settingForm.addEventListener("submit", (event) => {
 const deleteBtn = document.querySelector("#delete-btn")
 const cancelBtn = document.querySelector("#cancel-btn")
 const confirmDelBtn = document.querySelector(".delete")
-const body=document.querySelector("body")
+const body = document.querySelector("body")
 deleteBtn.addEventListener("click", () => {
-    const confirmDelBox=document.querySelector(".pop-up-delete")
+    const confirmDelBox = document.querySelector(".pop-up-delete")
     confirmDelBox.classList.add("active")
     confirmDelBtn.addEventListener("click", () => {
         let idb = indexedDB.open("crude", 1)
@@ -102,7 +135,7 @@ deleteBtn.addEventListener("click", () => {
             }
         }
     })
-    cancelBtn.addEventListener("click",()=>{
+    cancelBtn.addEventListener("click", () => {
         confirmDelBox.classList.remove("active")
     })
 })
@@ -112,4 +145,17 @@ const logoutBtn = document.querySelector(".logout")
 logoutBtn.addEventListener("click", () => {
     sessionStorage.removeItem("currentUser")
     location.assign("http://127.0.0.1:5500/")
+})
+
+// for add new prescription
+const prescriptionForm = document.querySelector("#prescription-form")
+prescriptionForm.addEventListener("submit", (event) => {
+    event.preventDefault()
+    const newPresData = {
+        doctorName: prescriptionForm.docName.value,
+        hospitalName: prescriptionForm.hospitalName.value,
+        prescriptionDate: prescriptionForm.prescriptionDate.value,
+        prescriptionImg: prescriptionForm.imgLink.value
+    }
+    console.log(newPresData)
 })

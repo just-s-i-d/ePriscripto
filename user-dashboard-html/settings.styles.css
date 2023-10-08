@@ -5,6 +5,7 @@
     --secondaryBgColor: #88dacc;
     --bodyBgColor: #f8f9fa;
     --navBgColor: white;
+    --errorText: #af0c0c;
 }
 
 .flex-col.center {
@@ -34,19 +35,36 @@
     background-color: var(--navBgColor);
 }
 
-.profile-card.setting {
-    position: absolute;
-    display: none;
-    transform: translateX(600px);
+.setting.active {
+    display: flex;
 }
 
-.profile-card.setting.active {
-    display: flex;
+.setting {
+    display: none;
 }
 
 .setting form,
 .details .user-details {
     margin-top: 30px;
+}
+
+.setting .form-field span {
+    font-size: .9em;
+    color: var(--errorText);
+    margin-left: 80px;
+    display: none;
+}
+
+.form-field input.error {
+    border: var(--errorText) 1px solid;
+}
+
+span.error-name.active {
+    display: block;
+}
+
+.user-details.not-active {
+    display: none;
 }
 
 .user-details h3 {
@@ -60,11 +78,11 @@
     font-size: 1.3em;
 }
 
-.profile-card.setting form input,
-.profile-card.setting form select {
+.setting form input,
+.setting form select {
     width: 70%;
     padding: 15px;
-    margin: 15px 0;
+    margin: 10px 0;
     margin-left: 10px;
     font-size: 1.2em;
     border: none;
@@ -72,15 +90,15 @@
     background-color: var(--bodyBgColor);
 }
 
-.profile-card.setting form label {
+.setting form label {
     font-size: 1.2em;
 }
 
-.profile-card.setting form select:focus {
+.setting form select:focus {
     outline: none;
 }
 
-.profile-card .styled {
+.styled {
     width: 100%;
     margin-top: 15px;
     color: var(--bodyBgColor);
@@ -107,10 +125,11 @@
     display: block;
 }
 
-.btn-container{
+.btn-container {
     display: flex;
 }
-.pop-up-delete .btn-container button{
+
+.pop-up-delete .btn-container button {
     width: 90%;
     margin: 20px 10px 0;
     border-radius: 10px;
@@ -118,7 +137,70 @@
     font-size: .8em;
     border: none;
 }
-.delete,#delete-btn{
-    color:red;
-    background-color:#efefef;
+
+.delete,
+#delete-btn {
+    color: red;
+    background-color: #efefef;
+}
+
+.prescription-card {
+    margin: 20px;
+    padding: 30px 20px;
+    width: 40%;
+    background-color: var(--navBgColor);
+    border-radius: 10px;
+    align-items: center;
+}
+.prescription-card h3{
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+.prescription-form-container {
+    width: 80%;
+    font-size: 1.2em;
+}
+
+.prescription-form-container input {
+    width: 50%;
+    font-size: 1em;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--bodyBgColor);
+}
+
+.prescription-form-container input:focus {
+    outline: none;
+}
+
+.form-field {
+    margin: 20px 0;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.prescription-table-container {
+    margin: 30px;
+    width: 100%;
+}
+
+.prescription-table-container table {
+    width: 90%;
+    border-collapse: collapse;
+}
+
+.prescription-table-container table th {
+    padding: 15px 0;
+    font-size: 1.5em;
+}
+
+.prescription-table-container table td {
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.prescription-table-container table tr:nth-child(even),.prescription-table-container table thead {
+    background-color: var(--navBgColor);
 }

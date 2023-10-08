@@ -21,8 +21,12 @@
                 <ul class="main-side-nav-bar">
                     <li>Dashboard</li>
                     <li>Family Memebers</li>
-                    <a href="prescription.html"><li>Prescriptions</li></a>
-                    <a href="settings.html"><li>Settings</li></a>
+                    <a href="prescription.html">
+                        <li>Prescriptions</li>
+                    </a>
+                    <a href="settings.html">
+                        <li>Settings</li>
+                    </a>
                     <li>Help</li>
                 </ul>
                 <ul class="logout-container">
@@ -30,11 +34,56 @@
                 </ul>
             </div>
         </nav>
-       <section>
-        <div>
-            <h3>Add new prescription</h3>
+        <section class="prescription-section">
+            <div class="prescription-card flex-col">
+                <h3>Add New Prescription</h3>
+                <form action="" id="prescription-form" class="prescription-form-container">
+                    <div class="form-field flex">
+                        <label for="doc-name">Doctor Name :</label>
+                        <input type="text" id="doc-name" name="docName">
+                    </div>
+                    <div class="form-field flex">
+                        <label for="hospital-name">Hospital Name :</label>
+                        <input type="text" name="hospitalName" id="hospital-name">
+                    </div>
+                    <div class="form-field flex">
+                        <label for="prescription-date">Prescription Date :</label>
+                        <input type="date" id="prescription-date" name="prescriptionDate">
+                    </div>
+                    <div class="form-field flex">
+                        <label for="img-link">Image Url :</label>
+                        <input type="url" id="img-link" name="imgLink">
+                    </div>
+                    <button id="add-new-prescription" class="styled">Add Prescription</button>
+                </form>
+            </div>
+        </section>
+        <section class="prescription-table-section">
+            <div class="prescription-table-container">
+                <table id="prescription-table">
+                    <thead>
+                        <tr>
+                            <th colspan="1">S. No.</th>
+                            <th>Doctor Name</th>
+                            <th>Hospital Name</th>
+                            <th>Date</th>
+                            <th>Image</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-data">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <div class="pop-up-delete">
+            <h3>Click on delete to confirm</h3>
+            <div class="btn-container">
+                <button class="styled delete">Delete</button>
+                <button class="styled cancel" id="cancel-btn">Cancel</button>
+            </div>
         </div>
-       </section>
+        <script src="/js/prescription.js"></script>
     </body>
 
 </html>

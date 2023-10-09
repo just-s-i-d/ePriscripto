@@ -58,8 +58,9 @@ body.noScroll {
     position: absolute;
     top: 50%;
     left: 50%;
+    width: 60%;
     transform: translate(-50%, -50%);
-    height: 60vh;
+    height: 60%;
     background-color: var(--text);
     box-shadow: 0 0 5px 2px var(--shadow);
 }
@@ -71,9 +72,22 @@ body.noScroll {
 .container a {
     color: var(--green);
 }
-
+#close-login{
+    position: absolute;
+    top:0;
+    z-index: 10;
+    right:2%;
+    font-size: 3em;
+    cursor: pointer;
+}
+#close-login.white{
+    color:var(--text);
+}
+.form-container{
+    width: 50%;
+}
 .form-container form {
-    width: 400px;
+    width: 100%;
     min-height: 100%;
     padding: 20px;
     align-items: center;
@@ -89,21 +103,22 @@ body.noScroll {
 }
 
 .form-fields-container {
+    justify-content: center;
     margin-top: 10px;
-    width: 80%;
+    width: 75%;
 }
 
 .form-fields-container .form-field {
-    margin: 15px 0;
+    margin: 10px 0;
 }
 
 .form-fields-container .form-field span {
     padding:5px 10px;
     width: 90%;
     font-size: .9em;
-    margin-top: 5px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     color:var(--errorText);
+    transition: 3s;
     display: none;
 }
 
@@ -116,7 +131,7 @@ span.error-confirm-password.active {
 
 .form-container form input {
     font-size: 1.1em;
-    padding: 8px;
+    padding: 15px 20px;
     width: 100%;
     border: none;
     border-radius: 5px;
@@ -140,7 +155,7 @@ span.error-confirm-password.active {
     color: var(--text);
     position: absolute;
     justify-content: center;
-    width: 400px;
+    width: 50%;
     height: 100%;
     align-items: center;
 }
@@ -202,3 +217,4 @@ span.error-confirm-password.active {
 .overlay-panel.overlay-left.active {
     display: flex;
 }
+

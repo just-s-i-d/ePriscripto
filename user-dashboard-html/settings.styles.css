@@ -13,11 +13,34 @@
     align-items: center;
 }
 
+aside {
+    width: 320px;
+    gap: 10px;
+}
+
+aside h1 {
+    height: 10%;
+    background-color: var(--navBgColor);
+
+    border: 3px solid var(--bodyBgColor);
+}
+
+aside nav {
+    height: 80%;
+    background-color: var(--navBgColor);
+}
+
+main {
+    width: 100%;
+    background-color: var(--bodyBgColor);
+    min-height: 100vh;
+}
+
 .profile-setting-section {
     position: relative;
-    width: 40%;
+    width: max-content;
     margin: 20px;
-    height: 80vh;
+    height: max-content;
     border-radius: 15px;
 }
 
@@ -48,7 +71,7 @@
     margin-top: 30px;
 }
 
-.setting .form-field span {
+.form-field span {
     font-size: .9em;
     color: var(--errorText);
     margin-left: 80px;
@@ -59,7 +82,7 @@
     border: var(--errorText) 1px solid;
 }
 
-span.error-name.active {
+.error-name.active,.error-hospital-name.active,.error-date.active,.error-img.active,.error-age.active,.error-gender.active,.error-email.active{
     display: block;
 }
 
@@ -107,6 +130,7 @@ span.error-name.active {
     font-size: 1.1em;
     border-radius: 10px;
     padding: 10px;
+    cursor: pointer;
 }
 
 .pop-up-delete {
@@ -152,7 +176,8 @@ span.error-name.active {
     border-radius: 10px;
     align-items: center;
 }
-.prescription-card h3{
+
+.prescription-card h3 {
     font-size: 1.8em;
     margin-bottom: 20px;
 }
@@ -170,6 +195,14 @@ span.error-name.active {
     border: none;
     background-color: var(--bodyBgColor);
 }
+.prescription-form-container .form-field div :where(.error-name,.error-hospital-name,.error-date,.error-img,.error-email){
+    margin-left: 20px;
+    margin-top: 5px;
+}
+
+.prescription-form-container .form-field div input {
+    width: 100%;
+}
 
 .prescription-form-container input:focus {
     outline: none;
@@ -178,7 +211,7 @@ span.error-name.active {
 .form-field {
     margin: 20px 0;
     justify-content: space-between;
-    align-items: center;
+    align-items: baseline;
 }
 
 .prescription-table-container {
@@ -201,6 +234,7 @@ span.error-name.active {
     text-align: center;
 }
 
-.prescription-table-container table tr:nth-child(even),.prescription-table-container table thead {
+.prescription-table-container table tr:nth-child(even),
+.prescription-table-container table thead {
     background-color: var(--navBgColor);
 }

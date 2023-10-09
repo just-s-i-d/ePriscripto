@@ -5,13 +5,19 @@ const overlayRight = document.querySelector(".overlay-right")
 const overlayLeft = document.querySelector(".overlay-left")
 const signUpForm = document.querySelector("#sign-up")
 const signInForm = document.querySelector("#sign-in")
-
+const closeLoginBtn = document.querySelector("#close-login")
 signInBtn.addEventListener("click", () => {
+    setTimeout(() => {
+        closeLoginBtn.classList.remove("white")
+    }, 100)
     overlayLeft.classList.toggle("active")
     overlayRight.classList.toggle("active")
     signUpForm.reset()
 })
 signUpBtn.addEventListener("click", () => {
+    setTimeout(() => {
+        closeLoginBtn.classList.add("white")
+    }, 500)
     overlayRight.classList.toggle("active")
     overlayLeft.classList.toggle("active")
     signInForm.reset()
@@ -29,6 +35,10 @@ menuIcon.addEventListener("click", () => {
 const loginBtn = document.querySelector(".login")
 const loginBox = document.querySelector(".login-box-container")
 const closeBtn = document.querySelector(".login-box-container")
+const xBtn=document.querySelector("#close-login")
+xBtn.addEventListener("click",()=>{
+    loginBox.classList.remove("active")
+})
 loginBtn.addEventListener("click", () => {
     loginBox.classList.toggle("active")
     document.body.classList.toggle("noScroll")
@@ -43,7 +53,7 @@ closeBtn.addEventListener("click", (event) => {
 // for the contact form switch
 const sendBtn = document.querySelector("#send")
 const resContainer = document.querySelector(".thanks-container")
-const contactBox = document.querySelector(".contact-main-container")
+const contactBox = document.querySelector(".contact-form")
 
 sendBtn.addEventListener("click", (event) => {
     event.preventDefault()
@@ -93,6 +103,10 @@ const errorConfirmPassword = document.querySelector("#sign-up .error-confirm-pas
 function validateName(name) {
     return /^[A-Za-z\s]+$/.test(name)
 }
+function validateEmail(name) {
+    return /^[\w\.-]+@[\w\.-]+\.\w+$/.test(name)
+}
+
 signUpForm.addEventListener("submit", (e) => {
     e.preventDefault()
     if (!signUpForm.fullName.value) {
@@ -116,6 +130,15 @@ signUpForm.addEventListener("submit", (e) => {
     else if (!signUpForm.email.value) {
         signUpForm.email.classList.add("error")
         errorEmail.innerText = "Enter an email"
+        errorEmail.classList.add("active")
+        setTimeout(() => {
+            signUpForm.email.classList.remove("error")
+            errorEmail.classList.remove("active")
+        }, delay)
+    }
+    else if (!validateEmail(signUpForm.email.value)) {
+        signUpForm.email.classList.add("error")
+        errorEmail.innerText = "Enter a valid email"
         errorEmail.classList.add("active")
         setTimeout(() => {
             signUpForm.email.classList.remove("error")
@@ -304,3 +327,35 @@ if (sessionStorage.getItem("currentUser")) {
     profileBtn.classList.remove("not-active")
 }
 
+// for slider in testimonial section
+const indicatorBtn = document.querySelectorAll(".indicator-btn")
+const sliderRow = document.querySelector(".slider-row")
+const sliderCol = document.querySelector(".testimonial")
+var width=1200
+const calWidth=()=>{
+    width=sliderCol.offsetWidth
+}
+indicatorBtn[0].addEventListener("click", function() {
+    calWidth()
+    sliderRow.style.transform = "translateX(0px)"
+    for (let i = 0; i < 3; i++) {
+        indicatorBtn[i].classList.remove("active")
+    }
+    this.classList.add("active")
+})
+indicatorBtn[1].addEventListener("click",function() {
+    calWidth()
+    sliderRow.style.transform = `translateX(-${width}px)`
+    for (let i = 0; i < 3; i++) {
+        indicatorBtn[i].classList.remove("active")
+    }
+    this.classList.add("active")
+})
+indicatorBtn[2].addEventListener("click", function() {
+    calWidth()
+    sliderRow.style.transform = `translateX(-${width*2}px)`
+    for (let i = 0; i < 3; i++) {
+        indicatorBtn[i].classList.remove("active")
+    }
+    this.classList.add("active")
+})

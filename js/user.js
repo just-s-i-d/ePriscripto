@@ -66,15 +66,38 @@ updateBtn.addEventListener("click", () => {
 const delay = 3000
 const saveBtn = document.querySelector("#save-btn")
 const cancelDetailsBtn = document.querySelector("#cancel-details-btn")
+const errorEmail = document.querySelector(".form-field .error-email")
 const errorName = document.querySelector(".form-field .error-name")
+const errorAge = document.querySelector(".form-field .error-age")
+const errorGender = document.querySelector(".form-field .error-gender")
 cancelDetailsBtn.addEventListener("click", (e) => {
     e.preventDefault()
     userDetailsCard.classList.remove("not-active")
     settingBox.classList.remove("active")
 })
 settingForm.email.value = currentUser.email
+settingForm.email.addEventListener("click", () => {
+    settingForm.email.classList.add("error")
+    errorEmail.innerText = "Email cannot be changed"
+    errorEmail.classList.add("active")
+    setTimeout(() => {
+        errorEmail.classList.remove("active")
+        settingForm.email.classList.remove("error")
+        settingForm.email.value = currentUser.email
+    }, delay)
+})
 settingForm.addEventListener("submit", (event) => {
     event.preventDefault()
+    // if (!settingForm.email.value !== currentUser.email) {
+    //     settingForm.email.classList.add("error")
+    //     errorEmail.innerText = "Email cannot be changed"
+    //     errorEmail.classList.add("active")
+    //     setTimeout(() => {
+    //         errorEmail.classList.remove("active")
+    //         settingForm.email.classList.remove("error")
+    //         settingForm.email.value = currentUser.email
+    //     }, delay)
+    // }
     if (!settingForm.name.value) {
         settingForm.name.classList.add("error")
         errorName.innerText = "Enter your name"
@@ -91,6 +114,33 @@ settingForm.addEventListener("submit", (event) => {
         setTimeout(() => {
             settingForm.name.classList.remove("error")
             errorName.classList.remove("active")
+        }, delay)
+    }
+    else if (!settingForm.age.value) {
+        settingForm.age.classList.add("error")
+        errorAge.innerText = "Enter an age"
+        errorAge.classList.add("active")
+        setTimeout(() => {
+            settingForm.age.classList.remove("error")
+            errorAge.classList.remove("active")
+        }, delay)
+    }
+    else if (settingForm.age.value < 18 || settingForm.age.value > 50) {
+        settingForm.age.classList.add("error")
+        errorAge.innerText = "Enter an age between 18 to 50"
+        errorAge.classList.add("active")
+        setTimeout(() => {
+            settingForm.age.classList.remove("error")
+            errorAge.classList.remove("active")
+        }, delay)
+    }
+    else if (settingForm.gender.value == "Select your gender") {
+        settingForm.gender.classList.add("error")
+        errorGender.innerText = "Select a gender"
+        errorGender.classList.add("active")
+        setTimeout(() => {
+            settingForm.gender.classList.remove("error")
+            errorGender.classList.remove("active")
         }, delay)
     }
     else {

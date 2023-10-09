@@ -9,81 +9,93 @@
         <title>Profile Settings</title>
     </head>
 
-    <body>
-        <header>
-            <div class="top-bar flex">
-                <h2>Profile Settings</h2>
-            </div>
-        </header>
-        <h1 class="brand-name">ePriscripto</h1>
-        <nav class="dashboard-nav-bar-container default">
-            <div class="nav-bar-container flex-col">
-                <ul class="main-side-nav-bar">
-                    <li>Dashboard</li>
-                    <li>Family Memebers</li>
-                    <a href="prescription.html">
-                        <li>Prescriptions</li>
-                    </a>
-                    <a href="settings.html">
-                        <li>Settings</li>
-                    </a>
-                    <li>Help</li>
-                </ul>
-                <ul class="logout-container">
-                    <li class="logout">Logout</li>
-                </ul>
-            </div>
-        </nav>
-        <section class="profile-setting-section flex-col default">
-            <div class="profile-card details flex-col">
-                <img src="/images/profilepic.png" alt="profile-pic" class="profile-pic">
-                <div class="user-details">
-                    <span>Email :</span>
-                    <h3 class="email">Email</h3><br>
-                    <span>Full Name :</span>
-                    <h3 class="name">Full Name</h3><br>
-                    <span>Age :</span>
-                    <h3>Not Set</h3><br>
-                    <span>Gender :</span>
-                    <h3>Not Set</h3>
-                    <button class="styled" id="update-btn">Edit Details</button>
-                    <button class="styled" id="delete-btn">Delete Account</button>
+    <body class="flex">
+        <aside class="flex-col">
+            <h1 class="brand-name">ePriscripto</h1>
+            <nav class="dashboard-nav-bar-container default">
+                <div class="nav-bar-container flex-col">
+                    <ul class="main-side-nav-bar">
+                        <li>Dashboard</li>
+                        <li>Family Memebers</li>
+                        <a href="prescription.html">
+                            <li>Prescriptions</li>
+                        </a>
+                        <a href="settings.html">
+                            <li>Settings</li>
+                        </a>
+                        <li>Help</li>
+                    </ul>
+                    <ul class="logout-container">
+                        <li class="logout">Logout</li>
+                    </ul>
                 </div>
-                <div class="setting flex-col">
-                    <form>
-                        <label for="email">Email :</label>
-                        <input type="text" value="Email" disabled name="email" id="email"><br>
-                        <label for="name">Name :</label>
-                        <span class="form-field">
-                            <input type="text" placeholder="Name" name="name" id="name"/>
-                            <br>
-                            <span class="error-name">Error message</span>
-                        </span>
-                        <label for="age">Age :</label>
-                        <input type="number" name="age" min="18" max="50" placeholder="Enter your age" id="age"
-                            required><br>
-                        <label for="gender">Gender :</label>
-                        <select name="gender" id="gender" required>
-                            <option selected disabled>Select your gender</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            <option value="other">Other</option>
-                        </select><br>
-                        <label for="password">Password</label>
-                        <input type="password" name="password" id="password" value="password" disabled>
-                        <button class="styled" id="save-btn" type="submit">Save</button>
-                        <button class="styled" id="cancel-details-btn">Cancel</button>
-                    </form>
+            </nav>
+        </aside>
+        <main>
+            <header>
+                <div class="top-bar flex">
+                    <h2>Profile Settings</h2>
+                </div>
+            </header>
+            <section class="profile-setting-section flex-col default">
+                <div class="profile-card details flex-col">
+                    <img src="/images/profilepic.png" alt="profile-pic" class="profile-pic">
+                    <div class="user-details">
+                        <span>Email :</span>
+                        <h3 class="email">Email</h3><br>
+                        <span>Full Name :</span>
+                        <h3 class="name">Full Name</h3><br>
+                        <span>Age :</span>
+                        <h3>Not Set</h3><br>
+                        <span>Gender :</span>
+                        <h3>Not Set</h3>
+                        <button class="styled" id="update-btn">Edit Details</button>
+                        <button class="styled" id="delete-btn">Delete Account</button>
+                    </div>
+                    <div class="setting flex-col">
+                        <form >
+                            <label for="email">Email :</label>
+                            <span class="form-field">
+                                <input type="text" value="Email" name="email" id="email" disabled><br>
+                                <span class="error-email">Error message</span>
+                            </span>
+                            <label for="name">Name :</label>
+                            <span class="form-field">
+                                <input type="text" placeholder="Name" name="name" id="name" />
+                                <br>
+                                <span class="error-name">Error message</span>
+                            </span>
+                            <label for="age">Age :</label>
+                            <span class="form-field">
+                                <input type="number" name="age" placeholder="Enter your age" id="age"><br>
+                                <span class="error-age">Error message</span>
+                            </span>
+                            <label for="gender">Gender :</label>
+                            <span class="form-field">
+                                <select name="gender" id="gender" required>
+                                    <option selected disabled >Select your gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="other">Other</option>
+                                </select><br>
+                                <span class="error-gender">Error message</span>
+                            </span>
+                            <label for="password">Password</label>
+                            <input type="password" name="password" id="password" value="password" disabled>
+                            <button class="styled" id="save-btn" type="submit">Save</button>
+                            <button class="styled" id="cancel-details-btn">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+            <div class="pop-up-delete">
+                <h3>Click on delete to confirm</h3>
+                <div class="btn-container">
+                    <button class="styled delete">Delete</button>
+                    <button class="styled cancel" id="cancel-btn">Cancel</button>
                 </div>
             </div>
-        </section>
-        <div class="pop-up-delete">
-            <h3>Click on delete to confirm</h3>
-            <div class="btn-container">
-                <button class="styled delete">Delete</button>
-                <button class="styled cancel" id="cancel-btn">Cancel</button>
-            </div>
-        </div>
+        </main>
         <script src="/js/user.js"></script>
     </body>
 

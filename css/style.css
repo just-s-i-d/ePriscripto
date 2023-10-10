@@ -911,7 +911,7 @@ footer {
     }
 }
 
-@media (min-width:375px) and (min-height:800px) and (max-width:575px) {
+@media (min-width:375px) and (min-height:750px) and (max-width:575px) {
     #home {
         height: 65vh;
     }

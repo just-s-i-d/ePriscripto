@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;1,600&display=swap');
 
 :root {
     --green: #04C59D;
@@ -8,8 +8,8 @@
     --secondaryText: #252525;
     --navBackground: rgb(0, 154, 120);
     --errorText: #af0c0c;
-    --errorBackground: #ffe0e0;
-    --successBackground: #95d5b2;
+    --errorBackground: #ea6868;
+    --successBackground: #63d48a;
 }
 
 * {
@@ -54,7 +54,6 @@ button.styled {
 .heading {
     font-size: 42px;
     text-align: center;
-    font-weight: 500;
     margin-bottom: 4vh;
 }
 
@@ -139,7 +138,7 @@ header {
 .navbar-container .menu-icon {
     position: absolute;
     height: 60px;
-    top: 1%;
+    top: 2vh;
     right: 5%;
     width: 1.5em;
     cursor: pointer;
@@ -175,10 +174,11 @@ header {
     display: none;
     font-size: 1.3em;
     background-color: var(--desText);
-    padding: 20px;
+    padding: 20px 30px;
     width: 20%;
     height: 7vh;
     position: absolute;
+    border-radius: 5px;
     right: 0;
     z-index: 100;
     top: 15%;
@@ -191,10 +191,18 @@ header {
     background-color: var(--errorBackground);
 }
 
+.pop-message span#close-toast {
+    position: absolute;
+    top: -10px;
+    left: 3px;
+    font-size: 1.6em;
+    cursor: pointer;
+}
+
 .pop-message.success {
-    color: var(--green);
-    border: 1px solid var(--green);
-    background-color: #eae6e5;
+    color: var(--text);
+    border: 1px solid var(--successBackground);
+    background-color: var(--successBackground);
 }
 
 .pop-message.active {
@@ -350,9 +358,9 @@ header {
 .feature {
     border-radius: 10px;
     text-align: center;
-    padding: 30px 10px;
+    padding: 20px 10px;
     box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.1);
-    width: 25%;
+    width: 30%;
     height: 20vh;
     background-color: #192e36;
     transition: 0.4s all;
@@ -367,7 +375,7 @@ header {
 }
 
 .feature h2 {
-    font-size: 1.5em;
+    font-size: 1.4em;
     font-weight: 500;
 }
 
@@ -450,7 +458,7 @@ header {
 .how-to-use-section {
     position: relative;
     width: 85%;
-    margin: 10vh auto;
+    margin: 8vh auto;
 }
 
 .steps-container {
@@ -491,7 +499,7 @@ header {
     right: 10%;
     top: 30%;
     width: 100%;
-    opacity: .2;
+    opacity: .1;
 }
 
 /* .testimonial-section {
@@ -508,12 +516,12 @@ header {
 /*  */
 .testimonial cite {
     float: right;
-    font-size: 1.5em;
+    font-size: 1.3em;
 }
 
 .testimonial blockquote {
     margin: 20px 0;
-    font-size: 1.4em;
+    font-size: 1.2em;
     line-height: 28px;
 }
 
@@ -524,8 +532,8 @@ header {
     font-size: 2em;
 } */
 .testimonial-section {
+    margin: 8vh auto;
     position: relative;
-    padding: 3%;
     width: 100%;
     height: 50vh;
 }
@@ -561,9 +569,9 @@ header {
 
 .indicator-btn {
     display: inline-block;
-    width: 15px;
-    height: 15px;
-    border-radius: 15px;
+    width: 1em;
+    height: 1em;
+    border-radius: 1em;
     margin: 4px;
     background-color: var(--green);
     cursor: pointer;
@@ -581,7 +589,7 @@ header {
 }
 
 .contact-section {
-    padding: 15% 10%;
+    padding: 50px;
     position: relative;
     background-color: var(--green);
     justify-content: center;
@@ -591,7 +599,7 @@ header {
 .contact-main-container {
     position: relative;
     width: 60%;
-    min-height: 50vh;
+    min-height: 43vh;
     align-items: center;
     justify-content: center;
     padding: 3%;
@@ -624,6 +632,10 @@ header {
     width: 50%;
 }
 
+.contact-form-container {
+    align-items: center;
+}
+
 .contact-form-container form input,
 textarea {
     font-size: 1.2em;
@@ -633,7 +645,7 @@ textarea {
 }
 
 .contact-form-container .styled {
-    margin-top: 10px;
+    margin-top: 3px;
     padding: 5px 10px;
 }
 
@@ -725,7 +737,7 @@ footer {
 
 .footer-container .details-container .social-icons-container {
     display: flex;
-    gap: 15px;
+    gap: 10px;
 }
 
 .footer-container .important-links-container h3 {
@@ -781,7 +793,7 @@ footer {
     }
 
     #home .illustration {
-        width: 40%;
+        width: 45%;
     }
 
     .doctor-illustration {
@@ -789,6 +801,8 @@ footer {
     }
 
     .home-container {
+        height: 80%;
+        justify-content: space-evenly;
         font-size: 8px;
         display: flex;
         flex-direction: column-reverse;
@@ -800,29 +814,27 @@ footer {
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
     }
 
     .description {
         margin-top: 10px;
-        line-height: 20px;
+        line-height: 18px;
         text-align: center;
     }
 
-    .feature-section {
-        font-size: 13px;
-    }
-
+    .feature-section,
     .doctors-section {
-        font-size: 12px;
+        font-size: 13px;
+        padding: 40px 0;
     }
 
     .feature {
-        padding: 20px 10px;
-        flex-basis: 70%;
+        flex-basis: 80%;
     }
 
     .section-fonts {
-        font-size: 12px;
+        font-size: 11px;
     }
 
     .steps-container .illustration {
@@ -837,23 +849,41 @@ footer {
     }
 
     .heading {
-        font-size: 24px;
+        font-size: 26px;
     }
 
     .testimonial-section {
         font-size: 11px;
+        margin: 6vh auto 3vh;
+        height: 45vh;
     }
 
     .testimonial,
     .testimonial-container {
         width: 300px;
+        height: 150px;
+        font-size: 10px;
+    }
+
+    .testimonial blockquote {
+        line-height: 20px;
+    }
+
+    .indicator-btn {
+        font-size: 10px;
+    }
+
+    .indicator-btn.active {
+        width: 30px;
     }
 
     .contact-section {
-        height: 60vh;
+        height: 70vh;
     }
 
     .contact-main-container {
+        min-height: 60vh;
+        padding: 20px;
         width: 100%;
     }
 
@@ -867,13 +897,75 @@ footer {
 
     .contact-form-container form input,
     textarea {
-        margin: 8px 0;
+        margin: 6px 0;
         padding: 10px;
         width: 100%;
     }
 
     .footer-container {
         font-size: 9px;
+    }
+
+    .footer-container .details-container .social-icons-container {
+        gap: 5px;
+    }
+}
+
+@media (min-width:375px) and (min-height:800px) and (max-width:575px) {
+    #home {
+        height: 65vh;
+    }
+    .feature {
+        padding:20px;
+        flex-basis: 70%;
+        height: 16vh;
+        gap:15%;
+    }
+    .contact-section {
+        height: 50vh;
+    }
+
+    .testimonial-section {
+        margin:4vh auto 3vh;
+        height: 30vh;
+    }
+
+    .contact-main-container {
+        min-height: 40vh;
+    }
+}
+
+@media (min-width:450px) and (max-width:575px) {
+    .feature {
+        padding:20px;
+        flex-basis: 75%;
+        height: 16vh;
+    }
+
+    #home {
+        height: 70vh;
+    }
+
+    .testimonial,
+    .testimonial-container {
+        width: 400px;
+        height: 160px;
+        font-size: 12px;
+    }
+
+    .testimonial-section {
+        margin: 6vh auto 4vh;
+        height: 35vh;
+    }
+
+    .contact-section {
+        height: 55vh;
+    }
+
+    .contact-main-container {
+        min-height: 45vh;
+        padding: 20px;
+        width: 100%;
     }
 }
 
@@ -882,20 +974,17 @@ footer {
         font-size: 14px;
     }
 
-    #home {
-        height: 90vh;
-    }
-
     .home-container {
-        font-size: 10px;
+        font-size: 11px;
+        height: 75%;
     }
 
-    #home .illustration {
+    .home-container .illustration {
         width: 35%;
     }
 
     .brand-tagline-container {
-        width: 70%;
+        height: 60%;
     }
 
     .doctors-section {
@@ -912,6 +1001,7 @@ footer {
 
     .feature {
         flex-basis: 40%;
+        height: 18vh;
     }
 
     .section-fonts {
@@ -934,17 +1024,28 @@ footer {
     }
 
     .testimonial-section {
-        font-size: 14px;
+        height: 40vh;
     }
 
     .testimonial,
     .testimonial-container {
         width: 450px;
+        height: 180px;
+        font-size: 16px;
+    }
+
+    .testimonial blockquote {
+        line-height: 26px;
+    }
+
+    .contact-section {
+        height: 60vh;
     }
 
     .contact-main-container {
-        width: 80%;
-        height: 90%;
+        min-height: 50vh;
+        padding: 20px;
+        width: 90%;
     }
 
     .contact-form-container form {
@@ -971,26 +1072,36 @@ footer {
         font-size: 14px;
     }
 
+    #home {
+        height: 75vh;
+    }
+
+    #home .illustration {
+        width: 40%;
+    }
+
     .home-container {
-        font-size: 12px;
+        font-size: 11px;
         flex-direction: row;
     }
 
     .brand-tagline-container {
-        width: 90%;
+        width: 60%;
         height: 50%;
     }
 
-    .doctors-section {
-        font-size: 14px;
+    .description {
+        line-height: 20px;
     }
 
     .doctor {
         flex-basis: 35%;
     }
 
-    .feature-section {
+    .feature-section,
+    .doctors-section {
         font-size: 15px;
+        padding: 50px 0;
     }
 
     .feature {
@@ -1015,6 +1126,7 @@ footer {
     .heading {
         font-size: 32px;
     }
+
     .testimonial-section {
         font-size: 16px;
     }
@@ -1023,6 +1135,7 @@ footer {
     .testimonial-container {
         width: 600px;
     }
+
     .contact-main-container {
         width: 70%;
     }
@@ -1038,17 +1151,28 @@ footer {
     }
 }
 
-@media (min-width:991px) {
+@media (min-width:950px) {
     .navbar-container {
         font-size: 16px;
     }
 
+    #home {
+        height: 80vh;
+    }
+
     .home-container {
+        width: 85%;
+        height: 80%;
         font-size: 12px;
+    }
+
+    #home .illustration {
+        width: 35%;
     }
 
     .description {
         text-align: left;
+        line-height: 22px;
     }
 
     .brand-tagline-container {
@@ -1063,7 +1187,11 @@ footer {
 
     .feature {
         padding: 20px;
-        flex-basis: 35%;
+        flex-basis: 30%;
+    }
+
+    .doctor {
+        flex-basis: 30%;
     }
 
     .section-fonts {
@@ -1078,6 +1206,7 @@ footer {
     .step-heading .step-des {
         width: 80%;
     }
+
     .testimonial-section {
         font-size: 18px;
     }
@@ -1088,12 +1217,19 @@ footer {
     }
 
     .testimonial blockquote {
+        font-size: 1.4em;
         margin: 15px 0;
         line-height: 28px;
     }
 
+    .contact-section {
+        height: 65vh;
+        padding: 20px;
+    }
+
     .contact-main-container {
-        width: 90%;
+        width: 75%;
+        height: 50vh;
     }
 
     .contact-form-container form {
@@ -1120,22 +1256,41 @@ footer {
         font-size: 12px;
     }
 
+    .description {
+        line-height: 24px;
+    }
+
     .feature-section {
         font-size: 14px;
     }
 
     .feature {
         padding: 20px;
-        flex-basis: 35%;
+        flex-basis: 26%;
+        height: 20vh;
     }
 
     .section-fonts {
         font-size: 14px;
     }
 
+    .doctor {
+        flex-basis: 25%;
+    }
+
     .testimonial blockquote {
         margin: 15px 0;
         line-height: 28px;
+    }
+
+    .contact-section {
+        height: 63vh;
+        padding: 20px;
+    }
+
+    .contact-main-container {
+        width: 65%;
+        height: 50vh;
     }
 
     .heading {
@@ -1153,13 +1308,16 @@ footer {
         font-size: 20px;
     }
 
+    #home {
+        height: 85vh;
+    }
+
     .home-container {
-        font-size: 14px;
+        font-size: 12px;
     }
 
     .brand-tagline-container {
-        width: 50%;
-        height: 45%;
+        width: 45%;
     }
 
     .description {
@@ -1185,8 +1343,9 @@ footer {
     }
 
     .doctor {
-        flex-basis: 30%;
+        flex-basis: 28%;
     }
+
     .testimonial-section {
         font-size: 20px;
     }
@@ -1195,13 +1354,27 @@ footer {
     .testimonial-container {
         width: 850px;
     }
+
+    .indicator-btn {
+        font-size: 15px;
+    }
+
+    .indicator-btn.active {
+        width: 45px;
+    }
+
     .contact-section {
         padding: 5% 10%;
-        height: 70vh;
+        height: 65vh;
     }
 
     .contact-main-container {
-        height: 100%;
+        width: 80%;
+        height: 50vh;
+    }
+
+    .contact-form-container .styled {
+        margin-top: 6px;
     }
 
     .heading {
@@ -1218,8 +1391,16 @@ footer {
         font-size: 20px;
     }
 
+    .home-container {
+        font-size: 14px;
+    }
+
+    #home {
+        height: 90vh;
+    }
+
     .brand-tagline-container {
-        width: 50%;
+        width: 45%;
         height: 50%;
     }
 
@@ -1228,6 +1409,7 @@ footer {
     }
 
     .feature {
+        padding: 25px 20px;
         flex-basis: 25%;
     }
 
@@ -1243,7 +1425,9 @@ footer {
     .heading {
         font-size: 38px;
     }
+
     .testimonial-section {
+        margin: 6vh auto 0;
         font-size: 22px;
     }
 
@@ -1251,9 +1435,22 @@ footer {
     .testimonial-container {
         width: 1200px;
     }
+
+    .testimonial blockquote {
+        font-size: 1.7em;
+    }
+
+    .contact-section {
+        height: 70vh;
+    }
+
     .contact-main-container {
-        height: 100%;
-        max-width: 70%;
+        height: 70vh;
+        width: 70%;
+    }
+
+    .contact-form-container .styled {
+        margin-top: 10px;
     }
 
     .footer-container {

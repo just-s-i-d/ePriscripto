@@ -18,7 +18,7 @@
                         <li>Dashboard</li>
                         <li>Family Memebers</li>
                         <a href="prescription.html">
-                            <li>Prescriptions</li>
+                            <li class="active">Prescriptions</li>
                         </a>
                         <a href="settings.html">
                             <li>Settings</li>
@@ -34,7 +34,8 @@
         <main>
             <header>
                 <div class="top-bar flex">
-                    <h2>Profile Settings</h2>
+                    <h2>Prescriptions</h2>
+                    <button class="styled" id="show-prescription-box">Add Prescription</button>
                 </div>
             </header>
             <section class="prescription-section">
@@ -70,7 +71,10 @@
                             </div>
 
                         </div>
-                        <button id="add-new-prescription" class="styled">Add Prescription</button>
+                        <div>
+                            <button id="add-new-prescription" class="styled">Add Prescription</button>
+                            <button id="cancel-prescription-btn" class="styled">Cancel</button>
+                        </div>
                     </form>
                 </div>
             </section>

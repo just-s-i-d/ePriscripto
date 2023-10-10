@@ -150,7 +150,7 @@ settingForm.addEventListener("submit", (event) => {
             fullName: settingForm.name.value.toCapitaliseWord(),
             age: settingForm.age.value,
             gender: settingForm.gender.value,
-            password: settingForm.password.value
+            password: settingForm.password.value,
         }
         let idb = indexedDB.open("crude", 1)
         idb.onsuccess = () => {
@@ -197,15 +197,3 @@ logoutBtn.addEventListener("click", () => {
     location.assign("http://127.0.0.1:5500/")
 })
 
-// for add new prescription
-const prescriptionForm = document.querySelector("#prescription-form")
-prescriptionForm.addEventListener("submit", (event) => {
-    event.preventDefault()
-    const newPresData = {
-        doctorName: prescriptionForm.docName.value,
-        hospitalName: prescriptionForm.hospitalName.value,
-        prescriptionDate: prescriptionForm.prescriptionDate.value,
-        prescriptionImg: prescriptionForm.imgLink.value
-    }
-    console.log(newPresData)
-})

@@ -14,8 +14,8 @@ String.prototype.toCapitaliseWord = function () {
 }
 
 // for name pattern matching 
-function validateName(name) {
-    return /^[A-Za-z\s]+$/.test(name)
+function validateDocName(name) {
+    return /^(Dr\.?|Doctor)?\s?[A-Za-z\s\.'-]+$/.test(name)
 }
 function validateHospitalName(name) {
     return /^[A-Za-z\s\.'-]+$/.test(name)
@@ -41,7 +41,7 @@ prescriptionForm.addEventListener("submit", (event) => {
             prescriptionForm.docName.classList.remove("error")
         }, delay)
     }
-    else if (!validateName(prescriptionForm.docName.value)) {
+    else if (!validateDocName(prescriptionForm.docName.value)) {
         prescriptionForm.docName.classList.add("error")
         errorName.innerText = "Enter a valid name"
         errorName.classList.add("active")
@@ -122,7 +122,6 @@ prescriptionForm.addEventListener("submit", (event) => {
                 console.log(e)
             }
         }
-        console.log(newPresData)
     }
 })
 
@@ -144,10 +143,9 @@ idb.onsuccess = () => {
             for (key in prescription) {
                 let tdata = document.createElement("td")
                 if (key === "prescriptionImg") {
-                    console.log(key)
                     tdata.innerHTML = `<a href="${prescription[key]}"><button class="styled">Show</button></a>`
                     let td = document.createElement("td")
-                    td.innerHTML = `<button class="delete-prescription styled" id="${index}">Delete</button>`
+                    td.innerHTML = `<button class="delete-prescription styled" onClick="deletePrescription(this.id)" id="${index}">Delete</button>`
                     row.appendChild(tdata)
                     row.appendChild(td)
                     continue
@@ -161,37 +159,84 @@ idb.onsuccess = () => {
 }
 
 // for deleting prescription
-const deleteBtns = document.querySelectorAll(".delete-prescription")
+const deleteBtns = document.getElementsByClassName("delete-prescription")
 console.log(deleteBtns)
+// Array.prototype.forEach.call(deleteBtns,(btn)=>{
+// console.log(btn)
+// })
+function deletePrescription(btnId){
+    console.log(btnId)
+    const confirmDelBox = document.querySelector(".pop-up-delete")
+    confirmDelBox.classList.add("active")
+    confirmDelBtn.addEventListener("click", () => {
+        let idb = indexedDB.open("crude", 1)
+        idb.onsuccess = () => {
+            let tx = idb.result.transaction("users", "readwrite")
+            let store = tx.objectStore("users")
+            let cursor = store.get(currentUser.email)
+            cursor.onsuccess = () => {
+                let curRes=cursor.result
+                console.log(curRes.prescriptions)
+                curRes.prescriptions.splice(btnId,1)
+                store.put(curRes)
+                location.reload()
+            }
+        }
+    })
+    cancelBtn.addEventListener("click", () => {
+        confirmDelBox.classList.remove("active")
+    })
+}
 const cancelBtn = document.querySelector("#cancel-btn")
 const confirmDelBtn = document.querySelector(".delete")
-for (let btn in deleteBtns) {
-    console.log(btn)
-    // btn.addEventListener("click", () => {
-    //     alert("hello")
-    //     const confirmDelBox = document.querySelector(".pop-up-delete")
-    //     confirmDelBox.classList.add("active")
-    //     confirmDelBtn.addEventListener("click", () => {
-    //         let idb = indexedDB.open("crude", 1)
-    //         idb.onsuccess = () => {
-    //             let tx = idb.result.transaction("users", "readwrite")
-    //             let store = tx.objectStore("users")
-    //             let cursor = store.delete(currentUser.email)
-    //             cursor.onsuccess = () => {
-    //                 sessionStorage.removeItem("currentUser")
-    //                 location.assign("http://127.0.0.1:5500/")
-    //             }
-    //         }
-    //     })
-    //     cancelBtn.addEventListener("click", () => {
-    //         confirmDelBox.classList.remove("active")
-    //     })
-    // })
+for (var i = 0; i < deleteBtns.length; i++) {
+    console.log(deleteBtns[i])
+    deleteBtns[i].addEventListener("click", () => {
+        console.log(deleteBtns[i].id)
+    })
+    btn.addEventListener("click", () => {
+        alert("hello")
+        const confirmDelBox = document.querySelector(".pop-up-delete")
+        confirmDelBox.classList.add("active")
+        confirmDelBtn.addEventListener("click", () => {
+            let idb = indexedDB.open("crude", 1)
+            idb.onsuccess = () => {
+                let tx = idb.result.transaction("users", "readwrite")
+                let store = tx.objectStore("users")
+                let cursor = store.delete(currentUser.email)
+                cursor.onsuccess = () => {
+                    sessionStorage.removeItem("currentUser")
+                    location.assign("http://127.0.0.1:5500/")
+                }
+            }
+        })
+        cancelBtn.addEventListener("click", () => {
+            confirmDelBox.classList.remove("active")
+        })
+    })
 };
+
 
 // for logging out temporary
 const logoutBtn = document.querySelector(".logout")
 logoutBtn.addEventListener("click", () => {
     sessionStorage.removeItem("currentUser")
     location.assign("http://127.0.0.1:5500/")
+})
+
+// for prescription box
+const prescriptionShowBtn = document.querySelector("#show-prescription-box")
+const prescriptionBox = document.querySelector(".prescription-section")
+const prescriptionCard = document.querySelector(".prescription-card")
+const cancelPrescription = document.querySelector("#cancel-prescription-btn")
+cancelPrescription.addEventListener("click", (event) => {
+    event.preventDefault()
+    prescriptionBox.classList.remove("active")
+})
+prescriptionShowBtn.addEventListener("click", () => {
+    prescriptionBox.classList.toggle("active")
+    prescriptionBox.addEventListener("click", (event) => {
+        if (event.target === prescriptionBox)
+            prescriptionBox.classList.remove("active")
+    })
 })

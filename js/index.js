@@ -35,9 +35,10 @@ menuIcon.addEventListener("click", () => {
 const loginBtn = document.querySelector(".login")
 const loginBox = document.querySelector(".login-box-container")
 const closeBtn = document.querySelector(".login-box-container")
-const xBtn=document.querySelector("#close-login")
-xBtn.addEventListener("click",()=>{
+const xBtn = document.querySelector("#close-login")
+xBtn.addEventListener("click", () => {
     loginBox.classList.remove("active")
+    document.body.classList.remove("noScroll")
 })
 loginBtn.addEventListener("click", () => {
     loginBox.classList.toggle("active")
@@ -68,11 +69,20 @@ sendBtn.addEventListener("click", (event) => {
 // for the reveal on scroll effect
 window.addEventListener("scroll", reveal)
 function reveal() {
+    if (window.innerWidth < 700) {
+        var revealPoint = 0
+    }
+    else if (window.innerWidth < 1080) {
+        var revealPoint = 60
+    }
+    else {
+        var revealPoint = 100
+    }
     var reveals = document.querySelectorAll(".reveal")
     for (let i = 0; i < reveals.length; i++) {
         var windowheight = window.innerHeight
         var revealTop = reveals[i].getBoundingClientRect().top
-        var revealPoint = 80
+
         if (revealTop < windowheight - revealPoint) {
             reveals[i].classList.add("active")
         }
@@ -94,6 +104,8 @@ String.prototype.toCapitaliseWord = function () {
 
 // for sign up
 const popUp = document.querySelector(".pop-message")
+const popContent=document.querySelector(".pop-message .pop-content")
+const closePopUp=document.querySelector("#close-toast")
 const delay = 2000
 const errorName = document.querySelector("#sign-up .error-name")
 const errorEmail = document.querySelector("#sign-up .error-email")
@@ -106,7 +118,9 @@ function validateName(name) {
 function validateEmail(name) {
     return /^[\w\.-]+@[\w\.-]+\.\w+$/.test(name)
 }
-
+closePopUp.addEventListener("click",()=>{
+    popUp.classList.remove("active")
+})
 signUpForm.addEventListener("submit", (e) => {
     e.preventDefault()
     if (!signUpForm.fullName.value) {
@@ -201,7 +215,7 @@ signUpForm.addEventListener("submit", (e) => {
                 const curUser = { email: userData.email, name: userData.fullName }
                 sessionStorage.setItem("currentUser", JSON.stringify(curUser))
                 signUpForm.reset()
-                popUp.innerText = "Logging in"
+                popContent.innerText = "Logging in"
                 popUp.classList.add("active")
                 popUp.classList.add("success")
                 setTimeout(() => {
@@ -300,10 +314,12 @@ signInForm.addEventListener("submit", (e) => {
                     }
                 }
                 else {
-                    popUp.innerText = "No users found"
+                    popContent.innerText = "No users found"
                     popUp.classList.add("active")
+                    popUp.classList.add("error")
                     setTimeout(() => {
                         popUp.classList.remove("active")
+                        popUp.classList.remove("error")
                     }, 2000)
                     signInForm.reset()
                 }
@@ -331,11 +347,13 @@ if (sessionStorage.getItem("currentUser")) {
 const indicatorBtn = document.querySelectorAll(".indicator-btn")
 const sliderRow = document.querySelector(".slider-row")
 const sliderCol = document.querySelector(".testimonial")
-var width=1200
-const calWidth=()=>{
-    width=sliderCol.offsetWidth
+var width = 1200
+const calWidth = () => {
+    width = sliderCol.offsetWidth
+    console.log("change")
 }
-indicatorBtn[0].addEventListener("click", function() {
+
+indicatorBtn[0].addEventListener("click", function () {
     calWidth()
     sliderRow.style.transform = "translateX(0px)"
     for (let i = 0; i < 3; i++) {
@@ -343,7 +361,7 @@ indicatorBtn[0].addEventListener("click", function() {
     }
     this.classList.add("active")
 })
-indicatorBtn[1].addEventListener("click",function() {
+indicatorBtn[1].addEventListener("click", function () {
     calWidth()
     sliderRow.style.transform = `translateX(-${width}px)`
     for (let i = 0; i < 3; i++) {
@@ -351,9 +369,9 @@ indicatorBtn[1].addEventListener("click",function() {
     }
     this.classList.add("active")
 })
-indicatorBtn[2].addEventListener("click", function() {
+indicatorBtn[2].addEventListener("click", function () {
     calWidth()
-    sliderRow.style.transform = `translateX(-${width*2}px)`
+    sliderRow.style.transform = `translateX(-${width * 2}px)`
     for (let i = 0; i < 3; i++) {
         indicatorBtn[i].classList.remove("active")
     }

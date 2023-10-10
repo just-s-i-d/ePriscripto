@@ -1,11 +1,12 @@
 :root {
     --primaryText: #363740;
     --secondaryText: #a0afbf;
-    --bgColor: #009193;
+    --bgColor: rgb(0, 145, 147);
     --secondaryBgColor: #88dacc;
     --bodyBgColor: #f8f9fa;
     --navBgColor: white;
     --errorText: #af0c0c;
+    --modalShadow: rgba(0, 145, 147, 0.9);
 }
 
 .flex-col.center {
@@ -35,7 +36,10 @@ main {
     background-color: var(--bodyBgColor);
     min-height: 100vh;
 }
-
+.main-side-nav-bar li.active{
+    color: var(--navBgColor);
+    background-color: var(--bgColor);
+}
 .profile-setting-section {
     position: relative;
     width: max-content;
@@ -56,6 +60,8 @@ main {
     height: 100%;
     padding: 10%;
     background-color: var(--navBgColor);
+    border-radius: 5px;
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.1);
 }
 
 .setting.active {
@@ -78,11 +84,18 @@ main {
     display: none;
 }
 
-.form-field input.error {
+.form-field input.error,.form-field select.error  {
     border: var(--errorText) 1px solid;
 }
 
-.error-name.active,.error-hospital-name.active,.error-date.active,.error-img.active,.error-age.active,.error-gender.active,.error-email.active{
+.error-name.active,
+.error-hospital-name.active,
+.error-date.active,
+.error-img.active,
+.error-age.active,
+.error-gender.active,
+.error-email.active {
+   
     display: block;
 }
 
@@ -171,10 +184,40 @@ main {
 .prescription-card {
     margin: 20px;
     padding: 30px 20px;
-    width: 40%;
+    width: 30%;
     background-color: var(--navBgColor);
     border-radius: 10px;
     align-items: center;
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 5px 1px var(--modalShadow);
+}
+.prescription-section{
+    position: absolute;
+    display: none;
+    top:0;
+    left:0;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    animation: modalShow 0.4s ease-in-out;
+}
+
+@keyframes modalShow {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+.prescription-section.active {
+    display: flex;
 }
 
 .prescription-card h3 {
@@ -195,7 +238,8 @@ main {
     border: none;
     background-color: var(--bodyBgColor);
 }
-.prescription-form-container .form-field div :where(.error-name,.error-hospital-name,.error-date,.error-img,.error-email){
+
+.prescription-form-container .form-field div :where(.error-name, .error-hospital-name, .error-date, .error-img, .error-email) {
     margin-left: 20px;
     margin-top: 5px;
 }
@@ -216,7 +260,6 @@ main {
 
 .prescription-table-container {
     margin: 30px;
-    width: 100%;
 }
 
 .prescription-table-container table {
@@ -226,7 +269,8 @@ main {
 
 .prescription-table-container table th {
     padding: 15px 0;
-    font-size: 1.5em;
+    font-size: 1.4em;
+    font-weight: 600;
 }
 
 .prescription-table-container table td {
@@ -237,4 +281,15 @@ main {
 .prescription-table-container table tr:nth-child(even),
 .prescription-table-container table thead {
     background-color: var(--navBgColor);
+}
+
+.table-data .styled {
+    font-size: .8em;
+    width: max-content;
+}
+
+.top-bar .styled {
+    cursor: pointer;
+    font-weight: 300;
+    width: 15%;
 }

@@ -137,8 +137,8 @@ header {
 
 .navbar-container .menu-icon {
     position: absolute;
-    height: 60px;
-    top: 2vh;
+    height: 20px;
+    top: 4vh;
     right: 5%;
     width: 1.5em;
     cursor: pointer;
@@ -862,7 +862,6 @@ footer {
     .testimonial-container {
         width: 300px;
         height: 150px;
-        font-size: 10px;
     }
 
     .testimonial blockquote {
@@ -884,7 +883,7 @@ footer {
     .contact-main-container {
         min-height: 60vh;
         padding: 20px;
-        width: 100%;
+        width: 110%;
     }
 
     .contact-main-container .contact-us-img {
@@ -916,13 +915,13 @@ footer {
         height: 65vh;
     }
     .feature {
-        padding:20px;
+        padding:10px;
         flex-basis: 70%;
         height: 16vh;
-        gap:15%;
+        gap:10%;
     }
     .contact-section {
-        height: 50vh;
+        height: 55vh;
     }
 
     .testimonial-section {
@@ -931,7 +930,7 @@ footer {
     }
 
     .contact-main-container {
-        min-height: 40vh;
+        min-height: 45vh;
     }
 }
 
@@ -940,6 +939,7 @@ footer {
         padding:20px;
         flex-basis: 75%;
         height: 16vh;
+        gap:12%;
     }
 
     #home {

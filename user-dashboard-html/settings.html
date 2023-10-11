@@ -54,34 +54,49 @@
                     </div>
                     <div class="setting flex-col">
                         <form >
-                            <label for="email">Email :</label>
-                            <span class="form-field">
-                                <input type="text" value="Email" name="email" id="email" disabled><br>
-                                <span class="error-email">Error message</span>
-                            </span>
-                            <label for="name">Name :</label>
-                            <span class="form-field">
-                                <input type="text" placeholder="Name" name="name" id="name" />
-                                <br>
-                                <span class="error-name">Error message</span>
-                            </span>
-                            <label for="age">Age :</label>
-                            <span class="form-field">
-                                <input type="number" name="age" placeholder="Enter your age" id="age"><br>
-                                <span class="error-age">Error message</span>
-                            </span>
-                            <label for="gender">Gender :</label>
-                            <span class="form-field">
-                                <select name="gender" id="gender" required>
-                                    <option selected disabled >Select your gender</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                    <option value="other">Other</option>
-                                </select><br>
-                                <span class="error-gender">Error message</span>
-                            </span>
-                            <label for="password">Password</label>
-                            <input type="password" name="password" id="password" value="password" disabled>
+                            <div>
+                                <label for="email">Email :</label>
+                                <span class="form-field">
+                                    <input type="text" value="Email" name="email" id="email" disabled><br>
+                                    <span class="error-email">Error message</span>
+                                </span>
+                            </div>
+                            
+                            <div>
+                                <label for="name">Name :</label>
+                                <span class="form-field">
+                                    <input type="text" placeholder="Name" name="name" id="name" />
+                                    <br>
+                                    <span class="error-name">Error message</span>
+                                </span>
+                            </div>
+                            
+                            <div>
+                                <label for="age">Age :</label>
+                                <span class="form-field">
+                                    <input type="number" name="age" placeholder="Enter your age" id="age"><br>
+                                    <span class="error-age">Error message</span>
+                                </span>
+                            </div>
+                            
+                            <div>
+                                <label for="gender">Gender :</label>
+                                <span class="form-field">
+                                    <select name="gender" id="gender" required>
+                                        <option selected disabled >Select your gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="other">Other</option>
+                                    </select><br>
+                                    <span class="error-gender">Error message</span>
+                                </span>
+                            </div>
+                            <div >
+                                <label for="password">Password :</label>
+                                <span class="form-field">
+                                    <input type="password" name="password" id="password" value="password" disabled>
+                                </span>
+                            </div>
                             <button class="styled" id="save-btn" type="submit">Save</button>
                             <button class="styled" id="cancel-details-btn">Cancel</button>
                         </form>

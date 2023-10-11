@@ -10,6 +10,7 @@
     --errorText: #af0c0c;
     --errorBackground: #ea6868;
     --successBackground: #63d48a;
+    --footerBg: #3b3b3b;
 }
 
 * {
@@ -698,15 +699,16 @@ textarea {
 footer {
     position: relative;
     color: var(--text);
-    height: 30vh;
+    height: 35vh;
     width: 100%;
-    background-color: #252525;
+    background-color: var(--footerBg);
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 50px;
 }
 
-.footer-container {
+/* .footer-container {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -735,9 +737,10 @@ footer {
     margin-bottom: 5px;
 }
 
-.footer-container .details-container .social-icons-container {
+.footer-container  .social-icons-container {
     display: flex;
-    gap: 10px;
+    margin-top: 10px;
+    gap: 15px;
 }
 
 .footer-container .important-links-container h3 {
@@ -747,6 +750,75 @@ footer {
 .footer-container .important-links-container li {
     list-style: disc;
     margin: 5px;
+} */
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 18px;
+}
+
+.logo {
+    position: relative;
+    width: 30%;
+    left: 5%;
+}
+
+footer .logo .brand {
+    font-size: 3em;
+}
+
+.subscribe {
+    margin-top: 10px;
+}
+
+.subscribe input {
+    padding: 10px;
+    font-size: 1.1em;
+    border: none;
+}
+
+.subscribe .styled {
+    border-radius: 0;
+    padding: 8px 12px;
+    font-size: 1em;
+}
+
+footer .logo .tagline {
+    font-size: .8em;
+}
+
+.footer-container .details-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.details-container span i.fa {
+    margin-right: 10px;
+}
+
+.details-container h3 {
+    margin-bottom: 18px;
+}
+
+.logo .social-icons-container {
+    display: flex;
+    margin-top: 10px;
+    gap: 15px;
+}
+
+.footer-container .important-links-container h3 {
+    margin-bottom: 10px;
+}
+
+.footer-container .important-links-container li {
+    margin: 5px;
+}
+
+.footer-container .stay-updated h3 {
+    margin-bottom: 40px;
 }
 
 .bottom-bar {
@@ -755,6 +827,7 @@ footer {
     background-color: black;
     text-align: center;
     position: absolute;
+    left: 0;
     bottom: 0;
     padding: 10px 0;
 }
@@ -901,45 +974,119 @@ footer {
         width: 100%;
     }
 
-    .footer-container {
-        font-size: 9px;
+    footer {
+        padding: 20px 10px;
+        justify-content: start;
+        gap: 10%;
     }
 
-    .footer-container .details-container .social-icons-container {
+    .logo {
+        font-size: 9px;
+        width: 80%;
+    }
+
+    .footer-container {
+        font-size: 8px;
+    }
+
+    .logo .social-icons-container {
+        gap: 8px;
+    }
+
+    .footer-container .details-container {
         gap: 5px;
     }
+
+    .details-container span i.fa {
+        margin-right: 5px;
+    }
+
+    .details-container h3 {
+        margin-bottom: 9px;
+    }
+
+    .footer-container {
+        align-items: start;
+    }
+
+    .footer-container .important-links-container ul {
+        margin-top: 13px;
+    }
+
+    .footer-container .important-links-container li {
+        margin: 5px;
+    }
+
+    .footer-container .stay-updated h3 {
+        margin-bottom: 13px;
+    }
+
+    .subscribe input {
+        padding: 5px 10px;
+        font-size: 1em;
+        border: none;
+    }
+
+    .subscribe .styled {
+        border-radius: 0;
+        padding: 8px 12px;
+        font-size: 1.1em;
+    }
+}
+
+@media (min-width:375px) and (min-height:670px) and (max-width:575px) {
+    .contact-section {
+        height: 65vh;
+    }
+
+    .testimonial-section {
+        margin: 4vh auto 3vh;
+        height: 35vh;
+    }
+
+    .contact-main-container {
+        min-height: 55vh;
+    }
+
 }
 
 @media (min-width:375px) and (min-height:750px) and (max-width:575px) {
     #home {
         height: 65vh;
     }
+
     .feature {
-        padding:10px;
+        padding: 10px;
         flex-basis: 70%;
         height: 16vh;
-        gap:10%;
+        gap: 10%;
     }
+
     .contact-section {
         height: 55vh;
     }
 
     .testimonial-section {
-        margin:4vh auto 3vh;
+        margin: 4vh auto 3vh;
         height: 30vh;
     }
 
     .contact-main-container {
         min-height: 45vh;
     }
+
+    footer {
+        padding: 30px 10px 20px;
+        height: 30vh;
+    }
 }
 
 @media (min-width:450px) and (max-width:575px) {
     .feature {
-        padding:20px;
+        padding: 20px;
         flex-basis: 75%;
-        height: 16vh;
-        gap:12%;
+        height: 15vh;
+        gap: 12%;
     }
 
     #home {
@@ -966,6 +1113,11 @@ footer {
         min-height: 45vh;
         padding: 20px;
         width: 100%;
+    }
+
+    .logo,
+    .footer-container {
+        font-size: 10px;
     }
 }
 
@@ -1052,24 +1204,35 @@ footer {
         width: 90%;
     }
 
+    footer {
+        padding: 30px 10px 20px;
+    }
+
+    .logo,
     .footer-container {
-        font-size: 14px;
+        font-size: 12px;
     }
 }
 
 @media(min-width:768px) {
 
-    .navbar-container-left,
+    .navbar-container-left {
+        display: flex;
+        flex-grow: 1;
+    }
+
     .navbar-container-right {
         display: flex;
+        width: 60%;
+        flex-grow: 1;
+    }
+
+    .navbar-container {
+        font-size: 16px;
     }
 
     .navbar-container .menu-icon {
         display: none;
-    }
-
-    .navbar-container {
-        font-size: 14px;
     }
 
     #home {
@@ -1138,6 +1301,7 @@ footer {
 
     .contact-main-container {
         width: 70%;
+        max-width: 70%;
     }
 
     .contact-form-container form {
@@ -1146,6 +1310,12 @@ footer {
         max-width: 100%;
     }
 
+    footer {
+        height: 40vh;
+        padding: 40px 10px 20px;
+    }
+
+    .logo,
     .footer-container {
         font-size: 14px;
     }
@@ -1154,6 +1324,12 @@ footer {
 @media (min-width:950px) {
     .navbar-container {
         font-size: 16px;
+    }
+
+    .navbar-container-right {
+        display: flex;
+        width: 10%;
+        flex-grow: 1;
     }
 
     #home {
@@ -1244,6 +1420,20 @@ footer {
         font-size: 38px;
     }
 
+    footer {
+        height: 28vh;
+        padding: 50px 10px;
+        flex-direction: row;
+        align-items: start;
+    }
+
+    .logo {
+        width: 25%;
+    }
+
+    .footer-container {
+        width: 80%;
+    }
 }
 
 @media (min-width:1024px) {
@@ -1297,8 +1487,9 @@ footer {
         font-size: 36px;
     }
 
+    .logo,
     .footer-container {
-        font-size: 14px;
+        font-size: 15px;
     }
 }
 
@@ -1381,6 +1572,12 @@ footer {
         font-size: 36px;
     }
 
+    footer {
+        height: 30vh;
+        padding: 55px 10px;
+    }
+
+    .logo,
     .footer-container {
         font-size: 16px;
     }
@@ -1453,7 +1650,41 @@ footer {
         margin-top: 10px;
     }
 
+    footer {
+        height: 40vh;
+        padding: 6% 2%;
+    }
+
+    .logo,
     .footer-container {
-        font-size: 18px;
+        font-size: 19px;
+    }
+
+    .logo .social-icons-container {
+        gap: 15px;
+    }
+
+    .footer-container .details-container {
+        gap: 10px;
+    }
+
+    .details-container span i.fa {
+        margin-right: 10px;
+    }
+
+    .details-container h3 {
+        margin-bottom: 12px;
+    }
+
+    .footer-container .important-links-container ul {
+        margin-top: 19px;
+    }
+
+    .footer-container .important-links-container li {
+        margin-bottom: 10px;
+    }
+
+    .footer-container .stay-updated h3 {
+        margin-bottom: 19px;
     }
 }

@@ -36,10 +36,12 @@ main {
     background-color: var(--bodyBgColor);
     min-height: 100vh;
 }
-.main-side-nav-bar li.active{
+
+.main-side-nav-bar li.active {
     color: var(--navBgColor);
     background-color: var(--bgColor);
 }
+
 .profile-setting-section {
     position: relative;
     width: max-content;
@@ -77,14 +79,27 @@ main {
     margin-top: 30px;
 }
 
+.setting form>div {
+    height: 80px;
+    display: flex;
+    gap: 10%;
+    align-items: center;
+}
+
+.setting form>div label {
+    width: 25%;
+}
+
 .form-field span {
     font-size: .9em;
     color: var(--errorText);
-    margin-left: 80px;
+    margin-top: 2px;
+    margin-left: 10px;
     display: none;
 }
 
-.form-field input.error,.form-field select.error  {
+.form-field input.error,
+.form-field select.error {
     border: var(--errorText) 1px solid;
 }
 
@@ -95,7 +110,7 @@ main {
 .error-age.active,
 .error-gender.active,
 .error-email.active {
-   
+
     display: block;
 }
 
@@ -116,10 +131,9 @@ main {
 
 .setting form input,
 .setting form select {
-    width: 70%;
+    max-width: 100%;
     padding: 15px;
-    margin: 10px 0;
-    margin-left: 10px;
+    /* margin-left: 10px; */
     font-size: 1.2em;
     border: none;
     border-radius: 10px;
@@ -184,22 +198,23 @@ main {
 .prescription-card {
     margin: 20px;
     padding: 30px 20px;
-    width: 30%;
+    width: 35%;
     background-color: var(--navBgColor);
     border-radius: 10px;
     align-items: center;
-    
+
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     box-shadow: 0 0 5px 1px var(--modalShadow);
 }
-.prescription-section{
+
+.prescription-section {
     position: absolute;
     display: none;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     height: 100%;
     width: 100%;
     z-index: 2;
@@ -229,9 +244,15 @@ main {
     width: 80%;
     font-size: 1.2em;
 }
-
+.prescription-form-container .form-field{
+    gap:5%;
+}
+#prescription-date{
+    width: 90%;
+    transform: translateX(-30px);
+}
 .prescription-form-container input {
-    width: 50%;
+    width: 80%;
     font-size: 1em;
     padding: 10px;
     border-radius: 10px;
@@ -244,9 +265,9 @@ main {
     margin-top: 5px;
 }
 
-.prescription-form-container .form-field div input {
+/* .prescription-form-container .form-field div input {
     width: 100%;
-}
+} */
 
 .prescription-form-container input:focus {
     outline: none;

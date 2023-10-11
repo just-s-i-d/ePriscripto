@@ -294,7 +294,7 @@ signInForm.addEventListener("submit", (e) => {
                         const curUser = { email: curRes.email, name: curRes.fullName }
                         sessionStorage.setItem("currentUser", JSON.stringify(curUser))
                         signInForm.reset()
-                        popUp.innerText = "Logging in"
+                        popContent.innerText = "Logging in"
                         popUp.classList.add("active")
                         popUp.classList.add("success")
                         setTimeout(() => {

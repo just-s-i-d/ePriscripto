@@ -1,49 +1,64 @@
 // for the overlay on the sign-in-up container
-const signInBtn = document.querySelector("#signIn")
-const signUpBtn = document.querySelector("#signUp")
 const overlayRight = document.querySelector(".overlay-right")
 const overlayLeft = document.querySelector(".overlay-left")
 const signUpForm = document.querySelector("#sign-up")
 const signInForm = document.querySelector("#sign-in")
 const closeLoginBtn = document.querySelector("#close-login")
-signInBtn.addEventListener("click", () => {
-    setTimeout(() => {
-        closeLoginBtn.classList.remove("white")
-    }, 100)
+
+function showSignIn(){
+    closeLoginBtn.classList.remove("white")
     overlayLeft.classList.toggle("active")
     overlayRight.classList.toggle("active")
     signUpForm.reset()
-})
-signUpBtn.addEventListener("click", () => {
+}
+function showSignUp(){
     setTimeout(() => {
         closeLoginBtn.classList.add("white")
     }, 500)
     overlayRight.classList.toggle("active")
     overlayLeft.classList.toggle("active")
     signInForm.reset()
-})
+}
+// signInBtn.addEventListener("click", () => {
+//     setTimeout(() => {
+//         closeLoginBtn.classList.remove("white")
+//     }, 100)
+//     overlayLeft.classList.toggle("active")
+//     overlayRight.classList.toggle("active")
+//     signUpForm.reset()
+// })
+
+// signUpBtn.addEventListener("click", () => {
+//     setTimeout(() => {
+//         closeLoginBtn.classList.add("white")
+//     }, 500)
+//     overlayRight.classList.toggle("active")
+//     overlayLeft.classList.toggle("active")
+//     signInForm.reset()
+// })
 
 // for drop down menu
-const menuIcon = document.querySelector(".menu-icon")
 const dropDown = document.querySelector(".drop-down-menu")
 
-menuIcon.addEventListener("click", () => {
+function openDropDown(){
     dropDown.classList.toggle("active")
-})
+}
 
 // for showing and hiding the login box
 const loginBtn = document.querySelector(".login")
 const loginBox = document.querySelector(".login-box-container")
 const closeBtn = document.querySelector(".login-box-container")
 const xBtn = document.querySelector("#close-login")
-xBtn.addEventListener("click", () => {
+
+function closeLoginModal(){
     loginBox.classList.remove("active")
     document.body.classList.remove("noScroll")
-})
-loginBtn.addEventListener("click", () => {
+}
+function openLoginModal(){
     loginBox.classList.toggle("active")
     document.body.classList.toggle("noScroll")
-})
+}
+
 closeBtn.addEventListener("click", (event) => {
     if (event.target === closeBtn) {
         loginBox.classList.remove("active")
@@ -228,7 +243,7 @@ signUpForm.addEventListener("submit", (e) => {
             cursor.onerror = (e) => {
                 let error = e.target.error.message
                 if (error == "Key already exists in the object store.") {
-                    popUp.innerText = "Email already Exists"
+                    popContent.innerText = "Email already Exists"
                     popUp.classList.add("active")
                     popUp.classList.add("error")
                     setTimeout(() => {
@@ -238,6 +253,15 @@ signUpForm.addEventListener("submit", (e) => {
                     signUpForm.reset()
                 }
             }
+        }
+        idb.onerror=()=>{
+            popContent.innerText = "There is an error in the database"
+            popUp.classList.add("active")
+            popUp.classList.add("error")
+            setTimeout(() => {
+                popUp.classList.remove("active")
+                popUp.classList.remove("error")
+            }, 3000)
         }
     }
 
@@ -282,9 +306,27 @@ signInForm.addEventListener("submit", (e) => {
             password: signInForm.password.value
         }
         let idb = indexedDB.open("crude", 1)
+        idb.onupgradeneeded = () => {
+            let res = idb.result
+            res.createObjectStore("users", { keyPath: "email" })
+        }
         idb.onsuccess = () => {
             let res = idb.result
-            let tx = res.transaction("users", "readonly")
+            let tx
+            try{
+                tx = res.transaction("users", "readonly")
+            }
+            catch(error){
+                popContent.innerText = "No users found"
+                popUp.classList.add("active")
+                popUp.classList.add("error")
+                setTimeout(() => {
+                    popUp.classList.remove("active")
+                    popUp.classList.remove("error")
+                }, 2000)
+                signInForm.reset()
+                return 
+            }
             let store = tx.objectStore("users")
             let cursor = store.get(userLoginData.email)
             cursor.onsuccess = () => {
@@ -304,7 +346,7 @@ signInForm.addEventListener("submit", (e) => {
                         }, 2000)
                     }
                     else {
-                        popUp.innerText = "Wrong password"
+                        popContent.innerText = "Wrong password"
                         popUp.classList.add("active")
                         popUp.classList.add("error")
                         setTimeout(() => {
@@ -324,6 +366,18 @@ signInForm.addEventListener("submit", (e) => {
                     signInForm.reset()
                 }
             }
+            
+        }
+        idb.onerror=()=>{
+            popContent.innerText = "Couldn't find your account. Please create an account first"
+            popUp.classList.add("active")
+            popUp.classList.add("error")
+            setTimeout(() => {
+                popUp.classList.remove("active")
+                popUp.classList.remove("error")
+            }, 3000)
+
+
         }
     }
 }

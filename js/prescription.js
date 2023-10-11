@@ -25,6 +25,9 @@ function validateUrl(url) {
 }
 // for add new prescription
 const delay = 3000
+const popUp = document.querySelector(".pop-message")
+const popContent = document.querySelector(".pop-message .pop-content")
+const closePopUp = document.querySelector("#close-toast")
 const errorName = document.querySelector(".form-field .error-name")
 const errorHospitalName = document.querySelector(".form-field .error-hospital-name")
 const errorDate = document.querySelector(".form-field .error-date")
@@ -116,7 +119,14 @@ prescriptionForm.addEventListener("submit", (event) => {
                     curUser.prescriptions.push(newPresData)
                 }
                 store.put(curUser)
-                location.reload()
+                popContent.innerText = "Prescription Added"
+                popUp.classList.add("active")
+                popUp.classList.add("success")
+                setTimeout(() => {
+                    popUp.classList.remove("active")
+                    popUp.classList.remove("success")
+                    location.reload()
+                }, 2000)
             }
             cursor.onerror = (e) => {
                 console.log(e)
@@ -143,7 +153,7 @@ idb.onsuccess = () => {
             for (key in prescription) {
                 let tdata = document.createElement("td")
                 if (key === "prescriptionImg") {
-                    tdata.innerHTML = `<a href="${prescription[key]}"><button class="styled">Show</button></a>`
+                    tdata.innerHTML = `<a href="${prescription[key]}" onClick="newWindow(event,this.href)"><button class="styled">Show</button></a>`
                     let td = document.createElement("td")
                     td.innerHTML = `<button class="delete-prescription styled" onClick="deletePrescription(this.id)" id="${index}">Delete</button>`
                     row.appendChild(tdata)
@@ -156,15 +166,41 @@ idb.onsuccess = () => {
             presctionTableData.appendChild(row)
         })
     }
+    cursor.onerror = () => {
+        popContent.innerText = "Cannot get your prescriptions"
+        popUp.classList.add("active")
+        popUp.classList.add("error")
+        setTimeout(() => {
+            popUp.classList.remove("active")
+            popUp.classList.remove("error")
+            location.reload()
+        }, 2000)
+    }
 }
-
+idb.onerror = () => {
+    popContent.innerText = "No data found"
+    popUp.classList.add("active")
+    popUp.classList.add("error")
+    setTimeout(() => {
+        popUp.classList.remove("active")
+        popUp.classList.remove("error")
+        location.reload()
+    }, 2000)
+}
+// 
+function newWindow(event,imgUrl) {
+    event.preventDefault()
+    window.open(imgUrl)
+}
 // for deleting prescription
 const deleteBtns = document.getElementsByClassName("delete-prescription")
 console.log(deleteBtns)
 // Array.prototype.forEach.call(deleteBtns,(btn)=>{
 // console.log(btn)
 // })
-function deletePrescription(btnId){
+const cancelBtn = document.querySelector("#cancel-btn")
+const confirmDelBtn = document.querySelector(".delete")
+function deletePrescription(btnId) {
     console.log(btnId)
     const confirmDelBox = document.querySelector(".pop-up-delete")
     confirmDelBox.classList.add("active")
@@ -175,9 +211,9 @@ function deletePrescription(btnId){
             let store = tx.objectStore("users")
             let cursor = store.get(currentUser.email)
             cursor.onsuccess = () => {
-                let curRes=cursor.result
-                console.log(curRes.prescriptions)
-                curRes.prescriptions.splice(btnId,1)
+                let curRes = cursor.result
+                console.log(curRes.prescriptions)``
+                curRes.prescriptions.splice(btnId, 1)
                 store.put(curRes)
                 location.reload()
             }
@@ -187,41 +223,18 @@ function deletePrescription(btnId){
         confirmDelBox.classList.remove("active")
     })
 }
-const cancelBtn = document.querySelector("#cancel-btn")
-const confirmDelBtn = document.querySelector(".delete")
-for (var i = 0; i < deleteBtns.length; i++) {
-    console.log(deleteBtns[i])
-    deleteBtns[i].addEventListener("click", () => {
-        console.log(deleteBtns[i].id)
-    })
-    btn.addEventListener("click", () => {
-        alert("hello")
-        const confirmDelBox = document.querySelector(".pop-up-delete")
-        confirmDelBox.classList.add("active")
-        confirmDelBtn.addEventListener("click", () => {
-            let idb = indexedDB.open("crude", 1)
-            idb.onsuccess = () => {
-                let tx = idb.result.transaction("users", "readwrite")
-                let store = tx.objectStore("users")
-                let cursor = store.delete(currentUser.email)
-                cursor.onsuccess = () => {
-                    sessionStorage.removeItem("currentUser")
-                    location.assign("http://127.0.0.1:5500/")
-                }
-            }
-        })
-        cancelBtn.addEventListener("click", () => {
-            confirmDelBox.classList.remove("active")
-        })
-    })
-};
-
 
 // for logging out temporary
 const logoutBtn = document.querySelector(".logout")
 logoutBtn.addEventListener("click", () => {
     sessionStorage.removeItem("currentUser")
-    location.assign("http://127.0.0.1:5500/")
+    popContent.innerText = "Logging Out"
+    popUp.classList.add("active")
+    setTimeout(() => {
+        popUp.classList.remove("active")
+        location.assign("http://127.0.0.1:5500/")
+    }, 2000)
+
 })
 
 // for prescription box

@@ -7,6 +7,7 @@
         <title>ePriscripto</title>
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/signInUp.styles.css">
+        <link rel="stylesheet" href="css/common.styles.css">
         <link rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
@@ -25,13 +26,13 @@
                     <li><a href="#contact-us">Contact</a></li>
                 </ul>
                 <ul class="navbar-container-right">
-                    <li><a class="login" id="login">Login</a></li>
+                    <li><a class="login" id="login" onclick="openLoginModal()">Login</a></li>
                     <li><a class="profile not-active" href="user-dashboard-html/settings.html">Account</a></li>
                     <li><a class="logout not-active" id="logout">Logout</a></li>
                 </ul>
                 <div class="drop-down-container">
                     <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100"
-                        viewBox="0,0,256,256">
+                        viewBox="0,0,256,256" onclick="openDropDown()">
                         <g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
                             stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
                             font-family="none" font-weight="none" font-size="none" text-anchor="none"
@@ -46,7 +47,7 @@
                     <ul class="drop-down-menu">
                         <li><a href="#home">Home</a></li>
                         <li><a href="#doctors">Doctors</a></li>
-                        <li><a class="login">Login</a></li>
+                        <li><a class="login" onclick="openLoginModal()">Login</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="#contact-us">Contact</a></li>
                     </ul>
@@ -54,7 +55,7 @@
             </nav>
             <section class="login-box-container">
                 <div class="container flex" id="container">
-                    <span id="close-login">&times;</span>
+                    <span id="close-login" onclick="closeLoginModal()">&times;</span>
                     <div class="form-container sign-up-container flex">
                         <form action="#" class="flex-col" id="sign-up">
                             <h1>Create Account</h1>
@@ -193,20 +194,20 @@
                             <div class="overlay-panel overlay-right flex-col">
                                 <h1>Welcome Back!</h1>
                                 <p>To keep connected with us please login with your personal info</p>
-                                <button class="styled" id="signIn">Sign In</button>
+                                <button class="styled" id="signIn" onclick="showSignIn()">Sign In</button>
                             </div>
                             <div class="overlay-panel overlay-left flex-col active">
                                 <h1>Hello, Friend!</h1>
                                 <p>Enter your personal details and start journey with us</p>
-                                <button class="styled" id="signUp">Sign Up</button>
+                                <button class="styled" id="signUp" onclick="showSignUp()">Sign Up</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
             <div class="pop-message">
-                <span id="close-toast">&times;</span>
                 <span class="pop-content"> Wrong password</span>
+                <span id="close-toast">&times;</span>
             </div>
             <section id="home">
                 <div class="home-container">
@@ -221,7 +222,7 @@
                                 <button class="styled learn-more">Learn More</button>
                             </a> -->
                             <a>
-                                <button class="styled get-started">Get Started</button>
+                                <button class="styled get-started" onclick="openLoginModal()">Get Started</button>
                             </a>
                         </div>
                     </div>
@@ -261,7 +262,7 @@
             <div class="steps-container">
                 <img src="images/priscription.png" alt="Priscription illustrations" class="illustration">
                 <h3 class="heading">Getting Started with ePrescripto</h3>
-                <span class="reveal">
+                <span>
                     Welcome to ePrescripto! We're here to make managing your prescriptions and healthcare a breeze.
                     Follow
                     these simple steps to get started:

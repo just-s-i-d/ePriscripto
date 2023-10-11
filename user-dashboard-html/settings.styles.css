@@ -5,8 +5,11 @@
     --secondaryBgColor: #88dacc;
     --bodyBgColor: #f8f9fa;
     --navBgColor: white;
-    --errorText: #af0c0c;
     --modalShadow: rgba(0, 145, 147, 0.9);
+    --text: white;
+    --errorText: #c74244;
+    --errorBackground: #c74244;
+    --successBackground: #4aa155;
 }
 
 .flex-col.center {
@@ -36,7 +39,51 @@ main {
     background-color: var(--bodyBgColor);
     min-height: 100vh;
 }
+.pop-message {
+    display: none;
+    font-size: 1.3em;
+    background-color: var(--desText);
+    padding: 20px 30px;
+    width: 20%;
+    height: 7vh;
+    position: absolute;
+    border-radius: 5px;
+    right: 0;
+    z-index: 100;
+    top: 12%;
+    animation: popUp 0.6s;
+    color:var(--text);
+}
 
+.pop-message.error {
+    background-color: var(--errorBackground);
+}
+
+.pop-message span#close-toast {
+    position: absolute;
+    right:20px;
+    top:8px;
+    font-size: 1.8em;
+    cursor: pointer;
+}
+
+.pop-message.success {
+    background-color: var(--successBackground);
+}
+
+.pop-message.active {
+    display: block;
+}
+
+@keyframes popUp {
+    from {
+        transform: translateX(350px);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
 .main-side-nav-bar li.active {
     color: var(--navBgColor);
     background-color: var(--bgColor);

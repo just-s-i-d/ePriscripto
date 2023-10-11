@@ -41,7 +41,27 @@ const updateBtn = document.querySelector("#update-btn")
 const userDetailsCard = document.querySelector("div.user-details")
 const settingBox = document.querySelector(".setting")
 const settingForm = document.querySelector(".setting form")
-updateBtn.addEventListener("click", () => {
+// updateBtn.addEventListener("click", () => {
+//     userDetailsCard.classList.add("not-active")
+//     settingBox.classList.add("active")
+//     let idb = indexedDB.open("crude", 1)
+//     idb.onsuccess = () => {
+//         let res = idb.result
+//         let tx = res.transaction("users", "readonly")
+//         let store = tx.objectStore("users")
+//         let cursor = store.get(currentUser.email)
+//         cursor.onsuccess = () => {
+//             let user = cursor.result
+//             if (user.age) {
+//                 settingForm.age.value = user.age
+//                 settingForm.gender.value = user.gender
+//             }
+//             settingForm.name.value = user.fullName
+//             settingForm.password.value = user.password
+//         }
+//     }
+// })
+function openUserDetailsCard(){
     userDetailsCard.classList.add("not-active")
     settingBox.classList.add("active")
     let idb = indexedDB.open("crude", 1)
@@ -60,23 +80,41 @@ updateBtn.addEventListener("click", () => {
             settingForm.password.value = user.password
         }
     }
-})
+}
 
 //for updating details of user
 const delay = 3000
+const popUp = document.querySelector(".pop-message")
+const popContent = document.querySelector(".pop-message .pop-content")
+const closePopUp = document.querySelector("#close-toast")
 const saveBtn = document.querySelector("#save-btn")
 const cancelDetailsBtn = document.querySelector("#cancel-details-btn")
 const errorEmail = document.querySelector(".form-field .error-email")
 const errorName = document.querySelector(".form-field .error-name")
 const errorAge = document.querySelector(".form-field .error-age")
 const errorGender = document.querySelector(".form-field .error-gender")
-cancelDetailsBtn.addEventListener("click", (e) => {
-    e.preventDefault()
+// cancelDetailsBtn.addEventListener("click", (e) => {
+//     e.preventDefault()
+//     userDetailsCard.classList.remove("not-active")
+//     settingBox.classList.remove("active")
+// })
+function closeUserDetailsCard(event){
+    event.preventDefault()
     userDetailsCard.classList.remove("not-active")
     settingBox.classList.remove("active")
-})
+}
 settingForm.email.value = currentUser.email
-settingForm.email.addEventListener("click", () => {
+// settingForm.email.addEventListener("click", () => {
+//     settingForm.email.classList.add("error")
+//     errorEmail.innerText = "Email cannot be changed"
+//     errorEmail.classList.add("active")
+//     setTimeout(() => {
+//         errorEmail.classList.remove("active")
+//         settingForm.email.classList.remove("error")
+//         settingForm.email.value = currentUser.email
+//     }, delay)
+// })
+function onEmailChange(){
     settingForm.email.classList.add("error")
     errorEmail.innerText = "Email cannot be changed"
     errorEmail.classList.add("active")
@@ -85,7 +123,7 @@ settingForm.email.addEventListener("click", () => {
         settingForm.email.classList.remove("error")
         settingForm.email.value = currentUser.email
     }, delay)
-})
+}
 settingForm.addEventListener("submit", (event) => {
     event.preventDefault()
     // if (!settingForm.email.value !== currentUser.email) {
@@ -158,7 +196,14 @@ settingForm.addEventListener("submit", (event) => {
             let store = tx.objectStore("users")
             let cursor = store.put(userData)
             cursor.onsuccess = () => {
-                location.reload()
+                popContent.innerText = "User details Updated"
+                popUp.classList.add("active")
+                popUp.classList.add("success")
+                setTimeout(() => {
+                    popUp.classList.remove("active")
+                    popUp.classList.remove("success")
+                    location.reload()
+                }, 2000)
             }
         }
     }
@@ -194,6 +239,11 @@ deleteBtn.addEventListener("click", () => {
 const logoutBtn = document.querySelector(".logout")
 logoutBtn.addEventListener("click", () => {
     sessionStorage.removeItem("currentUser")
-    location.assign("http://127.0.0.1:5500/")
+    popContent.innerText = "Logging Out"
+    popUp.classList.add("active")
+    setTimeout(() => {
+        popUp.classList.remove("active")
+        location.assign("http://127.0.0.1:5500/")
+    }, 2000)
+  
 })
-

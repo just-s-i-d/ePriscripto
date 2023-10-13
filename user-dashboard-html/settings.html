@@ -11,7 +11,7 @@
 
     <body class="flex">
         <aside class="flex-col">
-            <h1 class="brand-name">ePriscripto</h1>
+            <h1 class="brand-name">ePrescripto</h1>
             <nav class="dashboard-nav-bar-container default">
                 <div class="nav-bar-container flex-col">
                     <ul class="main-side-nav-bar">
@@ -41,19 +41,27 @@
                 <div class="profile-card details flex-col">
                     <img src="/images/profilepic.png" alt="profile-pic" class="profile-pic">
                     <div class="user-details">
-                        <span>Email :</span>
-                        <h3 class="email">Email</h3><br>
-                        <span>Full Name :</span>
-                        <h3 class="name">Full Name</h3><br>
-                        <span>Age :</span>
-                        <h3>Not Set</h3><br>
-                        <span>Gender :</span>
-                        <h3>Not Set</h3>
+                        <div class="detail-field">
+                            <span>Email :</span>
+                            <h3 class="email">Email</h3>
+                        </div>
+                        <div class="detail-field">
+                            <span>Full Name :</span>
+                            <h3 class="name">Full Name</h3>
+                        </div>
+                        <div class="detail-field">
+                            <span>Age :</span>
+                            <h3>Not Set</h3>
+                        </div>
+                        <div class="detail-field">
+                            <span>Gender :</span>
+                            <h3>Not Set</h3>
+                        </div>
                         <button class="styled" id="update-btn" onclick="openUserDetailsCard(event)">Edit Details</button>
                         <button class="styled" id="delete-btn">Delete Account</button>
                     </div>
                     <div class="setting flex-col">
-                        <form >
+                        <form id="setting-form">
                             <div>
                                 <label for="email">Email :</label>
                                 <span class="form-field">
@@ -90,14 +98,8 @@
                                     <span class="error-gender">Error message</span>
                                 </span>
                             </div>
-                            <div >
-                                <label for="password">Password :</label>
-                                <span class="form-field">
-                                    <input type="password" name="password" id="password" value="password" disabled>
-                                </span>
-                            </div>
                             <button class="styled" id="save-btn" type="submit">Save</button>
-                            <button class="styled" id="cancel-details-btn" onclick="closeUserDetailsCard(event)">Cancel</button>
+                            <button class="styled" id="cancel-details-btn" >Cancel</button>
                         </form>
                     </div>
                 </div>
@@ -114,7 +116,8 @@
                 </div>
             </div>
         </main>
-        <script src="/js/user.js"></script>
+        <script type="module" src="/js/user.js"></script>
+        <script type="module" src="/js/common.js"></script>
     </body>
 
 </html>

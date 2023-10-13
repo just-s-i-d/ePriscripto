@@ -1,3 +1,5 @@
+import { inputError, toast } from "./common.js"
+
 // for checking if user is logged in or not
 const currentUser = JSON.parse(sessionStorage.getItem("currentUser"))
 if (!currentUser) {
@@ -17,51 +19,37 @@ function validateName(name) {
 }
 // for showing details of user
 const userDetails = document.querySelectorAll(".user-details h3")
-let idb = indexedDB.open("crude", 1)
-idb.onsuccess = () => {
-    let res = idb.result
-    let tx = res.transaction("users", "readonly")
-    let store = tx.objectStore("users")
-    let cursor = store.get(currentUser.email)
-    cursor.onsuccess = () => {
-        let userData = cursor.result
-        console.log(userData)
-        sessionStorage.setItem("currentUser", JSON.stringify({ email: userData.email, name: userData.fullName }))
-        userDetails[0].innerHTML = userData.email
-        userDetails[1].innerHTML = userData.fullName
-        if (userData.age) {
-            userDetails[2].innerHTML = userData.age
-            userDetails[3].innerHTML = userData.gender
+window.onload = () => {
+    let idb = indexedDB.open("crude", 1)
+    idb.onsuccess = () => {
+        let res = idb.result
+        let tx = res.transaction("users", "readonly")
+        let store = tx.objectStore("users")
+        let cursor = store.get(currentUser.email)
+        cursor.onsuccess = () => {
+            let userData = cursor.result
+            const { email, fullName, id } = userData
+            sessionStorage.setItem("currentUser", JSON.stringify({ email, fullName, id }))
+            userDetails[0].innerHTML = email
+            userDetails[1].innerHTML = fullName
+            if (userData.age) {
+                userDetails[2].innerHTML = userData.age
+                userDetails[3].innerHTML = userData.gender
+            }
+        }
+        cursor.onerror = () => {
+            toast("Cannot get your details", "error", "reload")
         }
     }
 }
 
 // for update details card animation
+
 const updateBtn = document.querySelector("#update-btn")
 const userDetailsCard = document.querySelector("div.user-details")
 const settingBox = document.querySelector(".setting")
 const settingForm = document.querySelector(".setting form")
-// updateBtn.addEventListener("click", () => {
-//     userDetailsCard.classList.add("not-active")
-//     settingBox.classList.add("active")
-//     let idb = indexedDB.open("crude", 1)
-//     idb.onsuccess = () => {
-//         let res = idb.result
-//         let tx = res.transaction("users", "readonly")
-//         let store = tx.objectStore("users")
-//         let cursor = store.get(currentUser.email)
-//         cursor.onsuccess = () => {
-//             let user = cursor.result
-//             if (user.age) {
-//                 settingForm.age.value = user.age
-//                 settingForm.gender.value = user.gender
-//             }
-//             settingForm.name.value = user.fullName
-//             settingForm.password.value = user.password
-//         }
-//     }
-// })
-function openUserDetailsCard(){
+function openUserDetailsCard() {
     userDetailsCard.classList.add("not-active")
     settingBox.classList.add("active")
     let idb = indexedDB.open("crude", 1)
@@ -77,11 +65,13 @@ function openUserDetailsCard(){
                 settingForm.gender.value = user.gender
             }
             settingForm.name.value = user.fullName
-            settingForm.password.value = user.password
+        }
+        cursor.onerror = () => {
+            toast("Cannot get your details", "error", "reload")
         }
     }
 }
-
+updateBtn.onclick = openUserDetailsCard
 //for updating details of user
 const delay = 3000
 const popUp = document.querySelector(".pop-message")
@@ -93,157 +83,111 @@ const errorEmail = document.querySelector(".form-field .error-email")
 const errorName = document.querySelector(".form-field .error-name")
 const errorAge = document.querySelector(".form-field .error-age")
 const errorGender = document.querySelector(".form-field .error-gender")
-// cancelDetailsBtn.addEventListener("click", (e) => {
-//     e.preventDefault()
-//     userDetailsCard.classList.remove("not-active")
-//     settingBox.classList.remove("active")
-// })
-function closeUserDetailsCard(event){
+
+function closeUserDetailsCard(event) {
     event.preventDefault()
     userDetailsCard.classList.remove("not-active")
     settingBox.classList.remove("active")
 }
 settingForm.email.value = currentUser.email
-// settingForm.email.addEventListener("click", () => {
-//     settingForm.email.classList.add("error")
-//     errorEmail.innerText = "Email cannot be changed"
-//     errorEmail.classList.add("active")
-//     setTimeout(() => {
-//         errorEmail.classList.remove("active")
-//         settingForm.email.classList.remove("error")
-//         settingForm.email.value = currentUser.email
-//     }, delay)
-// })
-function onEmailChange(){
-    settingForm.email.classList.add("error")
-    errorEmail.innerText = "Email cannot be changed"
-    errorEmail.classList.add("active")
-    setTimeout(() => {
-        errorEmail.classList.remove("active")
-        settingForm.email.classList.remove("error")
-        settingForm.email.value = currentUser.email
-    }, delay)
+function onEmailChange() {
+    inputError(settingForm.email, errorEmail, "Email cannot be changed")
 }
-settingForm.addEventListener("submit", (event) => {
+function onSettingFormSubmit(event) {
     event.preventDefault()
-    // if (!settingForm.email.value !== currentUser.email) {
-    //     settingForm.email.classList.add("error")
-    //     errorEmail.innerText = "Email cannot be changed"
-    //     errorEmail.classList.add("active")
-    //     setTimeout(() => {
-    //         errorEmail.classList.remove("active")
-    //         settingForm.email.classList.remove("error")
-    //         settingForm.email.value = currentUser.email
-    //     }, delay)
-    // }
-    if (!settingForm.name.value) {
-        settingForm.name.classList.add("error")
-        errorName.innerText = "Enter your name"
-        errorName.classList.add("active")
-        setTimeout(() => {
-            errorName.classList.remove("active")
-            settingForm.name.classList.remove("error")
-        }, delay)
+    if (!settingForm.name.value.trim()) {
+        inputError(settingForm.name, errorName, "Enter your name")
     }
     else if (!validateName(settingForm.name.value)) {
-        settingForm.name.classList.add("error")
-        errorName.innerText = "Enter a valid name"
-        errorName.classList.add("active")
-        setTimeout(() => {
-            settingForm.name.classList.remove("error")
-            errorName.classList.remove("active")
-        }, delay)
+        inputError(settingForm.name, errorName, "Special characters not allowed")
     }
     else if (!settingForm.age.value) {
-        settingForm.age.classList.add("error")
-        errorAge.innerText = "Enter an age"
-        errorAge.classList.add("active")
-        setTimeout(() => {
-            settingForm.age.classList.remove("error")
-            errorAge.classList.remove("active")
-        }, delay)
+        inputError(settingForm.age, errorAge, "Enter an age")
     }
     else if (settingForm.age.value < 18 || settingForm.age.value > 50) {
-        settingForm.age.classList.add("error")
-        errorAge.innerText = "Enter an age between 18 to 50"
-        errorAge.classList.add("active")
-        setTimeout(() => {
-            settingForm.age.classList.remove("error")
-            errorAge.classList.remove("active")
-        }, delay)
+        inputError(settingForm.age, errorAge, "Enter an age between 18 to 50")
     }
     else if (settingForm.gender.value == "Select your gender") {
-        settingForm.gender.classList.add("error")
-        errorGender.innerText = "Select a gender"
-        errorGender.classList.add("active")
-        setTimeout(() => {
-            settingForm.gender.classList.remove("error")
-            errorGender.classList.remove("active")
-        }, delay)
+        inputError(settingForm.gender, errorGender, "Select a gender")
     }
     else {
-        event.preventDefault()
         const userData = {
             email: settingForm.email.value,
-            fullName: settingForm.name.value.toCapitaliseWord(),
+            fullName: settingForm.name.value.trim().toCapitaliseWord(),
             age: settingForm.age.value,
             gender: settingForm.gender.value,
-            password: settingForm.password.value,
         }
         let idb = indexedDB.open("crude", 1)
         idb.onsuccess = () => {
             let tx = idb.result.transaction("users", "readwrite")
             let store = tx.objectStore("users")
-            let cursor = store.put(userData)
+            let cursor = store.get(currentUser.email)
             cursor.onsuccess = () => {
-                popContent.innerText = "User details Updated"
-                popUp.classList.add("active")
-                popUp.classList.add("success")
-                setTimeout(() => {
-                    popUp.classList.remove("active")
-                    popUp.classList.remove("success")
-                    location.reload()
-                }, 2000)
+                let curUser = cursor.result
+                const newUserData = {
+                    ...curUser, ...userData
+                }
+                let res = store.put(newUserData)
+                res.onsuccess = () => {
+                    toast("User details Updated", "success", "reload")
+                }
             }
         }
     }
 }
-)
+settingForm.onsubmit = onSettingFormSubmit
+cancelDetailsBtn.onclick = closeUserDetailsCard
+settingForm.email.onchange = onEmailChange
 
 // for deleting account 
+// for json server
+const url = "http://localhost:3000/users"
+async function deleteUser(userId) {
+    try {
+        const response = await fetch(`${url}/${userId}`, {
+            headers: { "Accept": "application/json" },
+            method: "DELETE",
+        })
+        if (!response.ok) {
+            toast("Account cannot be deleted","error")
+        }
+        else {
+            return response.json()
+        }
+    } catch {
+        console.log("there was an error in the json server")
+    }
+}
 const deleteBtn = document.querySelector("#delete-btn")
 const cancelBtn = document.querySelector("#cancel-btn")
 const confirmDelBtn = document.querySelector(".delete")
-const body = document.querySelector("body")
-deleteBtn.addEventListener("click", () => {
+
+deleteBtn.onclick = () => {
     const confirmDelBox = document.querySelector(".pop-up-delete")
     confirmDelBox.classList.add("active")
-    confirmDelBtn.addEventListener("click", () => {
+    confirmDelBtn.onclick = () => {
         let idb = indexedDB.open("crude", 1)
         idb.onsuccess = () => {
             let tx = idb.result.transaction("users", "readwrite")
             let store = tx.objectStore("users")
-            let cursor = store.delete(currentUser.email)
+            let cursor = store.get(currentUser.email)
+            let res = store.delete(currentUser.email)
             cursor.onsuccess = () => {
-                sessionStorage.removeItem("currentUser")
-                location.assign("http://127.0.0.1:5500/")
+                let userDetails = cursor.result
+                deleteUser(userDetails.id)
+                    .then(response => {
+                        console.log(response)
+                    })
+            }
+            res.onsuccess = () => {
+                toast("Account deleted","success","http://127.0.0.1:5500/")
+            }
+            res.onerror = () => {
+                toast("Account was not deleted","error","reload")
             }
         }
-    })
-    cancelBtn.addEventListener("click", () => {
+    }
+    cancelBtn.onclick = () => {
         confirmDelBox.classList.remove("active")
-    })
-})
-
-// for logging out temporary
-const logoutBtn = document.querySelector(".logout")
-logoutBtn.addEventListener("click", () => {
-    sessionStorage.removeItem("currentUser")
-    popContent.innerText = "Logging Out"
-    popUp.classList.add("active")
-    setTimeout(() => {
-        popUp.classList.remove("active")
-        location.assign("http://127.0.0.1:5500/")
-    }, 2000)
-  
-})
+    }
+}

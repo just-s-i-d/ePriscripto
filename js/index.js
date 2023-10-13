@@ -1,17 +1,23 @@
+import { inputError, passwordCheck, toast } from "./common.js"
+// for json server
+const url = "http://localhost:3000/users"
+
+
 // for the overlay on the sign-in-up container
 const overlayRight = document.querySelector(".overlay-right")
 const overlayLeft = document.querySelector(".overlay-left")
 const signUpForm = document.querySelector("#sign-up")
 const signInForm = document.querySelector("#sign-in")
 const closeLoginBtn = document.querySelector("#close-login")
-
-function showSignIn(){
+const signInBtn = document.querySelector("button#signIn")
+const signUpBtn = document.querySelector("button#signUp")
+function showSignIn() {
     closeLoginBtn.classList.remove("white")
     overlayLeft.classList.toggle("active")
     overlayRight.classList.toggle("active")
     signUpForm.reset()
 }
-function showSignUp(){
+function showSignUp() {
     setTimeout(() => {
         closeLoginBtn.classList.add("white")
     }, 500)
@@ -19,59 +25,45 @@ function showSignUp(){
     overlayLeft.classList.toggle("active")
     signInForm.reset()
 }
-// signInBtn.addEventListener("click", () => {
-//     setTimeout(() => {
-//         closeLoginBtn.classList.remove("white")
-//     }, 100)
-//     overlayLeft.classList.toggle("active")
-//     overlayRight.classList.toggle("active")
-//     signUpForm.reset()
-// })
-
-// signUpBtn.addEventListener("click", () => {
-//     setTimeout(() => {
-//         closeLoginBtn.classList.add("white")
-//     }, 500)
-//     overlayRight.classList.toggle("active")
-//     overlayLeft.classList.toggle("active")
-//     signInForm.reset()
-// })
-
+signInBtn.onclick = showSignIn
+signUpBtn.onclick = showSignUp
 // for drop down menu
 const dropDown = document.querySelector(".drop-down-menu")
 
-function openDropDown(){
+function openDropDown() {
     dropDown.classList.toggle("active")
 }
 
 // for showing and hiding the login box
-const loginBtn = document.querySelector(".login")
+const loginBtn = document.querySelectorAll(".login")
 const loginBox = document.querySelector(".login-box-container")
 const closeBtn = document.querySelector(".login-box-container")
-const xBtn = document.querySelector("#close-login")
 
-function closeLoginModal(){
+
+function closeLoginModal() {
     loginBox.classList.remove("active")
     document.body.classList.remove("noScroll")
 }
-function openLoginModal(){
+function openLoginModal() {
     loginBox.classList.toggle("active")
     document.body.classList.toggle("noScroll")
 }
-
-closeBtn.addEventListener("click", (event) => {
-    if (event.target === closeBtn) {
-        loginBox.classList.remove("active")
-        document.body.classList.remove("noScroll")
-    }
+loginBtn.forEach(btn => {
+    btn.onclick = openLoginModal
 })
+closeLoginBtn.onclick=closeLoginModal
+closeBtn.onclick = (event) => {
+    if (event.target === closeBtn) {
+        closeLoginModal()
+    }
+}
 
 // for the contact form switch
 const sendBtn = document.querySelector("#send")
 const resContainer = document.querySelector(".thanks-container")
 const contactBox = document.querySelector(".contact-form")
 
-sendBtn.addEventListener("click", (event) => {
+sendBtn.onclick = (event) => {
     event.preventDefault()
     resContainer.classList.toggle("active")
     contactBox.classList.toggle("not-active")
@@ -79,7 +71,7 @@ sendBtn.addEventListener("click", (event) => {
         resContainer.classList.toggle("active")
         contactBox.classList.toggle("not-active")
     }, 2000)
-})
+}
 
 // for the reveal on scroll effect
 window.addEventListener("scroll", reveal)
@@ -118,154 +110,93 @@ String.prototype.toCapitaliseWord = function () {
 
 
 // for sign up
-const popUp = document.querySelector(".pop-message")
-const popContent=document.querySelector(".pop-message .pop-content")
-const closePopUp=document.querySelector("#close-toast")
-const delay = 2000
+
 const errorName = document.querySelector("#sign-up .error-name")
 const errorEmail = document.querySelector("#sign-up .error-email")
 const errorPassword = document.querySelector("#sign-up .error-password")
 const errorConfirmPassword = document.querySelector("#sign-up .error-confirm-password")
-
+const closePopUp = document.querySelector("#close-toast")
 function validateName(name) {
     return /^[A-Za-z\s]+$/.test(name)
 }
 function validateEmail(name) {
     return /^[\w\.-]+@[\w\.-]+\.\w+$/.test(name)
 }
-closePopUp.addEventListener("click",()=>{
+closePopUp.onclick = () => {
     popUp.classList.remove("active")
-})
+}
 signUpForm.addEventListener("submit", (e) => {
     e.preventDefault()
-    if (!signUpForm.fullName.value) {
-        signUpForm.fullName.classList.add("error")
-        errorName.innerText = "Enter your name"
-        errorName.classList.add("active")
-        setTimeout(() => {
-            errorName.classList.remove("active")
-            signUpForm.fullName.classList.remove("error")
-        }, delay)
+    if (!signUpForm.fullName.value.trim()) {
+        inputError(signUpForm.fullName, errorName, "Enter your name")
     }
-    else if (!validateName(signUpForm.fullName.value)) {
-        signUpForm.fullName.classList.add("error")
-        errorName.innerText = "Enter a valid name"
-        errorName.classList.add("active")
-        setTimeout(() => {
-            signUpForm.fullName.classList.remove("error")
-            errorName.classList.remove("active")
-        }, delay)
+    else if (!validateName(signUpForm.fullName.value.trim())) {
+        inputError(signUpForm.fullName, errorName, "Special characters not allowed")
     }
-    else if (!signUpForm.email.value) {
-        signUpForm.email.classList.add("error")
-        errorEmail.innerText = "Enter an email"
-        errorEmail.classList.add("active")
-        setTimeout(() => {
-            signUpForm.email.classList.remove("error")
-            errorEmail.classList.remove("active")
-        }, delay)
+    else if (signUpForm.fullName.value.trim().length > 20) {
+        inputError(signUpForm.fullName, errorName, "Maximum 20 characters allowed")
     }
-    else if (!validateEmail(signUpForm.email.value)) {
-        signUpForm.email.classList.add("error")
-        errorEmail.innerText = "Enter a valid email"
-        errorEmail.classList.add("active")
-        setTimeout(() => {
-            signUpForm.email.classList.remove("error")
-            errorEmail.classList.remove("active")
-        }, delay)
+    else if (!signUpForm.email.value.trim()) {
+        inputError(signUpForm.email, errorEmail, "Enter an email")
     }
-    else if (!signUpForm.password.value) {
-        signUpForm.password.classList.add("error")
-        errorPassword.innerText = "Enter a password"
-        errorPassword.classList.add("active")
-        setTimeout(() => {
-            signUpForm.password.classList.remove("error")
-            errorPassword.classList.remove("active")
-        }, delay)
+    else if (!validateEmail(signUpForm.email.value.trim())) {
+        inputError(signUpForm.email, errorEmail, "Enter a valid email")
     }
-    else if (signUpForm.password.value.length <= 5) {
-        signUpForm.password.classList.add("error")
-        errorPassword.innerText = "Passoword is too short"
-        errorPassword.classList.add("active")
-        setTimeout(() => {
-            signUpForm.password.classList.remove("error")
-            errorPassword.classList.remove("active")
-        }, delay)
+    else if (!passwordCheck(signUpForm.password, errorPassword)) {
+
     }
-    else if (!signUpForm.confirmPassword.value) {
-        signUpForm.confirmPassword.classList.add("error")
-        errorConfirmPassword.innerText = "Confirm password field cannot be empty"
-        errorConfirmPassword.classList.add("active")
-        setTimeout(() => {
-            signUpForm.confirmPassword.classList.remove("error")
-            errorConfirmPassword.classList.remove("active")
-        }, delay)
+    else if (!passwordCheck(signUpForm.confirmPassword, errorConfirmPassword)) {
+
     }
     else if (signUpForm.password.value !== signUpForm.confirmPassword.value) {
-        signUpForm.confirmPassword.classList.add("error")
-        errorConfirmPassword.innerText = "Passowords do not match"
-        errorConfirmPassword.classList.add("active")
-        setTimeout(() => {
-            signUpForm.confirmPassword.classList.remove("error")
-            errorConfirmPassword.classList.remove("active")
-        }, delay)
+        inputError(signUpForm.confirmPassword, errorConfirmPassword, "Passwords does not match")
     }
     else {
-        const userData = {
-            fullName: signUpForm.fullName.value.toCapitaliseWord(),
-            email: signUpForm.email.value,
-            password: signUpForm.password.value,
-        }
+        const email = signUpForm.email.value.trim()
         let idb = indexedDB.open("crude", 1)
         idb.onupgradeneeded = () => {
             let res = idb.result
             res.createObjectStore("users", { keyPath: "email" })
         }
         idb.onsuccess = () => {
-            let res = idb.result
-            let tx = res.transaction("users", "readwrite")
-            let store = tx.objectStore("users")
-            let cursor = store.add(userData)
-            cursor.onsuccess = () => {
-                const curUser = { email: userData.email, name: userData.fullName }
-                sessionStorage.setItem("currentUser", JSON.stringify(curUser))
-                signUpForm.reset()
-                popContent.innerText = "Logging in"
-                popUp.classList.add("active")
-                popUp.classList.add("success")
-                setTimeout(() => {
-                    popUp.classList.remove("active")
-                    popUp.classList.remove("success")
-                    location.assign("http://127.0.0.1:5500/user-dashboard-html/settings.html")
-                }, 2000)
-
-            }
-            cursor.onerror = (e) => {
-                let error = e.target.error.message
-                if (error == "Key already exists in the object store.") {
-                    popContent.innerText = "Email already Exists"
-                    popUp.classList.add("active")
-                    popUp.classList.add("error")
-                    setTimeout(() => {
-                        popUp.classList.remove("active")
-                        popUp.classList.remove("error")
-                    }, 2000)
-                    signUpForm.reset()
-                }
-            }
+            fetch(url, {
+                headers: { "Content-Type": "application/json" },
+                method: "POST",
+                body: JSON.stringify({ email })
+            }).then(response => response.json())
+                .then(data => {
+                    const userData = {
+                        fullName: signUpForm.fullName.value.trim().toCapitaliseWord(),
+                        email,
+                        id: data.id,
+                        password: signUpForm.password.value,
+                    }
+                    let res = idb.result
+                    let tx = res.transaction("users", "readwrite")
+                    let store = tx.objectStore("users")
+                    let cursor = store.add(userData)
+                    cursor.onsuccess = () => {
+                        const { email, name: fullName, id } = userData
+                        const curUser = { email, name, id }
+                        sessionStorage.setItem("currentUser", JSON.stringify(curUser))
+                        signUpForm.reset()
+                        toast("Logging in", "success", "http://127.0.0.1:5500/user-dashboard-html/settings.html")
+                    }
+                    cursor.onerror = (e) => {
+                        let error = e.target.error.message
+                        if (error == "Key already exists in the object store.") {
+                            toast("Email already exists", "error")
+                            signUpForm.reset()
+                        }
+                    }
+                }).catch(e => {
+                    toast("No response from the server")
+                })
         }
-        idb.onerror=()=>{
-            popContent.innerText = "There is an error in the database"
-            popUp.classList.add("active")
-            popUp.classList.add("error")
-            setTimeout(() => {
-                popUp.classList.remove("active")
-                popUp.classList.remove("error")
-            }, 3000)
+        idb.onerror = () => {
+            toast("There is an error in the database", "error")
         }
     }
-
-
 })
 
 // for sign in 
@@ -274,31 +205,13 @@ const errorPasswordSignIn = document.querySelector("#sign-in .error-password")
 signInForm.addEventListener("submit", (e) => {
     e.preventDefault()
     if (!signInForm.email.value) {
-        signInForm.email.classList.add("error")
-        errorEmailSignIn.innerText = "Enter an email"
-        errorEmailSignIn.classList.add("active")
-        setTimeout(() => {
-            signInForm.email.classList.remove("error")
-            errorEmailSignIn.classList.remove("active")
-        }, delay)
+        inputError(signInForm.email,errorEmailSignIn,"Enter an email")
     }
-    else if (!signInForm.password.value) {
-        signInForm.password.classList.add("error")
-        errorPasswordSignIn.innerText = "Enter a password"
-        errorPasswordSignIn.classList.add("active")
-        setTimeout(() => {
-            signInForm.password.classList.remove("error")
-            errorPasswordSignIn.classList.remove("active")
-        }, delay)
+    else if (!validateEmail(signInForm.email.value.trim())) {
+        inputError(signInForm.email, errorEmail, "Enter a valid email")
     }
-    else if (signInForm.password.value.length <= 5) {
-        signInForm.password.classList.add("error")
-        errorPasswordSignIn.innerText = "Passoword is too short"
-        errorPasswordSignIn.classList.add("active")
-        setTimeout(() => {
-            signInForm.password.classList.remove("error")
-            errorPasswordSignIn.classList.remove("active")
-        }, delay)
+    else if(!passwordCheck(signInForm.password,errorPasswordSignIn)){
+
     }
     else {
         const userLoginData = {
@@ -313,19 +226,12 @@ signInForm.addEventListener("submit", (e) => {
         idb.onsuccess = () => {
             let res = idb.result
             let tx
-            try{
+            try {
                 tx = res.transaction("users", "readonly")
             }
-            catch(error){
-                popContent.innerText = "No users found"
-                popUp.classList.add("active")
-                popUp.classList.add("error")
-                setTimeout(() => {
-                    popUp.classList.remove("active")
-                    popUp.classList.remove("error")
-                }, 2000)
+            catch (error) {
+                toast("No users found","error")
                 signInForm.reset()
-                return 
             }
             let store = tx.objectStore("users")
             let cursor = store.get(userLoginData.email)
@@ -333,67 +239,35 @@ signInForm.addEventListener("submit", (e) => {
                 let curRes = cursor.result
                 if (curRes) {
                     if (userLoginData.password === curRes.password) {
-                        const curUser = { email: curRes.email, name: curRes.fullName }
+                        const curUser = { email: curRes.email, name: curRes.fullName, id: curRes.id }
                         sessionStorage.setItem("currentUser", JSON.stringify(curUser))
                         signInForm.reset()
-                        popContent.innerText = "Logging in"
-                        popUp.classList.add("active")
-                        popUp.classList.add("success")
-                        setTimeout(() => {
-                            popUp.classList.remove("active")
-                            popUp.classList.remove("success")
-                            location.assign("http://127.0.0.1:5500/user-dashboard-html/settings.html")
-                        }, 2000)
+                        toast("Logging in","success","http://127.0.0.1:5500/user-dashboard-html/settings.html")
                     }
                     else {
-                        popContent.innerText = "Wrong password"
-                        popUp.classList.add("active")
-                        popUp.classList.add("error")
-                        setTimeout(() => {
-                            popUp.classList.remove("active")
-                            popUp.classList.remove("error")
-                        }, 2000)
+                        toast("Wrong password","error")
                     }
                 }
                 else {
-                    popContent.innerText = "No users found"
-                    popUp.classList.add("active")
-                    popUp.classList.add("error")
-                    setTimeout(() => {
-                        popUp.classList.remove("active")
-                        popUp.classList.remove("error")
-                    }, 2000)
+                    toast("No users found","error")
                     signInForm.reset()
                 }
             }
-            
         }
-        idb.onerror=()=>{
-            popContent.innerText = "Couldn't find your account. Please create an account first"
-            popUp.classList.add("active")
-            popUp.classList.add("error")
-            setTimeout(() => {
-                popUp.classList.remove("active")
-                popUp.classList.remove("error")
-            }, 3000)
-
-
+        idb.onerror = () => {
+            toast("Couldn't find your account.","error")
         }
     }
 }
 )
-//for logging out
-const logoutBtn = document.querySelector(".logout")
-logoutBtn.addEventListener("click", () => {
-    sessionStorage.removeItem("currentUser")
-    location.reload()
-})
 
 // for login and login button in nav bar
+const navLoginBtn=document.querySelector(".navbar-container .login")
+const navLogoutBtn=document.querySelector(".navbar-container .logout")
 const profileBtn = document.querySelector(".profile")
 if (sessionStorage.getItem("currentUser")) {
-    loginBtn.classList.add("not-active")
-    logoutBtn.classList.remove("not-active")
+    navLoginBtn.classList.add("not-active")
+    navLogoutBtn.classList.remove("not-active")
     profileBtn.classList.remove("not-active")
 }
 
@@ -404,30 +278,29 @@ const sliderCol = document.querySelector(".testimonial")
 var width = 1200
 const calWidth = () => {
     width = sliderCol.offsetWidth
-    console.log("change")
 }
-
-indicatorBtn[0].addEventListener("click", function () {
+window.onresize = calWidth
+indicatorBtn[0].onclick = function () {
     calWidth()
     sliderRow.style.transform = "translateX(0px)"
     for (let i = 0; i < 3; i++) {
         indicatorBtn[i].classList.remove("active")
     }
     this.classList.add("active")
-})
-indicatorBtn[1].addEventListener("click", function () {
+}
+indicatorBtn[1].onclick = function () {
     calWidth()
     sliderRow.style.transform = `translateX(-${width}px)`
     for (let i = 0; i < 3; i++) {
         indicatorBtn[i].classList.remove("active")
     }
     this.classList.add("active")
-})
-indicatorBtn[2].addEventListener("click", function () {
+}
+indicatorBtn[2].onclick = function () {
     calWidth()
     sliderRow.style.transform = `translateX(-${width * 2}px)`
     for (let i = 0; i < 3; i++) {
         indicatorBtn[i].classList.remove("active")
     }
     this.classList.add("active")
-})
+}

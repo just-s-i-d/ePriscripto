@@ -11,7 +11,7 @@
 
     <body class="flex">
         <aside class="flex-col">
-            <h1 class="brand-name">ePriscripto</h1>
+            <h1 class="brand-name">ePrescripto</h1>
             <nav class="dashboard-nav-bar-container default">
                 <div class="nav-bar-container flex-col">
                     <ul class="main-side-nav-bar">
@@ -39,6 +39,7 @@
                 </div>
             </header>
             <section class="prescription-section">
+                
                 <div class="prescription-card flex-col">
                     <h3>Add New Prescription</h3>
                     <form action="" id="prescription-form" class="prescription-form-container">
@@ -70,7 +71,7 @@
                                 <span class="error-img">error</span>
                             </div>
                         </div>
-                        <div>
+                        <div class="prescription-btn-container flex">
                             <button id="add-new-prescription" class="styled">Add Prescription</button>
                             <button id="cancel-prescription-btn" class="styled">Cancel</button>
                         </div>
@@ -91,8 +92,10 @@
                             </tr>
                         </thead>
                         <tbody class="table-data">
+                           
                         </tbody>
                     </table>
+                    <div class="empty-table">No prescriptions added.</div> 
                 </div>
             </section>
             <div class="pop-message">
@@ -106,7 +109,8 @@
                     <button class="styled cancel" id="cancel-btn">Cancel</button>
                 </div>
             </div>
-            <script src="/js/prescription.js"></script>
+            <script type="module" src="/js/prescription.js"></script>
+            <script type="module" src="/js/common.js"></script>
     </body>
 
 </html>

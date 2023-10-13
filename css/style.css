@@ -4,7 +4,7 @@ li {
 }
 
 a {
-    padding: 5px;
+    padding:8px 10px;
     border-radius: 5px;
     color: white;
     text-decoration: none;
@@ -12,7 +12,7 @@ a {
 }
 
 .navbar-container a:hover {
-    background-color: #494242;
+    background-color: #026850;
 }
 
 input:focus {
@@ -117,7 +117,7 @@ header {
 .navbar-container .menu-icon {
     position: absolute;
     height: 20px;
-    top: 4vh;
+    top: 3vh;
     right: 5%;
     width: 1.5em;
     cursor: pointer;
@@ -616,7 +616,7 @@ header {
 textarea {
     font-size: 1.2em;
     padding: 10px;
-    margin: 10px 0;
+    margin: 15px 0;
     border: var(--green) 1px solid;
 }
 
@@ -852,7 +852,7 @@ footer .logo .tagline {
     .home-container {
         height: 80%;
         justify-content: space-evenly;
-        font-size: 8px;
+        font-size: 7px;
         display: flex;
         flex-direction: column-reverse;
     }
@@ -1023,6 +1023,10 @@ footer .logo .tagline {
     .contact-main-container {
         min-height: 55vh;
     }
+    .contact-form-container form input,
+    textarea {
+        margin: 8px 0;
+    }
 
 }
 
@@ -1175,7 +1179,10 @@ footer .logo .tagline {
         padding: 20px;
         width: 90%;
     }
-
+    .contact-form-container form input,
+    textarea {
+        margin: 10px 0;
+    }
     .contact-form-container form {
         width: 90%;
     }
@@ -1352,6 +1359,7 @@ footer .logo .tagline {
 
     .testimonial-section {
         font-size: 18px;
+        height: 40vh;
     }
 
     .testimonial,
@@ -1372,7 +1380,7 @@ footer .logo .tagline {
 
     .contact-main-container {
         width: 75%;
-        height: 50vh;
+        height: 55vh;
     }
 
     .contact-form-container form {
@@ -1441,13 +1449,13 @@ footer .logo .tagline {
     }
 
     .contact-section {
-        height: 63vh;
+        height: 65vh;
         padding: 20px;
     }
 
     .contact-main-container {
         width: 65%;
-        height: 50vh;
+        height: 55vh;
     }
 
     .heading {
@@ -1523,12 +1531,12 @@ footer .logo .tagline {
 
     .contact-section {
         padding: 5% 10%;
-        height: 65vh;
+        height: 70vh;
     }
 
     .contact-main-container {
         width: 80%;
-        height: 50vh;
+        height: 60vh;
     }
 
     .contact-form-container .styled {
@@ -1591,8 +1599,9 @@ footer .logo .tagline {
     }
 
     .testimonial-section {
-        margin: 6vh auto 0;
-        font-size: 22px;
+        height: 45vh;
+        margin: 6vh auto 2vh;
+        font-size: 20px;
     }
 
     .testimonial,
@@ -1601,11 +1610,11 @@ footer .logo .tagline {
     }
 
     .testimonial blockquote {
-        font-size: 1.7em;
+        font-size: 1.6em;
     }
 
     .contact-section {
-        height: 70vh;
+        height: 75vh;
     }
 
     .contact-main-container {
@@ -1618,8 +1627,8 @@ footer .logo .tagline {
     }
 
     footer {
-        height: 40vh;
-        padding: 6% 2%;
+        height: 35vh;
+        padding: 4% 2%;
     }
 
     footer .logo,

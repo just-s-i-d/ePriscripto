@@ -71,7 +71,7 @@
     left: 0; */
     max-height: 11vh;
     z-index: 1;
-    padding: 28px 70px;
+    padding: 28px 40px;
     font-size: 2.5em;
     font-weight: 500;
     color: var(--bgColor);
@@ -82,6 +82,6 @@
 .logout-container {
     width: 100%;
     position: relative;
-    top: 55vh;
+    top: 54vh;
     margin-bottom: 20px;
 }

@@ -1,16 +1,27 @@
+import { inputError, toast } from "./common.js"
+
 // for checking if user is logged in or not
 const currentUser = JSON.parse(sessionStorage.getItem("currentUser"))
+
 if (!currentUser) {
     location.assign("http://127.0.0.1:5500/")
 }
+// for fetching user details
+const url = "http://localhost:3000/users"
+async function getUserDetails(userId) {
+    try {
+        const response = await fetch(`${url}/${userId}`)
+        if (!response.ok) {
+            console.log("cannot get user details")
+        } else {
+            const details = await response.json()
+            return details
+        }
+    }
+    catch {
+        console.log("there was an error contacting the server")
+    }
 
-// for string prototype
-String.prototype.toCapitaliseWord = function () {
-    let words = this.split(" ")
-    const capitalisedWords = words.map(word => {
-        return word[0].toUpperCase() + word.slice(1)
-    })
-    return capitalisedWords.join(" ")
 }
 
 // for name pattern matching 
@@ -33,103 +44,77 @@ const errorHospitalName = document.querySelector(".form-field .error-hospital-na
 const errorDate = document.querySelector(".form-field .error-date")
 const errorImg = document.querySelector(".form-field .error-img")
 const prescriptionForm = document.querySelector("#prescription-form")
+
+let currentDate = new Date()
 prescriptionForm.addEventListener("submit", (event) => {
     event.preventDefault()
-    if (!prescriptionForm.docName.value) {
-        prescriptionForm.docName.classList.add("error")
-        errorName.innerText = "Enter your name"
-        errorName.classList.add("active")
-        setTimeout(() => {
-            errorName.classList.remove("active")
-            prescriptionForm.docName.classList.remove("error")
-        }, delay)
+    const selectedDate = new Date(prescriptionForm.prescriptionDate.value)
+    if (!prescriptionForm.docName.value.trim()) {
+        inputError(prescriptionForm.docName,errorName,"Enter doctor name",)
     }
-    else if (!validateDocName(prescriptionForm.docName.value)) {
-        prescriptionForm.docName.classList.add("error")
-        errorName.innerText = "Enter a valid name"
-        errorName.classList.add("active")
-        setTimeout(() => {
-            prescriptionForm.docName.classList.remove("error")
-            errorName.classList.remove("active")
-        }, delay)
+    else if (!validateDocName(prescriptionForm.docName.value.trim())) {
+        inputError(prescriptionForm.docName,errorName,"Special characters not allowed")
     }
-    else if (!prescriptionForm.hospitalName.value) {
-        prescriptionForm.hospitalName.classList.add("error")
-        errorHospitalName.innerText = "Enter hospital name"
-        errorHospitalName.classList.add("active")
-        setTimeout(() => {
-            errorHospitalName.classList.remove("active")
-            prescriptionForm.hospitalName.classList.remove("error")
-        }, delay)
+    else if (!prescriptionForm.hospitalName.value.trim()) {
+        inputError(prescriptionForm.hospitalName,errorHospitalName,"Enter hospital name")
     }
     else if (!validateHospitalName(prescriptionForm.hospitalName.value)) {
-        prescriptionForm.hospitalName.classList.add("error")
-        errorHospitalName.innerText = "Enter a valid hospital name"
-        errorHospitalName.classList.add("active")
-        setTimeout(() => {
-            prescriptionForm.hospitalName.classList.remove("error")
-            errorHospitalName.classList.remove("active")
-        }, delay)
+        inputError(prescriptionForm.hospitalName,errorHospitalName,"Special characters except(' , .) not allowed")
     } else if (!prescriptionForm.prescriptionDate.value) {
-        prescriptionForm.prescriptionDate.classList.add("error")
-        errorDate.innerText = "Select a date"
-        errorDate.classList.add("active")
-        setTimeout(() => {
-            prescriptionForm.prescriptionDate.classList.remove("error")
-            errorDate.classList.remove("active")
-        }, delay)
+        inputError(prescriptionForm.prescriptionDate,errorDate,"Select a date")
     }
-    else if (!prescriptionForm.imgLink.value) {
-        prescriptionForm.imgLink.classList.add("error")
-        errorImg.innerText = "Enter a URL"
-        errorImg.classList.add("active")
-        setTimeout(() => {
-            prescriptionForm.imgLink.classList.remove("error")
-            errorImg.classList.remove("active")
-        }, delay)
+    else if (selectedDate > currentDate) {
+        inputError(prescriptionForm.prescriptionDate,errorDate,"Date cannot be in future")
+    }
+    else if (!prescriptionForm.imgLink.value.trim()) {
+        inputError(prescriptionForm.imgLink,errorImg,"Enter a URL")
     }
     else if (!validateUrl(prescriptionForm.imgLink.value)) {
-        prescriptionForm.imgLink.classList.add("error")
-        errorImg.innerText = "Enter a valid URL"
-        errorImg.classList.add("active")
-        setTimeout(() => {
-            prescriptionForm.imgLink.classList.remove("error")
-            errorImg.classList.remove("active")
-        }, delay)
+        inputError(prescriptionForm.imgLink,errorImg,"Enter a valid URL")
     }
     else {
         const newPresData = {
-            doctorName: prescriptionForm.docName.value.toCapitaliseWord(),
-            hospitalName: prescriptionForm.hospitalName.value.toCapitaliseWord(),
+            doctorName: prescriptionForm.docName.value.trim(),
+            hospitalName: prescriptionForm.hospitalName.value.trim(),
             prescriptionDate: prescriptionForm.prescriptionDate.value,
-            prescriptionImg: prescriptionForm.imgLink.value
+            prescriptionImg: prescriptionForm.imgLink.value.trim()
         }
         const db = indexedDB.open("crude", 1)
         db.onsuccess = () => {
-            const tx = db.result.transaction("users", "readwrite")
+            const tx = db.result.transaction("users", "readonly")
             const store = tx.objectStore("users")
             let cursor = store.get(currentUser.email)
             cursor.onsuccess = () => {
                 let curUser = cursor.result
-                console.log(curUser)
-                if (!curUser.prescriptions) {
-                    curUser.prescriptions = [newPresData]
-                }
-                else {
-                    curUser.prescriptions.push(newPresData)
-                }
-                store.put(curUser)
-                popContent.innerText = "Prescription Added"
-                popUp.classList.add("active")
-                popUp.classList.add("success")
-                setTimeout(() => {
-                    popUp.classList.remove("active")
-                    popUp.classList.remove("success")
-                    location.reload()
-                }, 2000)
+                fetch(`${url}/${curUser.id}`, {
+                    headers: {
+                        "Accept": "application/json"
+                    },
+                    method: "GET",
+                }).then(Response => Response.json())
+                    .then(data => {
+                        if (!data.prescriptions) {
+                            data.prescriptions = [newPresData]
+                        }
+                        else {
+                            data.prescriptions.push(newPresData)
+                        }
+                        const { prescriptions } = data
+                        fetch(`${url}/${curUser.id}`, {
+                            headers: {
+                                "Content-Type": "application/json",
+                                "Accept": "application/json"
+                            },
+                            method: "PATCH",
+                            body: JSON.stringify({ prescriptions })
+                        }).then(response => response.json())
+                            .then(data => {
+                                toast("Prescription Added","success","reload")
+                            })
+                    })
             }
             cursor.onerror = (e) => {
-                console.log(e)
+                toast("Server error","error","reload")
             }
         }
     }
@@ -137,6 +122,7 @@ prescriptionForm.addEventListener("submit", (event) => {
 
 // for showing of prescriptions in the table
 const presctionTableData = document.querySelector("#prescription-table .table-data")
+const emptyTable = document.querySelector(".empty-table")
 let idb = indexedDB.open("crude", 1)
 idb.onsuccess = () => {
     let res = idb.result
@@ -144,112 +130,112 @@ idb.onsuccess = () => {
     let store = tx.objectStore("users")
     let cursor = store.get(currentUser.email)
     cursor.onsuccess = () => {
-        let userData = cursor.result
-        userData.prescriptions.map((prescription, index) => {
-            const row = document.createElement("tr")
-            let tdata = document.createElement("td")
-            tdata.innerHTML = index + 1
-            row.appendChild(tdata)
-            for (key in prescription) {
-                let tdata = document.createElement("td")
-                if (key === "prescriptionImg") {
-                    tdata.innerHTML = `<a href="${prescription[key]}" onClick="newWindow(event,this.href)"><button class="styled">Show</button></a>`
-                    let td = document.createElement("td")
-                    td.innerHTML = `<button class="delete-prescription styled" onClick="deletePrescription(this.id)" id="${index}">Delete</button>`
-                    row.appendChild(tdata)
-                    row.appendChild(td)
-                    continue
+        let curUser = cursor.result
+        console.log(curUser)
+        fetch(`${url}/${curUser.id}`, {
+            headers: {
+                "Accept": "application/json"
+            },
+            method: "GET",
+        }).then(Response => Response.json())
+            .then(data => {
+                const { prescriptions } = data
+                if (prescriptions) {
+                    if (prescriptions.length) {
+                        prescriptions.map((prescription, index) => {
+                            const row = document.createElement("tr")
+                            let tdata = document.createElement("td")
+                            tdata.innerHTML = index + 1
+                            row.appendChild(tdata)
+                            for (let key in prescription) {
+                                let tdata = document.createElement("td")
+                                if (key === "prescriptionImg") {
+                                    tdata.innerHTML = `<a href="${prescription[key]}" onClick="newWindow(event,this.href)"><button class="styled">Show</button></a>`
+                                    let td = document.createElement("td")
+                                    td.innerHTML = `<button class="delete-prescription styled" onClick="deletePrescription(this.id)" id="${index}">Delete</button>`
+                                    row.appendChild(tdata)
+                                    row.appendChild(td)
+                                    continue
+                                }
+                                tdata.innerText = prescription[key]
+                                row.appendChild(tdata)
+                            }
+                            presctionTableData.appendChild(row)
+                        })
+                    }
+                    else {
+                        emptyTable.classList.add("active")
+                    }
                 }
-                tdata.innerText = prescription[key]
-                row.appendChild(tdata)
-            }
-            presctionTableData.appendChild(row)
-        })
+                else {
+                    emptyTable.classList.add("active")
+                }
+            })
     }
     cursor.onerror = () => {
-        popContent.innerText = "Cannot get your prescriptions"
-        popUp.classList.add("active")
-        popUp.classList.add("error")
-        setTimeout(() => {
-            popUp.classList.remove("active")
-            popUp.classList.remove("error")
-            location.reload()
-        }, 2000)
+        toast("Cannot get your prescriptions","error","reload")
     }
 }
 idb.onerror = () => {
-    popContent.innerText = "No data found"
-    popUp.classList.add("active")
-    popUp.classList.add("error")
-    setTimeout(() => {
-        popUp.classList.remove("active")
-        popUp.classList.remove("error")
-        location.reload()
-    }, 2000)
+    toast("Cannot get your prescriptions","error","reload")
 }
 // 
-function newWindow(event,imgUrl) {
+function newWindow(event, imgUrl) {
     event.preventDefault()
     window.open(imgUrl)
 }
 // for deleting prescription
 const deleteBtns = document.getElementsByClassName("delete-prescription")
-console.log(deleteBtns)
-// Array.prototype.forEach.call(deleteBtns,(btn)=>{
-// console.log(btn)
-// })
 const cancelBtn = document.querySelector("#cancel-btn")
 const confirmDelBtn = document.querySelector(".delete")
 function deletePrescription(btnId) {
-    console.log(btnId)
     const confirmDelBox = document.querySelector(".pop-up-delete")
     confirmDelBox.classList.add("active")
-    confirmDelBtn.addEventListener("click", () => {
+    confirmDelBtn.onclick = () => {
         let idb = indexedDB.open("crude", 1)
         idb.onsuccess = () => {
-            let tx = idb.result.transaction("users", "readwrite")
+            let tx = idb.result.transaction("users", "readonly")
             let store = tx.objectStore("users")
             let cursor = store.get(currentUser.email)
             cursor.onsuccess = () => {
                 let curRes = cursor.result
-                console.log(curRes.prescriptions)``
-                curRes.prescriptions.splice(btnId, 1)
-                store.put(curRes)
-                location.reload()
+                getUserDetails(curRes.id)
+                    .then(userData => {
+                        const { prescriptions } = userData
+                        prescriptions.splice(btnId, 1)
+                        fetch(`${url}/${curRes.id}`, {
+                            headers: {
+                                "Content-Type": "application/json",
+                                "Accept": "application/json"
+                            },
+                            method: "PATCH",
+                            body: JSON.stringify({ prescriptions })
+                        }).then(response => response.json())
+                            .then(data => {
+                                toast("Prescription deleted","success","reload")
+                            })
+                    })
             }
         }
-    })
-    cancelBtn.addEventListener("click", () => {
+    }
+    cancelBtn.onclick = () => {
         confirmDelBox.classList.remove("active")
-    })
+    }
 }
-
-// for logging out temporary
-const logoutBtn = document.querySelector(".logout")
-logoutBtn.addEventListener("click", () => {
-    sessionStorage.removeItem("currentUser")
-    popContent.innerText = "Logging Out"
-    popUp.classList.add("active")
-    setTimeout(() => {
-        popUp.classList.remove("active")
-        location.assign("http://127.0.0.1:5500/")
-    }, 2000)
-
-})
 
 // for prescription box
 const prescriptionShowBtn = document.querySelector("#show-prescription-box")
 const prescriptionBox = document.querySelector(".prescription-section")
 const prescriptionCard = document.querySelector(".prescription-card")
 const cancelPrescription = document.querySelector("#cancel-prescription-btn")
-cancelPrescription.addEventListener("click", (event) => {
+cancelPrescription.onclick = (event) => {
     event.preventDefault()
     prescriptionBox.classList.remove("active")
-})
-prescriptionShowBtn.addEventListener("click", () => {
+}
+prescriptionShowBtn.onclick = () => {
     prescriptionBox.classList.toggle("active")
-    prescriptionBox.addEventListener("click", (event) => {
+    prescriptionBox.onclick = (event) => {
         if (event.target === prescriptionBox)
             prescriptionBox.classList.remove("active")
-    })
-})
+    }
+}

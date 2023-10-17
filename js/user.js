@@ -1,5 +1,3 @@
-import { inputError, toast } from "./common.js"
-
 // for checking if user is logged in or not
 const currentUser = JSON.parse(sessionStorage.getItem("currentUser"))
 if (!currentUser) {
@@ -73,9 +71,6 @@ function openUserDetailsCard() {
 }
 updateBtn.onclick = openUserDetailsCard
 //for updating details of user
-const delay = 3000
-const popUp = document.querySelector(".pop-message")
-const popContent = document.querySelector(".pop-message .pop-content")
 const closePopUp = document.querySelector("#close-toast")
 const saveBtn = document.querySelector("#save-btn")
 const cancelDetailsBtn = document.querySelector("#cancel-details-btn")
@@ -155,7 +150,8 @@ async function deleteUser(userId) {
             return response.json()
         }
     } catch {
-        console.log("there was an error in the json server")
+        toast("No response from the server","error")
+        return
     }
 }
 const deleteBtn = document.querySelector("#delete-btn")
@@ -176,11 +172,15 @@ deleteBtn.onclick = () => {
                 let userDetails = cursor.result
                 deleteUser(userDetails.id)
                     .then(response => {
-                        console.log(response)
+                        
+                    }).catch(()=>{
+                        toast("Account was not deleted","error")
+                        return
                     })
             }
             res.onsuccess = () => {
                 toast("Account deleted","success","http://127.0.0.1:5500/")
+                sessionStorage.removeItem("currentUser")
             }
             res.onerror = () => {
                 toast("Account was not deleted","error","reload")

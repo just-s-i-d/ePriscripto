@@ -43,7 +43,10 @@ function passwordCheck(password, errorPassword) {
         return true
     }
 }
-
+// for validations 
+function validateField(){
+    
+}
 // for logging out
 const logoutBtns = document.querySelectorAll(".logout")
 logoutBtns.forEach(btn => {
@@ -53,4 +56,3 @@ logoutBtns.forEach(btn => {
     }
 })
 
-export { inputError, toast, passwordCheck }

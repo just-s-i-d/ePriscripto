@@ -1,4 +1,4 @@
-import { inputError, passwordCheck, toast } from "./common.js"
+
 // for json server
 const url = "http://localhost:3000/users"
 
@@ -51,7 +51,7 @@ function openLoginModal() {
 loginBtn.forEach(btn => {
     btn.onclick = openLoginModal
 })
-closeLoginBtn.onclick=closeLoginModal
+closeLoginBtn.onclick = closeLoginModal
 closeBtn.onclick = (event) => {
     if (event.target === closeBtn) {
         closeLoginModal()
@@ -166,7 +166,7 @@ signUpForm.addEventListener("submit", (e) => {
             }).then(response => response.json())
                 .then(data => {
                     const userData = {
-                        fullName: signUpForm.fullName.value.trim().toCapitaliseWord(),
+                        fullName: signUpForm.fullName.value.trim(),
                         email,
                         id: data.id,
                         password: signUpForm.password.value,
@@ -176,8 +176,8 @@ signUpForm.addEventListener("submit", (e) => {
                     let store = tx.objectStore("users")
                     let cursor = store.add(userData)
                     cursor.onsuccess = () => {
-                        const { email, name: fullName, id } = userData
-                        const curUser = { email, name, id }
+                        const { email, fullName, id } = userData
+                        const curUser = { email, fullName, id }
                         sessionStorage.setItem("currentUser", JSON.stringify(curUser))
                         signUpForm.reset()
                         toast("Logging in", "success", "http://127.0.0.1:5500/user-dashboard-html/settings.html")
@@ -190,7 +190,7 @@ signUpForm.addEventListener("submit", (e) => {
                         }
                     }
                 }).catch(e => {
-                    toast("No response from the server")
+                    toast("No response from the server","error")
                 })
         }
         idb.onerror = () => {
@@ -205,12 +205,12 @@ const errorPasswordSignIn = document.querySelector("#sign-in .error-password")
 signInForm.addEventListener("submit", (e) => {
     e.preventDefault()
     if (!signInForm.email.value) {
-        inputError(signInForm.email,errorEmailSignIn,"Enter an email")
+        inputError(signInForm.email, errorEmailSignIn, "Enter an email")
     }
     else if (!validateEmail(signInForm.email.value.trim())) {
         inputError(signInForm.email, errorEmail, "Enter a valid email")
     }
-    else if(!passwordCheck(signInForm.password,errorPasswordSignIn)){
+    else if (!passwordCheck(signInForm.password, errorPasswordSignIn)) {
 
     }
     else {
@@ -228,42 +228,43 @@ signInForm.addEventListener("submit", (e) => {
             let tx
             try {
                 tx = res.transaction("users", "readonly")
-            }
-            catch (error) {
-                toast("No users found","error")
-                signInForm.reset()
-            }
-            let store = tx.objectStore("users")
-            let cursor = store.get(userLoginData.email)
-            cursor.onsuccess = () => {
-                let curRes = cursor.result
-                if (curRes) {
-                    if (userLoginData.password === curRes.password) {
-                        const curUser = { email: curRes.email, name: curRes.fullName, id: curRes.id }
-                        sessionStorage.setItem("currentUser", JSON.stringify(curUser))
-                        signInForm.reset()
-                        toast("Logging in","success","http://127.0.0.1:5500/user-dashboard-html/settings.html")
+                let store = tx.objectStore("users")
+                let cursor = store.get(userLoginData.email)
+                cursor.onsuccess = () => {
+                    let curRes = cursor.result
+                    if (curRes) {
+                        if (userLoginData.password === curRes.password) {
+                            const curUser = { email: curRes.email, name: curRes.fullName, id: curRes.id }
+                            sessionStorage.setItem("currentUser", JSON.stringify(curUser))
+                            signInForm.reset()
+                            toast("Logging in", "success", "http://127.0.0.1:5500/user-dashboard-html/settings.html")
+                        }
+                        else {
+                            toast("Wrong password", "error")
+                        }
                     }
                     else {
-                        toast("Wrong password","error")
+                        toast("No users found", "error")
+                        signInForm.reset()
                     }
                 }
-                else {
-                    toast("No users found","error")
-                    signInForm.reset()
-                }
             }
+            catch (error) {
+                toast("No users found", "error")
+                signInForm.reset()
+            }
+
         }
         idb.onerror = () => {
-            toast("Couldn't find your account.","error")
+            toast("Couldn't find your account.", "error")
         }
     }
 }
 )
 
 // for login and login button in nav bar
-const navLoginBtn=document.querySelector(".navbar-container .login")
-const navLogoutBtn=document.querySelector(".navbar-container .logout")
+const navLoginBtn = document.querySelector(".navbar-container .login")
+const navLogoutBtn = document.querySelector(".navbar-container .logout")
 const profileBtn = document.querySelector(".profile")
 if (sessionStorage.getItem("currentUser")) {
     navLoginBtn.classList.add("not-active")

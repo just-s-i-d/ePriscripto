@@ -10,7 +10,7 @@
     --errorText: #c74244;
     --errorBackground: #c74244;
     --successBackground: #4aa155;
-    --cardBgColor: rgb(186, 193, 200);
+    --cardBgColor: rgb(221, 230, 238);
 }
 
 .flex-col.center {
@@ -43,8 +43,8 @@ main {
     display: none;
     font-size: 1.3em;
     background-color: var(--desText);
-    padding: 20px 30px;
-    width: 20%;
+    padding: 20px;
+    width: 25%;
     height: 7vh;
     position: absolute;
     border-radius: 5px;
@@ -159,7 +159,8 @@ main {
 .error-img.active,
 .error-age.active,
 .error-gender.active,
-.error-email.active {
+.error-email.active,
+.error-alias.active{
     display: block;
 }
 
@@ -257,11 +258,10 @@ main {
 .prescription-card {
     margin: 20px;
     padding: 30px 20px;
-    width: 40%;
+    width: 45%;
     background-color: var(--navBgColor);
     border-radius: 10px;
     align-items: center;
-    height: 55%;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -354,12 +354,12 @@ main {
 
 .prescription-table-container table {
     width: 100%;
-    border-collapse: collapse;
+   
 }
 
 .prescription-table-container table th {
     padding: 15px 0;
-    font-size: 1.4em;
+    font-size: 1.3em;
     font-weight: 600;
 
 }
@@ -369,7 +369,6 @@ main {
     text-align: center;
 }
 
-.prescription-table-container table tr:nth-child(even),
 .prescription-table-container table thead {
     background-color: var(--navBgColor);
 }
@@ -398,4 +397,25 @@ main {
     cursor: pointer;
     font-weight: 300;
     width: 15%;
+}
+#close-prescrition-modal{
+    position: absolute;
+    top: -10px;
+    z-index: 10;
+    right: 2%;
+    font-size: 3em;
+    cursor: pointer;
+}
+.action-btn{
+    width: 35px;
+    border:black 1px solid;
+    padding:5px;
+    cursor: pointer;
+    margin-left:15px;
+}
+#save-prescription-btn,#add-new-prescription.not-active{
+    display: none;
+}
+#save-prescription-btn.active{
+    display: block;
 }

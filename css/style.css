@@ -151,10 +151,10 @@ header {
 /* styles for navigation bar ends here */
 .pop-message {
     display: none;
-    font-size: 1.3em;
+    font-size: 1.2em;
     background-color: var(--desText);
-    padding: 20px 30px;
-    width: 20%;
+    padding: 20px;
+    width: 25%;
     height: 7vh;
     position: absolute;
     border-radius: 5px;

@@ -42,7 +42,15 @@
                 
                 <div class="prescription-card flex-col">
                     <h3>Add New Prescription</h3>
+                    <span id="close-prescrition-modal" onclick="closePrescriptionBox()">&times;</span>
                     <form action="" id="prescription-form" class="prescription-form-container">
+                        <div class="form-field flex">
+                            <label for="alias">Prescription Name :</label>
+                            <div>
+                                <input type="text" id="alias" name="alias"><br>
+                                <span class="error-alias">error</span>
+                            </div>
+                        </div>
                         <div class="form-field flex">
                             <label for="doc-name">Doctor Name :</label>
                             <div>
@@ -73,6 +81,7 @@
                         </div>
                         <div class="prescription-btn-container flex">
                             <button id="add-new-prescription" class="styled">Add Prescription</button>
+                            <button id="save-prescription-btn" class="styled">Save Changes</button>
                             <button id="cancel-prescription-btn" class="styled">Cancel</button>
                         </div>
                     </form>
@@ -84,11 +93,12 @@
                         <thead>
                             <tr>
                                 <th colspan="1">S. No.</th>
+                                <th>Prescription Name</th>
                                 <th>Doctor Name</th>
                                 <th>Hospital Name</th>
-                                <th>Date</th>
+                                <th>Prescription Date</th>
                                 <th>Image</th>
-                                <th>Delete</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody class="table-data">
@@ -106,11 +116,13 @@
                 <h3>Click on delete to confirm</h3>
                 <div class="btn-container">
                     <button class="styled delete">Delete</button>
-                    <button class="styled cancel" id="cancel-btn">Cancel</button>
+                    <button class="styled cancel" onclick="cancelBtn()" id="cancel-btn">Cancel</button>
                 </div>
             </div>
-            <script type="module" src="/js/prescription.js"></script>
-            <script type="module" src="/js/common.js"></script>
+            
+            <script  src="../js/common.js"></script>
+        <script   src="../js/prescription.js"></script>
+
     </body>
 
 </html>

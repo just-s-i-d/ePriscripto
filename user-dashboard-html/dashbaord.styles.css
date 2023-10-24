@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;1,600&display=swap');
+
+:root {
+    --primaryText: #363740;
+    --secondaryText: #a0afbf;
+    --bgColor: #009193;
+    --secondaryBgColor: #88dacc;
+    --bodyBgColor: #f8f9fa;
+    --navBgColor: white;
+}
+
+* {
+    font-family: "Raleway";
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+.default a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.default input:focus {
+    outline: none;
+}
+
+.dashboard-nav-bar-container li {
+    list-style: none;
+    font-size: 1.3em;
+    padding: 10px 20px;
+    margin: 5px 30px;
+    color: var(--secondaryText);
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.dashboard-nav-bar-container li:hover {
+    color: var(--navBgColor);
+    background-color: var(--bgColor);
+}
+.dashboard-nav-bar-container img{
+    width: 7%;
+}
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.top-bar {
+    padding:10px 20px;
+    width: 100%;
+    height: 10vh;
+    justify-content: space-between;
+    align-items: center;
+}
+.top-bar h2{
+    font-size: 2em;
+    color: var(--primaryText);
+}
+
+
+.brand-name {
+    /* position: fixed;
+    top: 0;
+    left: 0; */
+    max-height: 11vh;
+    z-index: 1;
+    padding: 28px 40px;
+    font-size: 2.5em;
+    font-weight: 500;
+    color: var(--bgColor);
+    text-align: center;
+    background-color: var(--navBgColor);
+}
+
+.logout-container {
+    width: 100%;
+    position: relative;
+    top: 54vh;
+    margin-bottom: 20px;
+}

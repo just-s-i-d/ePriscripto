@@ -4,8 +4,10 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>ePriscripto</title>
+        <title>ePrescripto</title>
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/signInUp.styles.css">
+        <link rel="stylesheet" href="css/common.styles.css">
         <link rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
@@ -13,23 +15,24 @@
     <body>
         <header>
             <nav class="navbar-container">
-                <div class="logo">
-                    <span class="brand">ePriscripto</span>
-                    <span class="tagline">Simplify,Organise,Thrieve with ePriscripto</span>
+                <div class="logo" href="index.html">
+                    <span class="brand">ePrescripto</span>
+                    <span class="tagline">Simplify,Organise,Thrieve with ePrescripto</span>
                 </div>
                 <ul class="navbar-container-left">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#doctors">Doctors</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="#contact-us">Contact</a></li>
-
                 </ul>
                 <ul class="navbar-container-right">
-                    <li><a href="signin-up.html">Login</a></li>
+                    <li><a class="login" id="login" >Login</a></li>
+                    <li><a class="profile not-active" href="user-dashboard-html/settings.html">Account</a></li>
+                    <li><a class="logout not-active" id="logout">Logout</a></li>
                 </ul>
                 <div class="drop-down-container">
                     <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100"
-                        viewBox="0,0,256,256">
+                        viewBox="0,0,256,256" onclick="openDropDown()">
                         <g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
                             stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
                             font-family="none" font-weight="none" font-size="none" text-anchor="none"
@@ -44,33 +47,186 @@
                     <ul class="drop-down-menu">
                         <li><a href="#home">Home</a></li>
                         <li><a href="#doctors">Doctors</a></li>
-                        <li><a href="signin-up.html">Login</a></li>
+                        <li><a class="login" >Login</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="#contact-us">Contact</a></li>
                     </ul>
                 </div>
-
             </nav>
+            <section class="login-box-container">
+                <div class="container flex" id="container">
+                    <span id="close-login" onclick="closeLoginModal()">&times;</span>
+                    <div class="form-container sign-up-container flex">
+                        <form action="#" class="flex-col" id="sign-up">
+                            <h1>Create Account</h1>
+                            <div class="social-container">
+                                <a href="https://www.facebook.com/" class="social">
+                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100"
+                                        viewBox="0 0 48 48">
+                                        <linearGradient id="Ld6sqrtcxMyckEl6xeDdMa_uLWV5A9vXIPu_gr1" x1="9.993"
+                                            x2="40.615" y1="9.993" y2="40.615" gradientUnits="userSpaceOnUse">
+                                            <stop offset="0" stop-color="#2aa4f4"></stop>
+                                            <stop offset="1" stop-color="#007ad9"></stop>
+                                        </linearGradient>
+                                        <path fill="url(#Ld6sqrtcxMyckEl6xeDdMa_uLWV5A9vXIPu_gr1)"
+                                            d="M24,4C12.954,4,4,12.954,4,24s8.954,20,20,20s20-8.954,20-20S35.046,4,24,4z">
+                                        </path>
+                                        <path fill="#fff"
+                                            d="M26.707,29.301h5.176l0.813-5.258h-5.989v-2.874c0-2.184,0.714-4.121,2.757-4.121h3.283V12.46 c-0.577-0.078-1.797-0.248-4.102-0.248c-4.814,0-7.636,2.542-7.636,8.334v3.498H16.06v5.258h4.948v14.452 C21.988,43.9,22.981,44,24,44c0.921,0,1.82-0.084,2.707-0.204V29.301z">
+                                        </path>
+                                    </svg>
+                                </a>
+                                <a href="https://www.linkedin.com/" class="social">
+                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100"
+                                        viewBox="0 0 48 48">
+                                        <path fill="#0288d1" d="M24 4A20 20 0 1 0 24 44A20 20 0 1 0 24 4Z"></path>
+                                        <path fill="#fff"
+                                            d="M14 19H18V34H14zM15.988 17h-.022C14.772 17 14 16.11 14 14.999 14 13.864 14.796 13 16.011 13c1.217 0 1.966.864 1.989 1.999C18 16.11 17.228 17 15.988 17zM35 24.5c0-3.038-2.462-5.5-5.5-5.5-1.862 0-3.505.928-4.5 2.344V19h-4v15h4v-8c0-1.657 1.343-3 3-3s3 1.343 3 3v8h4C35 34 35 24.921 35 24.5z">
+                                        </path>
+                                    </svg>
+                                </a>
+                                <a
+                                    href="https://accounts.google.com/v3/signin/identifier?ifkv=AYZoVheGSdG49XdfbcL6aXk6jncWjykiX0y8C0FeQNFKjJq6dGAYJrHCsMpnvkocg2jt9D3pnVmJ&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S-737504366%3A1696828944133757&theme=glif">
+                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100"
+                                        viewBox="0 0 48 48">
+                                        <path fill="#FFC107"
+                                            d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z">
+                                        </path>
+                                        <path fill="#FF3D00"
+                                            d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z">
+                                        </path>
+                                        <path fill="#4CAF50"
+                                            d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z">
+                                        </path>
+                                        <path fill="#1976D2"
+                                            d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z">
+                                        </path>
+                                    </svg>
+                                </a>
+                            </div>
+                            <span>or use your email for registration</span>
+                            <div class="form-fields-container flex-col">
+                                <div class="form-field">
+                                    <input type="text" placeholder="Name" name="fullName" />
+                                    <span class="error-name">Error message</span>
+                                </div>
+                                <div class="form-field">
+                                    <input type="email" placeholder="Email" name="email" />
+                                    <span class="error-email">error</span>
+                                </div>
+                                <div class="form-field">
+                                    <input type="password" placeholder="Password" name="password" />
+                                    <span class="error-password">error</span>
+                                </div>
+                                <div class="form-field">
+                                    <input type="password" placeholder="Confirm Password" name="confirmPassword" />
+                                    <span class="error-confirm-password">error</span>
+                                </div>
+                            </div>
+                            <button class="styled">Sign Up</button>
+                        </form>
+                    </div>
+                    <div class="form-container sign-in-container flex">
+                        <form action="#" class="flex-col" id="sign-in">
+                            <h1>Sign in</h1>
+                            <div class="social-container">
+                                <a href="https://www.facebook.com/" class="social">
+                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100"
+                                        viewBox="0 0 48 48">
+                                        <linearGradient id="Ld6sqrtcxMyckEl6xeDdMa_uLWV5A9vXIPu_gr1" x1="9.993"
+                                            x2="40.615" y1="9.993" y2="40.615" gradientUnits="userSpaceOnUse">
+                                            <stop offset="0" stop-color="#2aa4f4"></stop>
+                                            <stop offset="1" stop-color="#007ad9"></stop>
+                                        </linearGradient>
+                                        <path fill="url(#Ld6sqrtcxMyckEl6xeDdMa_uLWV5A9vXIPu_gr1)"
+                                            d="M24,4C12.954,4,4,12.954,4,24s8.954,20,20,20s20-8.954,20-20S35.046,4,24,4z">
+                                        </path>
+                                        <path fill="#fff"
+                                            d="M26.707,29.301h5.176l0.813-5.258h-5.989v-2.874c0-2.184,0.714-4.121,2.757-4.121h3.283V12.46 c-0.577-0.078-1.797-0.248-4.102-0.248c-4.814,0-7.636,2.542-7.636,8.334v3.498H16.06v5.258h4.948v14.452 C21.988,43.9,22.981,44,24,44c0.921,0,1.82-0.084,2.707-0.204V29.301z">
+                                        </path>
+                                    </svg>
+                                </a>
+                                <a href="https://www.linkedin.com/" class="social">
+                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100"
+                                        viewBox="0 0 48 48">
+                                        <path fill="#0288d1" d="M24 4A20 20 0 1 0 24 44A20 20 0 1 0 24 4Z"></path>
+                                        <path fill="#fff"
+                                            d="M14 19H18V34H14zM15.988 17h-.022C14.772 17 14 16.11 14 14.999 14 13.864 14.796 13 16.011 13c1.217 0 1.966.864 1.989 1.999C18 16.11 17.228 17 15.988 17zM35 24.5c0-3.038-2.462-5.5-5.5-5.5-1.862 0-3.505.928-4.5 2.344V19h-4v15h4v-8c0-1.657 1.343-3 3-3s3 1.343 3 3v8h4C35 34 35 24.921 35 24.5z">
+                                        </path>
+                                    </svg>
+                                </a>
+                                <a href="https://accounts.google.com/v3/signin/identifier?ifkv=AYZoVheGSdG49XdfbcL6aXk6jncWjykiX0y8C0FeQNFKjJq6dGAYJrHCsMpnvkocg2jt9D3pnVmJ&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S-737504366%3A1696828944133757&theme=glif"
+                                    class="social">
+                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100"
+                                        viewBox="0 0 48 48">
+                                        <path fill="#FFC107"
+                                            d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z">
+                                        </path>
+                                        <path fill="#FF3D00"
+                                            d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z">
+                                        </path>
+                                        <path fill="#4CAF50"
+                                            d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z">
+                                        </path>
+                                        <path fill="#1976D2"
+                                            d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z">
+                                        </path>
+                                    </svg>
+                                </a>
+                            </div>
+                            <span>or use your account</span>
+                            <div class="form-fields-container flex-col">
+                                <div class="form-field">
+                                    <input type="email" placeholder="Email" name="email" />
+                                    <span class="error-email">error</span>
+                                </div>
+                                <div class="form-field">
+                                    <input type="password" placeholder="Password" name="password" />
+                                    <span class="error-password">error</span>
+                                </div>
+                            </div>
+                            <a href="#">Forgot your password?</a>
+                            <button class="styled">Sign In</button>
+                        </form>
+                    </div>
+                    <div class="overlay-container flex-col">
+                        <div class="overlay">
+                            <div class="overlay-panel overlay-right flex-col">
+                                <h1>Welcome Back!</h1>
+                                <p>To keep connected with us please login with your personal info</p>
+                                <button class="styled" id="signIn" onclick="showSignIn()">Sign In</button>
+                            </div>
+                            <div class="overlay-panel overlay-left flex-col active">
+                                <h1>Hello, Friend!</h1>
+                                <p>Enter your personal details and start journey with us</p>
+                                <button class="styled" id="signUp" onclick="showSignUp()">Sign Up</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="pop-message">
+                <span class="pop-content"> Wrong password</span>
+                <span id="close-toast">&times;</span>
+            </div>
             <section id="home">
                 <div class="home-container">
                     <div class="brand-tagline-container">
-                        <h1 class="brand">e-Priscripto</h1>
-                        <h3 class="tagline">Simplify, Organise, Thrieve with ePriscripto</h3>
-                        <p class="description">With ePrescripto,
-                            managing your prescriptions has never been more convenient and secure.
-                            Join us today and experience a healthier, stress-free tomorrow.</p>
+                        <h1 class="brand">e-Prescripto</h1>
+                        <h3 class="tagline">Simplify, Organise, Thrieve with ePrescripto</h3>
+                        <p class="description">With ePrescripto, managing your prescriptions is both convenient and
+                            secure.
+                            Join us today for a healthier, stress-free tomorrow.</p>
                         <div class="btn-container">
-                            <a href="#learn-more">
+                            <!-- <a href="#learn-more">
                                 <button class="styled learn-more">Learn More</button>
-                            </a>
-                            <a href="signin-up.html">
-                                <button class="styled get-started">Get Started</button>
+                            </a> -->
+                            <a>
+                                <button class="styled get-started login">Get Started</button>
                             </a>
                         </div>
-
                     </div>
                     <img src="images/doc-priscription.jpg" alt="Priscription illustrations" class="illustration">
-
                 </div>
                 <div class="controller-container">
                     <span class="controller">&lt;</span>
@@ -78,46 +234,44 @@
                 </div>
             </section>
         </header>
-
         <section class="feature-section">
-            <h1 class="heading">Features</h1>
-            <div class="features-container">
-                <div class="feature">
-                    <h2>Medication Reminders</h2>
-                    <span>Never miss a dose again! ePrescripto's intuitive medication reminders
-                        keep you on track with your prescriptions.</span>
+            <div class="features-main-container">
+                <h1 class="heading">Features</h1>
+                <div class="features-container">
+                    <div class="feature">
+                        <h2>Medication Reminders</h2>
+                        <span>Never miss a dose again! ePrescripto's intuitive medication reminders
+                            keep you on track with your prescriptions.</span>
+                    </div>
+                    <div class="feature">
+                        <h2>Priscription History</h2>
+                        <span>Access your complete prescription history at your fingertips.
+                            ePrescripto securely records and organizes your medications
+                        </span>
+                    </div>
+                    <div class="feature">
+                        <h2>Family Profiles</h2>
+                        <span>You can manage prescriptions for multiple family members all in one account.
+                            Streamline your loved ones' health journeys effortlessly</span>
+                    </div>
                 </div>
-                <div class="feature">
-                    <h2>Priscription History</h2>
-                    <span>Access your complete prescription history at your fingertips.
-                        ePrescripto securely records and organizes your medications
-                    </span>
-                </div>
-                <div class="feature">
-                    <h2>Family Profiles</h2>
-                    <span>You can manage prescriptions for multiple family members all in one account.
-                        Streamline your loved ones' health journeys effortlessly</span>
-                </div>
-
             </div>
         </section>
-        <section class="how-to-use-section" id="learn-more">
+        <section class="how-to-use-section section-fonts" id="learn-more">
             <div class="steps-container">
+                <img src="images/priscription.png" alt="Priscription illustrations" class="illustration">
                 <h3 class="heading">Getting Started with ePrescripto</h3>
                 <span>
                     Welcome to ePrescripto! We're here to make managing your prescriptions and healthcare a breeze.
                     Follow
                     these simple steps to get started:
                 </span>
-
                 <ol>
                     <li class="step-heading">Sign Up:
                         <p class="step-des">
                             Click "Get Started" to create your ePrescripto account. It's quick, easy, and free.
                         </p>
-                        <img src="images/priscription.png" alt="Priscription illustrations" class="illustration">
                     </li>
-
                     <li class="step-heading">
                         Upload Prescriptions:
                         <p class="step-des">
@@ -125,30 +279,21 @@
                             prescription history.
                         </p>
                     </li>
-
-
                     <li class="step-heading">Set Medication Reminders:
                         <p class="step-des">
                             Create personalized medication schedules. Receive timely reminders via email or SMS.
                         </p>
                     </li>
-
-
-
                     <li class="step-heading">Stay Organized:
                         <p class="step-des">
                             Access your complete prescription history and track your health journey effortlessly.
                         </p>
                     </li>
-
-
                     <li class="step-heading">Family-Friendly:
                         <p class="step-des">
                             Add and manage prescriptions for multiple family members within one account.
                         </p>
                     </li>
-
-
                     <li class="step-heading">Experience Convenience:
                         <p class="step-des">
                             Simplify your healthcare management with ePrescripto and enjoy peace of mind.
@@ -157,12 +302,10 @@
                 </ol>
             </div>
         </section>
-
         <section class="doctors-section" id="doctors">
             <h1 class="heading">Doctors</h1>
             <div class="doctor-main-container">
                 <img src="images/doctor2.png" alt="doctor" class="doctor-illustration doc1">
-                <span class="controller">&lt;</span>
                 <div class="doctor-info-container">
                     <div class="doctor">
                         <img src="images/team1.jpg" alt="Profile" class="profile-pic">
@@ -180,12 +323,10 @@
                         <h3>Orthopedic Surgeon</h3>
                     </div>
                 </div>
-                <span class="controller">&gt;</span>
                 <img src="images/doctor1.png" alt="doctor" class="doctor-illustration doc2">
             </div>
-
         </section>
-        <section class="testimonial-section">
+        <!-- <section class="testimonial-section section-fonts reveal">
             <h2 class="heading">Testimonials</h2>
             <div class="testimonial-container">
                 <span class="controller">&lt;</span>
@@ -198,37 +339,84 @@
                 </div>
                 <span class="controller">&gt;</span>
             </div>
-
-        </section>
-        <section class="contact-section" id="contact-us">
-            <div class="contact-main-container">
-                <h2 class="heading">Get in touch with us</h2>
-                <!-- <img src="images/dots.png" alt="dots" id="dot-background-img"> -->
-                <div class="contact-form-container">
-                    <form>
-                        <input type="text" placeholder="Full Name">
-                        <input type="email" placeholder="Email">
-                        <input type="tel" placeholder="Phone Number">
-                        <textarea name="" id="" cols="60" rows="5" placeholder="Message"></textarea>
-                        <button>Send</button>
-                    </form>
+        </section> -->
+        <section class="testimonial-section">
+            <h2 class="heading">Testimonials</h2>
+            <div class="testimonial-container">
+                <div class="indicators">
+                    <span class="indicator-btn active"></span>
+                    <span class="indicator-btn"></span>
+                    <span class="indicator-btn"></span>
+                </div>
+                <div class="slider-container">
+                    <div class="slider-row">
+                        <div class="testimonial">
+                            <blockquote>
+                                "ePrescripto is a game-changer for me. Managing prescriptions for my entire family has
+                                never
+                                been this simple."
+                            </blockquote>
+                            <cite>- Jane Smith</cite>
+                        </div>
+                        <div class="testimonial">
+                            <blockquote>
+                                "ePrescripto is a game-changer for me. Managing prescriptions for my entire family has
+                                never
+                                been this simple."
+                            </blockquote>
+                            <cite>- Jane Smith</cite>
+                        </div>
+                        <div class="testimonial">
+                            <blockquote>
+                                "ePrescripto is a game-changer for me. Managing prescriptions for my entire family has
+                                never
+                                been this simple."
+                            </blockquote>
+                            <cite>- Jane Smith</cite>
+                        </div>
+                    </div>
                 </div>
             </div>
-
+        </section>
+        <section class="contact-section section-fonts flex-col" id="contact-us">
+            <div class="contact-main-container flex">
+                <div class="contact-form flex-col">
+                    <h2 class="heading">Get in touch with us</h2>
+                    <div class="contact-form-container flex">
+                        <form>
+                            <input type="text" placeholder="Full Name">
+                            <input type="email" placeholder="Email">
+                            <input type="tel" placeholder="Phone Number">
+                            <textarea name="" id="" cols="60" rows="3" placeholder="Message"></textarea>
+                            <button class="styled" id="send">Send</button>
+                        </form>
+                        <img src="images/contact-us.png" alt="contact-us" class="contact-us-img">
+                    </div>
+                </div>
+                <div class="thanks-container flex">
+                    <div class="thanks">
+                        <img src="images/done.png" alt="Message Sent">
+                        <h2>Thank You</h2>
+                        <h4>We will get back to you.</h4>
+                    </div>
+                </div>
+            </div>
         </section>
         <footer>
+            <div class="logo">
+                <span class="brand">ePrescripto</span>
+                <span class="tagline">Simplify,Organise,Thrieve with ePrescripto</span>
+                <span class="social-icons-container"><i class="fa fa-facebook"></i><i class="fa fa-instagram"></i><i
+                        class="fa fa-linkedin"></i><i class="fa fa-twitter"></i></span>
+            </div>
             <div class="footer-container">
-                <div class="logo">
-                    <span class="brand">ePriscripto</span>
-                    <span class="tagline">Simplify,Organise,Thrieve with ePriscripto</span>
-                </div>
+                
                 <div class="details-container">
                     <h3>Address</h3>
-                    <span><i class="fa fa-map-marker"></i> Location</span>
-                    <span><i class="fa fa-phone"></i> Call:+01 1234567890</span>
-                    <span><i class="fa fa-envelope"></i> Email:Email@email.com</span>
-                    <span class="social-icons-container"><i class="fa fa-facebook"></i><i class="fa fa-instagram"></i><i
-                            class="fa fa-linkedin"></i><i class="fa fa-twitter"></i></span>
+                    <span><i class="fa fa-map-marker"></i>Location</span>
+                    <span><i class="fa fa-phone"></i>+01 1234567890</span>
+                    <span><i class="fa fa-envelope"></i>Email@email.com</span>
+
                 </div>
                 <div class="important-links-container">
                     <h3>Usefull Links</h3>
@@ -239,9 +427,19 @@
                         <li><a href="#contact-us">Contact</a></li>
                     </ul>
                 </div>
+                <div class="stay-updated">
+                    <h3>Stay Updated</h3>
+                    <span>For latest updates, subscribe to our news letter</span>
+                    <div class="subscribe flex">
+                        <input type="email">
+                        <button class="styled">subscribe</button>
+                    </div>
+                </div>
             </div>
             <div class="bottom-bar">&copy; 2023 All Rights Reserved</div>
         </footer>
+        <script src="js/index.js"></script>
+        <script src="js/common.js"></script>
     </body>
 
 </html>

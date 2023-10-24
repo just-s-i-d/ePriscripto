@@ -1,33 +1,221 @@
-:root {
-    --green: #04C59D;
-    --text: white;
-}
-.account-section{
-    height: 50vh;
-    width: 70%;
-    margin:5vh auto;
-    flex-direction: column;
+.flex {
     display: flex;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+body.noScroll {
+    overflow: hidden;
+}
+
+.login-box-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: none;
+    backdrop-filter: blur(10px);
+    animation: show 0.8s;
+    z-index: 10;
+    overflow: hidden;
+}
+
+@keyframes show {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.container {
+    font-size: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60%;
+    transform: translate(-50%, -50%);
+    height: 70%;
+    background-color: var(--text);
+    box-shadow: 0 0 5px 2px var(--shadow);
+}
+
+.login-box-container.active {
+    display: block;
+}
+
+.container a {
+    color: var(--green);
+}
+
+#close-login {
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    right: 2%;
+    font-size: 3em;
+    cursor: pointer;
+}
+
+#close-login.white {
+    color: var(--text);
+}
+
+.form-container {
+    width: 50%;
+}
+
+.form-container form {
+    width: 100%;
+    min-height: 100%;
+    padding: 20px;
+    align-items: center;
     justify-content: center;
+}
+
+.social-container svg {
+    width: 40px;
+    height: 40px;
+}
+
+.login-box-container h1 {
+    margin: 10px 0;
+    font-size: 2em;
+}
+
+.form-fields-container {
+    justify-content: center;
+    margin-top: 10px;
+    width: 75%;
+}
+
+.form-fields-container .form-field {
+    margin: 12px 0;
+}
+
+.form-fields-container .form-field span {
+    position: absolute;
+    padding: 0 10px;
+    width: 90%;
+    font-size: .9em;
+    color: var(--errorText);
+    transition: 3s;
+    display: none;
+}
+
+span.error-name.active,
+span.error-email.active,
+span.error-password.active,
+span.error-confirm-password.active {
+    display: block;
+}
+
+.form-container form input {
+    font-size: 1.1em;
+    padding: 15px 20px;
+    width: 100%;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    background-color: #E9E9E9;
+}
+
+.form-container form input.error {
+    border-color: var(--errorText);
+}
+
+.form-container .social-container {
+    margin: 10px 0;
+    font-size: 1.3em;
+}
+
+.form-container button {
+    margin-top: 20px;
+}
+
+.overlay-panel {
+    background-color: var(--green);
+    color: var(--text);
+    position: absolute;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
     align-items: center;
 }
-.form-container form{
-display: flex;
-flex-direction: column;
+
+.overlay-panel p {
+    margin: 20px 0;
+    width: 80%;
+    text-align: center;
+    font-size: 1.2em;
 }
-.form-container form input{
-    font-size: 18px;
-    margin:10px 0 ;
-    padding:10px;
-    border:var(--green) 1px solid;
+
+.overlay-container .styled {
+    border: var(--text) solid 1px;
+    color: var(--text);
 }
-.form-container label{
-    font-size: 20px;
-    font-weight: 500;
+
+.overlay-panel.overlay-left {
+    left: 0;
+    animation: animate-left 0.6s;
 }
-.form-btn-container{
-    margin-top: 10px;
+
+@keyframes animate-left {
+    from {
+        transform: translateX(400px);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+.overlay-panel.overlay-right {
+    right: 0;
+    animation: animate-right 0.6s;
+}
+
+@keyframes animate-right {
+    from {
+        transform: translateX(-400px);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+.overlay-panel.overlay-right {
+    display: none;
+}
+
+.overlay-panel.overlay-right.active {
     display: flex;
-    justify-content: flex-end;
-    gap:10%;
 }
+
+.overlay-panel.overlay-left {
+    display: none;
+}
+
+.overlay-panel.overlay-left.active {
+    display: flex;
+}
+
+/* for mobile and tablet view 
+.login-box-container.mobile .container {
+    width: 40%;
+    height: 60%;
+}
+
+.login-box-container.mobile .container .form-container {
+    
+    margin:0 auto;
+    width: 80%;
+}
+.login-box-container.mobile .container .form-container.sign-up-container{
+    display: none;
+} */

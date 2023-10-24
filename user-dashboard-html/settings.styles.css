@@ -1,0 +1,421 @@
+:root {
+    --primaryTextDashboard: #363740;
+    --secondaryTextDashboard: #a0afbf;
+    --bgColor: rgb(0, 145, 147);
+    --secondaryBgColor: #88dacc;
+    --bodyBgColorDashboard: #f8f9fa;
+    --navBgColorDashboard: white;
+    --modalShadow: rgba(0, 145, 147, 0.9);
+    --text: white;
+    --errorText: #c74244;
+    --errorBackground: #c74244;
+    --successBackground: #4aa155;
+    --cardBgColor: rgb(221, 230, 238);
+}
+
+.flex-col.center {
+    justify-content: center;
+    align-items: center;
+}
+
+aside {
+    width: 320px;
+    gap: 10px;
+}
+
+aside h1 {
+    background-color: var(--navBgColorDashboard);
+    border: 3px solid var(--bodyBgColorDashboard);
+}
+
+aside nav {
+    height: 80%;
+    background-color: var(--navBgColorDashboard);
+}
+
+main {
+    width: 100%;
+    background-color: var(--bodyBgColorDashboard);
+    min-height: 100vh;
+}
+
+.pop-message {
+    display: none;
+    font-size: 1.3em;
+    background-color: var(--desText);
+    padding: 20px;
+    width: 25%;
+    height: 7vh;
+    position: absolute;
+    border-radius: 5px;
+    right: 0;
+    z-index: 100;
+    top: 12%;
+    animation: popUp 0.6s;
+    color: var(--text);
+}
+
+.pop-message.error {
+    background-color: var(--errorBackground);
+}
+
+.pop-message span#close-toast {
+    position: absolute;
+    right: 20px;
+    top: 8px;
+    font-size: 1.8em;
+    cursor: pointer;
+}
+
+.pop-message.success {
+    background-color: var(--successBackground);
+}
+
+.pop-message.active {
+    display: block;
+}
+
+@keyframes popUp {
+    from {
+        transform: translateX(350px);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+.main-side-nav-bar li.active {
+    color: var(--navBgColorDashboard);
+    background-color: var(--bgColor);
+}
+
+.profile-setting-section {
+    position: relative;
+    width: max-content;
+    margin: 20px;
+    height: max-content;
+    border-radius: 15px;
+}
+
+.profile-setting-section .profile-pic {
+    margin: 0 auto;
+    width: 40%;
+    aspect-ratio: 1;
+}
+
+.profile-card {
+    margin: 0 auto;
+    width: 100%;
+    height: 75vh;
+    padding: 10%;
+    background-color: var(--navBgColorDashboard);
+    border-radius: 5px;
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.1);
+}
+
+.setting.active {
+    display: flex;
+}
+
+.setting {
+    display: none;
+}
+
+.setting form,
+.details .user-details {
+    margin-top: 30px;
+}
+
+.setting form>div {
+    height: 50px;
+    display: flex;
+    gap: 10%;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.setting form>div label {
+    width: 25%;
+}
+
+.form-field span {
+    position: absolute;
+    font-size: 14px;
+    color: var(--errorText);
+    margin-top: 1px;
+    margin-left: 10px;
+    display: none;
+}
+
+.form-field input.error,
+.form-field select.error {
+    border: var(--errorText) 1px solid;
+}
+
+.error-name.active,
+.error-hospital-name.active,
+.error-date.active,
+.error-img.active,
+.error-age.active,
+.error-gender.active,
+.error-email.active,
+.error-alias.active{
+    display: block;
+}
+
+.user-details.not-active {
+    display: none;
+}
+
+.detail-field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.detail-field h3 {
+    width: 65%;
+}
+
+.user-details h3 {
+    font-size: 1.4em;
+    font-weight: 400;
+    margin: 20px 5px;
+    display: inline-block;
+}
+
+.user-details span {
+    font-size: 1.3em;
+}
+
+.setting form input,
+.setting form select {
+    width: 250px;
+    padding: 15px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 10px;
+    border: transparent 1px solid;
+    background-color: var(--bodyBgColorDashboard);
+}
+
+.setting form label {
+    font-size: 1.2em;
+}
+
+.setting form select:focus {
+    outline: none;
+}
+
+.styled {
+    width: 100%;
+    margin-top: 15px;
+    color: var(--bodyBgColorDashboard);
+    background-color: var(--bgColor);
+    border: none;
+    font-size: 1.1em;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.pop-up-delete {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 2%;
+    transform: translate(-50%, -50%);
+    font-size: 1.3em;
+    border-radius: 10px;
+    background-color: rgb(168, 189, 211);
+}
+
+.pop-up-delete.active {
+    display: block;
+}
+
+.btn-container {
+    display: flex;
+}
+
+.pop-up-delete .btn-container button {
+    width: 90%;
+    margin: 20px 10px 0;
+    border-radius: 10px;
+    padding: 10px 0;
+    font-size: .8em;
+    border: none;
+}
+
+.delete,
+#delete-btn {
+    color: red;
+    background-color: #efefef;
+}
+
+.prescription-card {
+    margin: 20px;
+    padding: 30px 20px;
+    width: 45%;
+    background-color: var(--navBgColorDashboard);
+    border-radius: 10px;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 5px 1px var(--modalShadow);
+}
+
+.prescription-section {
+    position: absolute;
+    display: none;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 2;
+    animation: modalShow 0.4s ease-in-out;
+}
+
+@keyframes modalShow {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+.prescription-section.active {
+    display: flex;
+}
+
+.prescription-section .prescription-form>div {
+    width: 50%;
+    padding: 20px;
+}
+
+.prescription-card h3 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+.prescription-form-container {
+    width: 80%;
+    font-size: 1.3em;
+}
+
+#prescription-date {
+    width: 300px;
+    padding: 10px;
+}
+
+.prescription-form-container input {
+    width: 300px;
+    font-size: 1em;
+    padding:10px 15px;
+    border-radius: 10px;
+    border:1px solid transparent;
+    background-color: var(--bodyBgColorDashboard);
+}
+
+.prescription-form-container input:focus {
+    outline: none;
+}
+
+.prescription-form-container .form-field {
+    margin:30px 0;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.prescription-btn-container {
+    justify-content: center;
+    gap: 10%;
+}
+
+.prescription-btn-container .styled {
+    width: 40%;
+    font-size: .9em;
+}
+
+.prescription-table-container {
+    width: 97%;
+    margin: 20px;
+    padding: 20px;
+    background-color: var(--cardBgColor);
+    border-radius: 5px;
+}
+
+.prescription-table-container table {
+    width: 100%;
+   
+}
+
+.prescription-table-container table th {
+    padding: 15px 0;
+    font-size: 1.3em;
+    font-weight: 600;
+
+}
+
+.prescription-table-container table td {
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.prescription-table-container table thead {
+    background-color: var(--navBgColorDashboard);
+}
+
+.prescription-table-container .empty-table {
+    margin: 0 20px;
+    display: none;
+    position: relative;
+    text-align: center;
+    top: 2vh;
+    padding: 15px 20px;
+    font-size: 1.4em;
+}
+
+.prescription-table-container .empty-table.active {
+    display: block;
+}
+
+.table-data .styled {
+    font-size: .8em;
+    width: max-content;
+    margin-bottom: 15px;
+}
+
+.top-bar .styled {
+    cursor: pointer;
+    font-weight: 300;
+    width: 15%;
+}
+#close-prescrition-modal{
+    position: absolute;
+    top: -10px;
+    z-index: 10;
+    right: 2%;
+    font-size: 3em;
+    cursor: pointer;
+}
+.action-btn{
+    width: 35px;
+    border:black 1px solid;
+    padding:5px;
+    cursor: pointer;
+    margin-left:15px;
+}
+#save-prescription-btn,#add-new-prescription.not-active{
+    display: none;
+}
+#save-prescription-btn.active{
+    display: block;
+}

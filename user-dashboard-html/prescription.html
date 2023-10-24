@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="dashbaord.styles.css">
+        <link rel="stylesheet" href="settings.styles.css">
+        <title>Prescriptions</title>
+    </head>
+
+    <body class="flex">
+        <aside class="flex-col">
+            <h1 class="brand-name">ePrescripto</h1>
+            <nav class="dashboard-nav-bar-container default">
+                <div class="nav-bar-container flex-col">
+                    <ul class="main-side-nav-bar">
+                        <li>Dashboard</li>
+                        <li>Family Memebers</li>
+                        <a href="prescription.html">
+                            <li class="active">Prescriptions</li>
+                        </a>
+                        <a href="settings.html">
+                            <li>Settings</li>
+                        </a>
+                        <li>Help</li>
+                    </ul>
+                    <ul class="logout-container">
+                        <li class="logout">Logout</li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+        <main>
+            <header>
+                <div class="top-bar flex">
+                    <h2>Prescriptions</h2>
+                    <button class="styled" id="show-prescription-box">Add Prescription</button>
+                </div>
+            </header>
+            <section class="prescription-section">
+                <div class="prescription-card flex-col">
+                    <h3>Add New Prescription</h3>
+                    <span id="close-prescrition-modal" onclick="closePrescriptionBox(event)">&times;</span>
+                    <form action="" id="prescription-form" class="prescription-form-container">
+                        <div class="form-field flex">
+                            <label for="alias">Prescription Name :</label>
+                            <div>
+                                <input type="text" id="alias" name="alias"><br>
+                                <span class="error-alias">error</span>
+                            </div>
+                        </div>
+                        <div class="form-field flex">
+                            <label for="doc-name">Doctor Name :</label>
+                            <div>
+                                <input type="text" id="doc-name" name="docName"><br>
+                                <span class="error-name">error</span>
+                            </div>
+                        </div>
+                        <div class="form-field flex">
+                            <label for="hospital-name">Hospital Name :</label>
+                            <div>
+                                <input type="text" name="hospitalName" id="hospital-name"><br>
+                                <span class="error-hospital-name">error</span>
+                            </div>
+                        </div>
+                        <div class="form-field flex">
+                            <label for="prescription-date">Prescription Date :</label>
+                            <div>
+                                <input type="date" id="prescription-date" name="prescriptionDate"><br>
+                                <span class="error-date">error</span>
+                            </div>
+                        </div>
+                        <div class="form-field flex">
+                            <label for="img-link">Image Url :</label>
+                            <div>
+                                <input type="url" id="img-link" name="imgLink">
+                                <span class="error-img">error</span>
+                            </div>
+                        </div>
+                        <div class="prescription-btn-container flex">
+                            <button id="add-new-prescription" class="styled">Add Prescription</button>
+                            <button id="save-prescription-btn" class="styled">Save Changes</button>
+                            <button id="cancel-prescription-btn" class="styled">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+            <section class="prescription-table-section">
+                <div class="prescription-table-container">
+                    <table id="prescription-table">
+                        <thead>
+                            <tr>
+                                <th colspan="1">S. No.</th>
+                                <th>Prescription Name</th>
+                                <th>Doctor Name</th>
+                                <th>Hospital Name</th>
+                                <th>Prescription Date</th>
+                                <th>Image</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-data">
+                           
+                        </tbody>
+                    </table>
+                    <div class="empty-table">No prescriptions added.</div> 
+                </div>
+            </section>
+            <div class="pop-message">
+                <span class="pop-content"> Wrong password</span>
+                <span id="close-toast">&times;</span>
+            </div>
+            <div class="pop-up-delete">
+                <h3>Click on delete to confirm</h3>
+                <div class="btn-container">
+                    <button class="styled delete">Delete</button>
+                    <button class="styled cancel" onclick="cancelBtn()" id="cancel-btn">Cancel</button>
+                </div>
+            </div>
+            
+            <script  src="../js/common.js"></script>
+        <script   src="../js/prescription.js"></script>
+
+    </body>
+
+</html>

@@ -13,7 +13,7 @@
     </head>
 
     <body>
-        <header>
+        <!-- <header>
             <nav class="navbar-container">
                 <div class="logo">
                     <span class="brand">ePriscripto</span>
@@ -29,53 +29,54 @@
                     <li><a href="signin-up.html">Login</a></li>
                 </ul>
             </nav>
-        </header>
-        <section class="account-section">
-            <h1 class="heading">Account Details</h1>
-            <div class="form-container">
-                <form>
-                    <label for="firstName">Enter your name :</label>
-                    <div class="full-name-container">
-                        <input type="text" id="firstName" placeholder="First name">
-                        <input type="text" id="lastName" placeholder="Last name">
+        </header> -->
+        <div class="container flex" id="container">
+            <div class="form-container sign-up-container flex">
+                <form action="#" class="flex-col">
+                    <h1>Create Account</h1>
+                    <div class="social-container">
+                        <a href="#" class="social"><i class="fa fa-facebook-f"></i></a>
+                        <a href="#" class="social"><i class="fa fa-google"></i></a>
+                        <a href="#" class="social"><i class="fa fa-linkedin"></i></a>
                     </div>
-                    <label for="email">Enter your email :</label>
-                    <input type="email" id="email" placeholder="Email">
-                    <label for="password">Enter your password :</label>
-                    <input type="password" id="password" placeholder="Password">
-                    <input type="password" placeholder="Confirm password">
-                    <div class="form-btn-container">
-                        <button class="styled">Cancel</button>
-                        <button>Create</button>
-                    </div>
+                    <span>or use your email for registration</span>
+                    <input type="text" placeholder="Name" />
+                    <input type="email" placeholder="Email" />
+                    <input type="password" placeholder="Password" />
+                    <button class="styled">Sign Up</button>
                 </form>
             </div>
-        </section>
-        <footer>
-            <div class="footer-container">
-                <div class="logo">
-                    <span class="brand">ePriscripto</span>
-                    <span class="tagline">Simplify,Organise,Thrieve with ePriscripto</span>
-                </div>
-                <div class="details-container">
-                    <span><i class="fa fa-map-marker"></i> Location</span>
-                    <span><i class="fa fa-phone"></i> Call:+01 1234567890</span>
-                    <span><i class="fa fa-envelope"></i> Email:Email@email.com</span>
-                    <span class="social-icons-container"><i class="fa fa-facebook"></i><i class="fa fa-instagram"></i><i
-                            class="fa fa-linkedin"></i><i class="fa fa-twitter"></i></span>
-                </div>
-                <div class="important-links-container">
-                    <h3>Usefull Links</h3>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="index.html#contact-us">Doctors</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="index.html#contact-us">Contact</a></li>
-                    </ul>
+            <div class="form-container sign-in-container flex">
+                <form action="#" class="flex-col">
+                    <h1>Sign in</h1>
+                    <div class="social-container">
+                        <a href="#" class="social"><i class="fa fa-facebook-f"></i></a>
+                        <a href="#" class="social"><i class="fa fa-google"></i></a>
+                        <a href="#" class="social"><i class="fa fa-linkedin"></i></a>
+                    </div>
+                    <span>or use your account</span>
+                    <input type="email" placeholder="Email" />
+                    <input type="password" placeholder="Password" />
+                    <a href="#">Forgot your password?</a>
+                    <button class="styled">Sign In</button>
+                </form>
+            </div>
+            <div class="overlay-container flex-col">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-right flex-col">
+                        <h1>Welcome Back!</h1>
+                        <p>To keep connected with us please login with your personal info</p>
+                        <button class="styled" id="signIn">Sign In</button>
+                    </div>
+                    <div class="overlay-panel overlay-left flex-col active">
+                        <h1>Hello, Friend!</h1>
+                        <p>Enter your personal details and start journey with us</p>
+                        <button class="styled" id="signUp">Sign Up</button>
+                    </div>
                 </div>
             </div>
-            <div class="bottom-bar">&copy; 2023 All Rights Reserved</div>
-        </footer>
+        </div>
+        <script src="js/index.js"></script>
     </body>
 
 </html>

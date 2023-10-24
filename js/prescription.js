@@ -12,7 +12,8 @@ const prescriptionBox = document.querySelector(".prescription-section")
 const prescriptionCard = document.querySelector(".prescription-card")
 const cancelPrescription = document.querySelector("#cancel-prescription-btn")
 
-function closePrescriptionBox() {
+function closePrescriptionBox(event) {
+    event.preventDefault()
     prescriptionBox.classList.remove("active")
 }
 
@@ -20,10 +21,13 @@ function openPrescriptionBox() {
     prescriptionBox.classList.toggle("active")
     prescriptionBox.onclick = (event) => {
         if (event.target === prescriptionBox)
-            closePrescriptionBox()
+            closePrescriptionBox(event)
     }
 }
-cancelPrescription.onclick = closePrescriptionBox
+cancelPrescription.onclick = function (event) {
+    closePrescriptionBox(event)
+}
+
 prescriptionShowBtn.onclick = openPrescriptionBox
 
 
@@ -163,7 +167,6 @@ function handlePrescriptionFormSubmit(event, btnId) {
     const aliasValue = alias.value.trim()
     const docNameValue = docName.value.trim()
     const hospitalNameValue = hospitalName.value.trim()
-    console.log(aliasValue, docNameValue, hospitalNameValue, prescriptionDate.value)
     if (!prescriptionForm.alias.value.trim()) {
         inputError(prescriptionForm.alias, errorAlias, "Enter prescription name",)
     }
@@ -226,32 +229,32 @@ function handlePrescriptionFormSubmit(event, btnId) {
                             .then(response => {
                                 if (response.ok) {
                                     prescriptionForm.reset()
-                                    closePrescriptionBox()
+                                    closePrescriptionBox(event)
                                     if (btnId) {
                                         toast("Prescription updated", "success", "reload")
                                     }
                                     else {
-                                        toast("Prescription Added", "success","reload")
+                                        toast("Prescription Added", "success", "reload")
                                     }
                                 }
                             }).catch(() => {
-                                closePrescriptionBox()
+                                closePrescriptionBox(event)
                                 toast("Prescription cannot be added", "error")
                             })
                     }).catch(() => {
                         prescriptionForm.reset()
-                        closePrescriptionBox()
+                        closePrescriptionBox(event)
                         toast("No response from server", "error")
                     })
             }
             cursor.onerror = (e) => {
-                closePrescriptionBox()
+                closePrescriptionBox(event)
                 toast("Server error", "error", "reload")
             }
         }
     }
 }
-prescriptionForm.onsubmit =  function(event){
+prescriptionForm.onsubmit = function (event) {
     handlePrescriptionFormSubmit(event)
 }
 
